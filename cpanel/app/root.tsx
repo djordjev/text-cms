@@ -7,13 +7,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import stylesheet from "~/tailwind.css";
+import stylesheet from "./tailwind.css";
 import FontStyles from "@fontsource/roboto/index.css";
-import { Header } from "~/components/Header";
+import { Header } from "~/components/global/Header";
+import { Footer } from "~/components/global/Footer";
+import globalStyles from "./styles.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
   { rel: "stylesheet", href: FontStyles },
+  { rel: "stylesheet", href: globalStyles },
 ];
 
 export default function App() {
@@ -27,7 +30,10 @@ export default function App() {
       </head>
       <body>
         <Header />
-        <Outlet />
+        <main className="main">
+          <Outlet />
+        </main>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
