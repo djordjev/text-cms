@@ -1,4 +1,6 @@
 import type { LinksFunction } from "@remix-run/node";
+
+import FontStyles from "@fontsource/roboto/index.css";
 import {
   Links,
   LiveReload,
@@ -7,11 +9,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import stylesheet from "./tailwind.css";
-import FontStyles from "@fontsource/roboto/index.css";
-import { Header } from "~/components/global/Header";
+
 import { Footer } from "~/components/global/Footer";
+import { Header } from "~/components/global/Header";
+
 import globalStyles from "./styles.css";
+import stylesheet from "./tailwind.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },

@@ -13,6 +13,9 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+    parser: '@typescript-eslint/parser',
   },
   env: {
     browser: true,
@@ -67,6 +70,20 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+      "rules": {
+        "import/order": [
+          "error",
+          {
+            "alphabetize": {
+              "order": "asc"
+            },
+            "groups": ["type", "builtin", "external", "internal", "parent", ["sibling", "index"]],
+            "newlines-between": "always",
+            "pathGroups": [],
+            "pathGroupsExcludedImportTypes": []
+          }
+        ]
+      },
     },
 
     // Node
