@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = () => {
   };
 
   return (
-    <nav className="u-h-8xs u-shadow-md u-flex u-items-center u-px-3x">
+    <nav className="u-h-8xs u-shadow-md u-flex u-items-center u-px-3x u-bg-white">
       <div className="u-flex-1 u-flex u-items-center">
         <NavLink className={classesNav} to="/">
           <img

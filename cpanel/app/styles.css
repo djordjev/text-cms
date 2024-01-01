@@ -1,3 +1,7 @@
 .main {
     min-height: calc(100vh - 121px);
 }
+
+body {
+    background-color: theme('colors.gray.0');
+}

@@ -47,6 +47,11 @@ module.exports = {
           { name: "NavLink", linkAttribute: "to" },
         ],
       },
+      rules: {
+        'react/jsx-boolean-value': ['error', 'always'],
+
+        'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
+      }
     },
 
     // Typescript

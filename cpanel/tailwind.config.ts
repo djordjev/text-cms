@@ -13,6 +13,18 @@ export default {
       "success-700": "#4CC366",
       white: "#FFFFFF",
       black: "#000000",
+      gray: {
+        9: "#191919",
+        8: "#333333",
+        7: "#4C4C4C",
+        6: "#666666",
+        5: "#7F7F7F",
+        4: "#999999",
+        3: "#B2B2B2",
+        2: "#CCCCCC",
+        1: "#EFEFEF",
+        0: "#F6F6F6",
+      },
     },
     screens: {
       sm: "640px",

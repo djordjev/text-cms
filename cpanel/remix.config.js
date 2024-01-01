@@ -8,5 +8,6 @@ export default {
   // serverBuildPath: "build/index.js",
   future: {
     unstable_tailwind: true,
+    v3_relativeSplatPath: true,
   },
 };

@@ -10,9 +10,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { Footer } from "~/components/global/Footer";
-import { Header } from "~/components/global/Header";
-
+import { Footer } from "./components/global/Footer";
+import { Header } from "./components/global/Header";
 import globalStyles from "./styles.css";
 import stylesheet from "./tailwind.css";
 
