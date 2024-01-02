@@ -21,8 +21,6 @@ const getPathFromSegments = (segments: string[], segment: string) => {
     return segment;
   });
 
-  console.log('mapped', mapped);
-
   const joined = mapped.join('/');
 
   return `/${joined}`;
