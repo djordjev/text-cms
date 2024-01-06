@@ -1,24 +1,25 @@
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from '@remix-run/node';
 
-import FontStyles from "@fontsource/roboto/index.css";
+import FontStyles from '@fontsource/roboto/index.css';
 import {
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+  ScrollRestoration
+} from '@remix-run/react';
 
-import { Footer } from "./components/global/Footer";
-import { Header } from "./components/global/Header";
-import globalStyles from "./styles.css";
-import stylesheet from "./tailwind.css";
+import { Footer } from '~/components/global/Footer';
+
+import { Header } from './components/global/Header';
+import globalStyles from './styles.css';
+import stylesheet from './tailwind.css';
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-  { rel: "stylesheet", href: FontStyles },
-  { rel: "stylesheet", href: globalStyles },
+  { rel: 'stylesheet', href: stylesheet },
+  { rel: 'stylesheet', href: FontStyles },
+  { rel: 'stylesheet', href: globalStyles }
 ];
 
 export default function App() {
