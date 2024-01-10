@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { createEditor, Editor as SlateEditor, Transforms } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 
-import { VariationEditor } from '~/components/editor/VariationEditor/VariationEditor';
+import { VariationEditor } from '~/components/editor/VariationEditor';
 
 const initialValue: any[] = [
   {

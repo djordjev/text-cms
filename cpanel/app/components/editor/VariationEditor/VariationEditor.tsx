@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import * as React from 'react';
-import { Editor, Transforms, createEditor } from 'slate';
+import React from 'react';
+import { createEditor, Editor, Transforms } from 'slate';
 import {
   Editable,
   RenderElementProps,

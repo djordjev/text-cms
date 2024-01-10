@@ -2,7 +2,7 @@ import { Popover } from '@headlessui/react';
 import { ColorResult } from '@uiw/color-convert';
 import Block from '@uiw/react-color-block';
 import classnames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 
 import { Action } from './types';
 
