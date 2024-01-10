@@ -1,10 +1,13 @@
+import { Popover } from '@headlessui/react';
+import { ColorResult } from '@uiw/color-convert';
+import Block from '@uiw/react-color-block';
 import classnames from 'classnames';
 import * as React from 'react';
 
 import { Action } from './types';
 
 export interface ToolbarProps {
-  onClick: (action: Action) => void;
+  onClick: (action: Action, value?: string) => void;
 }
 
 const Toolbar: React.FC<ToolbarProps> = (props) => {
@@ -20,6 +23,10 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
   // Handlers
   const onClickHandler = (action: Action) => () => {
     onClick(action);
+  };
+
+  const onPickColor = (color: ColorResult) => {
+    onClick(Action.Color, color.hex);
   };
 
   return (
@@ -52,6 +59,12 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
       >
         Strikethrough
       </button>
+      <Popover className="u-inline-block u-mx-1x">
+        <Popover.Button>Color</Popover.Button>
+        <Popover.Panel className="u-absolute u-z-10">
+          <Block color={'#fff'} onChange={onPickColor} />
+        </Popover.Panel>
+      </Popover>
     </div>
   );
 };

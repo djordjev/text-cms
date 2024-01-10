@@ -35,10 +35,8 @@ const VariationEditor: React.FC<VariationEditorProps> = (props) => {
   );
 
   // Handlers
-  const onClick = (action: Action) => {
-    console.log(action);
-
-    Editor.addMark(editor, action, true);
+  const onClick = (action: Action, value?: string) => {
+    Editor.addMark(editor, action, value ?? true);
   };
 
   // Markup

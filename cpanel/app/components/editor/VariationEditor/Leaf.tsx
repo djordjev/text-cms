@@ -23,6 +23,12 @@ const Leaf: React.FC<RenderLeafProps> = (props) => {
     content = <span className="u-line-through">{children}</span>;
   }
 
+  if (Action.Color in leaf && leaf.color) {
+    console.log(leaf);
+
+    content = <span style={{ color: leaf.color as any }}>{children}</span>;
+  }
+
   return <span {...attributes}>{content}</span>;
 };
 
