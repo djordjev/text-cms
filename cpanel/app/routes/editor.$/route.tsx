@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createEditor, Transforms, Editor as SlateEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
+import { VariationEditor } from '~/components/editor/VariationEditor/VariationEditor';
 
 const initialValue: any[] = [
   {
@@ -48,6 +49,8 @@ const Editor = () => {
   const renderLeaf = React.useCallback((props: any) => {
     return <Leaf {...props} />;
   }, []);
+
+  return <VariationEditor name="variation 1" />;
 
   return (
     <div className="u-container u-border u-border-solid u-border-primary-500 u-rounded u-my-10x u-mx-auto u-min-h-3z u-bg-white">

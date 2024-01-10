@@ -36,6 +36,7 @@ module.exports = {
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
+        "prettier",
       ],
       settings: {
         react: {
@@ -48,10 +49,11 @@ module.exports = {
         ],
       },
       rules: {
-        'react/jsx-boolean-value': ['error', 'always'],
-
-        'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
-      }
+        "react/jsx-no-leaked-render": [
+          "warn",
+          { validStrategies: ["ternary"] },
+        ],
+      },
     },
 
     // Typescript
@@ -72,28 +74,31 @@ module.exports = {
       },
       extends: [
         "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/stylistic",
         "plugin:import/recommended",
         "plugin:import/typescript",
+        "prettier",
       ],
-      "rules": {
+      rules: {
         "import/order": [
           "error",
           {
-            "alphabetize": {
-              "order": "asc"
-            },
-            "groups": ["type", "builtin", "external", "internal", "parent", ["sibling", "index"]],
+            alphabetize: { caseInsensitive: true, order: "asc" },
+            groups: ["builtin", "external", "internal", "parent", "sibling"],
             "newlines-between": "always",
-            "pathGroups": [],
-            "pathGroupsExcludedImportTypes": []
-          }
-        ]
+          },
+        ],
       },
     },
 
     // Node
     {
-      files: [".eslintrc.js"],
+      files: [
+        ".eslintrc.js",
+        "plugin-remix.js",
+        "remix.config.js",
+        "mocks/**/*.js",
+      ],
       env: {
         node: true,
       },
