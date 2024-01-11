@@ -52,7 +52,7 @@ module.exports = {
     // Typescript
     {
       files: ["**/*.{ts,tsx}"],
-      plugins: ["@typescript-eslint", "import"],
+      plugins: ["@typescript-eslint", "import", "simple-import-sort"],
       parser: "@typescript-eslint/parser",
       settings: {
         "import/internal-regex": "^~/",
@@ -64,6 +64,10 @@ module.exports = {
             alwaysTryTypes: true,
           },
         },
+      },
+      rules: {
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error"
       },
       extends: [
         "plugin:@typescript-eslint/recommended",
