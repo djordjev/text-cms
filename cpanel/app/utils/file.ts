@@ -26,4 +26,4 @@ const getPathFromSegments = (segments: string[], segment: string) => {
   return `/${joined}`;
 };
 
-export { getPathFromSegments, isHome, isFile, isFolder };
+export { getPathFromSegments, isFile, isFolder,isHome };
