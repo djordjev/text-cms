@@ -1,8 +1,8 @@
-import type { CreateParam } from '~/types';
-
 import { Dialog } from '@headlessui/react';
 import { Form, useResolvedPath } from '@remix-run/react';
 import React from 'react';
+
+import type { CreateParam } from '~/types';
 
 export interface NewFileProps {
   open: boolean;

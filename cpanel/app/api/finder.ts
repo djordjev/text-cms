@@ -1,5 +1,6 @@
 import { CreateParam } from '~/types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const hardcodedData: any = {
   folder1: {
     inner1: {},

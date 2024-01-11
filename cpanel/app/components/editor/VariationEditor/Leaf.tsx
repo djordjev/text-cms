@@ -1,5 +1,6 @@
 import React from 'react';
 import { RenderLeafProps } from 'slate-react';
+
 import { Action } from './types';
 
 const Leaf: React.FC<RenderLeafProps> = (props) => {
@@ -24,8 +25,7 @@ const Leaf: React.FC<RenderLeafProps> = (props) => {
   }
 
   if (Action.Color in leaf && leaf.color) {
-    console.log(leaf);
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     content = <span style={{ color: leaf.color as any }}>{children}</span>;
   }
 

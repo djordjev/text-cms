@@ -1,4 +1,4 @@
-import { Link, useLocation, useResolvedPath } from '@remix-run/react';
+import { Link, useLocation } from '@remix-run/react';
 import React from 'react';
 
 export interface FileProps {
