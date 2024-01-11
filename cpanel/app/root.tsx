@@ -1,6 +1,5 @@
-import type { LinksFunction } from '@remix-run/node';
-
 import FontStyles from '@fontsource/roboto/index.css';
+import type { LinksFunction } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -11,8 +10,8 @@ import {
 } from '@remix-run/react';
 
 import { Footer } from '~/components/global/Footer';
+import { Header } from '~/components/global/Header';
 
-import { Header } from './components/global/Header';
 import globalStyles from './styles.css';
 import stylesheet from './tailwind.css';
 

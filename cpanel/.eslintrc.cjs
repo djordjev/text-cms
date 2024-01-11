@@ -13,9 +13,6 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    tsconfigRootDir: __dirname,
-    project: './tsconfig.json',
-    parser: '@typescript-eslint/parser',
   },
   env: {
     browser: true,
@@ -36,7 +33,6 @@ module.exports = {
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
-        "prettier",
       ],
       settings: {
         react: {
@@ -47,25 +43,22 @@ module.exports = {
           { name: "Link", linkAttribute: "to" },
           { name: "NavLink", linkAttribute: "to" },
         ],
-      },
-      rules: {
-        "react/jsx-no-leaked-render": [
-          "warn",
-          { validStrategies: ["ternary"] },
-        ],
+        "import/resolver": {
+          typescript: {},
+        },
       },
     },
 
     // Typescript
     {
       files: ["**/*.{ts,tsx}"],
-      plugins: ["@typescript-eslint", "import", "simple-import-sort"],
+      plugins: ["@typescript-eslint", "import"],
       parser: "@typescript-eslint/parser",
       settings: {
         "import/internal-regex": "^~/",
         "import/resolver": {
           node: {
-            extensions: [".ts", ".tsx", ".json"],
+            extensions: [".ts", ".tsx"],
           },
           typescript: {
             alwaysTryTypes: true,
@@ -74,33 +67,14 @@ module.exports = {
       },
       extends: [
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/stylistic",
         "plugin:import/recommended",
         "plugin:import/typescript",
-        "prettier",
       ],
-      rules: {
-        "import/order": [
-          "error",
-          {
-            alphabetize: { caseInsensitive: true, order: "asc" },
-            groups: ["builtin", "external", "internal", "parent", "sibling"],
-            "newlines-between": "always",
-          },
-        ],
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error"
-      },
     },
 
     // Node
     {
-      files: [
-        ".eslintrc.js",
-        "plugin-remix.js",
-        "remix.config.js",
-        "mocks/**/*.js",
-      ],
+      files: [".eslintrc.js"],
       env: {
         node: true,
       },
