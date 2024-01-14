@@ -31,12 +31,20 @@ const VariationEditor: React.FC<VariationEditorProps> = (props) => {
   const classesBorder = `u-border u-border-solid u-border-primary-500 u-rounded`;
   const classesContent = classnames(
     classesBorder,
-    'u-container u-mx-auto u-bg-white'
+    'container-sm u-mx-auto u-bg-white'
   );
 
   // Handlers
-  const onClick = (action: Action, value?: string) => {
-    Editor.addMark(editor, action, value ?? true);
+  const onClick = (action: Action, value?: string | boolean) => {
+    if (value) {
+      Editor.addMark(editor, action, value);
+    } else {
+      Editor.removeMark(editor, action);
+    }
+  };
+
+  const onSave = () => {
+    console.log('save', JSON.stringify(editor.children));
   };
 
   // Markup
@@ -58,8 +66,19 @@ const VariationEditor: React.FC<VariationEditorProps> = (props) => {
         <Slate editor={editor} initialValue={INITIAL_VALUE}>
           <Toolbar onClick={onClick} />
 
-          <Editable renderElement={renderElement} renderLeaf={renderLeaf} />
+          <Editable
+            className="u-outline-0 u-p-2xs"
+            spellCheck={true}
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+          />
         </Slate>
+      </div>
+
+      <div>
+        <button className="btn-primary" onClick={onSave} type="button">
+          Save
+        </button>
       </div>
     </div>
   );

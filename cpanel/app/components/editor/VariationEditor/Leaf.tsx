@@ -1,35 +1,26 @@
+import classnames from 'classnames';
 import React from 'react';
 import { RenderLeafProps } from 'slate-react';
-
-import { Action } from './types';
 
 const Leaf: React.FC<RenderLeafProps> = (props) => {
   const { attributes, children, leaf } = props;
 
-  let content = children;
+  const classes = classnames({
+    'u-font-bold': leaf.bold,
+    'u-italic': leaf.italic,
+    'u-line-through': leaf.strikethrough,
+    'u-underline': leaf.underline
+  });
 
-  if (Action.Bold in leaf && leaf.bold) {
-    content = <span className="u-font-bold">{children}</span>;
-  }
+  const style = {
+    color: leaf.color ?? '#000'
+  };
 
-  if (Action.Italic in leaf && leaf.italic) {
-    content = <span className="u-italic">{children}</span>;
-  }
-
-  if (Action.Underline in leaf && leaf.underline) {
-    content = <span className="u-underline">{children}</span>;
-  }
-
-  if (Action.Strikethrough in leaf && leaf.strikethrough) {
-    content = <span className="u-line-through">{children}</span>;
-  }
-
-  if (Action.Color in leaf && leaf.color) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    content = <span style={{ color: leaf.color as any }}>{children}</span>;
-  }
-
-  return <span {...attributes}>{content}</span>;
+  return (
+    <span className={classes} style={style} {...attributes}>
+      {children}
+    </span>
+  );
 };
 
 export { Leaf };
