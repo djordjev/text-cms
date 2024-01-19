@@ -23,7 +23,7 @@ export type HeadingElement = {
   children: CustomText[];
 };
 
-type CustomElement = ParagraphElement | HeadingElement;
+export type CustomElement = ParagraphElement | HeadingElement;
 
 type StringActions = { [key in StrAct]?: string };
 type BoolActions = { [key in BoolAct]?: boolean };

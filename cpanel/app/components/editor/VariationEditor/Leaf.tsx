@@ -2,6 +2,8 @@ import classnames from 'classnames';
 import React from 'react';
 import { RenderLeafProps } from 'slate-react';
 
+import { DEFAULT_TEXT_COLOR } from '~/components/editor/VariationEditor/constants';
+
 const Leaf: React.FC<RenderLeafProps> = (props) => {
   const { attributes, children, leaf } = props;
 
@@ -13,7 +15,7 @@ const Leaf: React.FC<RenderLeafProps> = (props) => {
   });
 
   const style = {
-    color: leaf.color ?? '#000'
+    color: leaf.color ?? DEFAULT_TEXT_COLOR
   };
 
   return (
