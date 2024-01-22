@@ -13,6 +13,7 @@ body {
     color: theme('colors.white');
     font-weight: bold;
     height: theme('spacing.5x');
+    padding: theme('spacing.1x') theme('spacing.5x');
     text-transform: uppercase;
     transition: all 150ms ease-in-out;
 
