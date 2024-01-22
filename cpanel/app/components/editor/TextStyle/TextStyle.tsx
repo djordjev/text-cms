@@ -1,51 +1,51 @@
-import { Listbox } from '@headlessui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { useSlate } from 'slate-react';
 
+import { getSelectedStyleOption } from '~/components/editor/TextStyle/helpers';
 import { CustomElement } from '~/components/editor/VariationEditor/types';
 
-const TEXT_STYLES = [
-  { id: 'heading', name: 'Heading', unavailable: false },
-  { id: 'paragraph', name: 'Paragraph', unavailable: false }
-];
+import { TEXT_STYLES } from './constants';
+import { getSelectedStyle } from './utils';
 
 export interface TextStyleProps {
-  onChange: (selected: Exclude<CustomElement, 'children'>) => void;
-  value: any;
+  onChange: (selected: Partial<CustomElement>) => void;
 }
 
 const TextStyle: FC<TextStyleProps> = (props) => {
-  const { onChange, value } = props;
+  const { onChange } = props;
+
+  // Hooks
+  const editor = useSlate();
 
   // Setup
-  const selected = TEXT_STYLES.find((ts) => ts.id === value);
+  const selectedStyle = getSelectedStyle(editor);
+  const selected = getSelectedStyleOption(selectedStyle);
 
   // Handler
-  const onChangeHandler = (val: { id: 'heading' | 'paragraph' }) => {
-    const { id } = val;
+  const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = e.currentTarget.value;
 
     if (id === 'paragraph') {
       onChange({ type: id });
       return;
     }
 
-    onChange({ type: id, level: 3 });
+    const level = id.split('_')[1] ?? '3';
+    onChange({ level: Number.parseInt(level, 10), type: 'heading' });
   };
 
   return (
-    <Listbox value={value} onChange={onChangeHandler}>
-      <Listbox.Button>{selected?.name ?? 'Djordje'}</Listbox.Button>
-      <Listbox.Options>
-        {TEXT_STYLES.map((person) => (
-          <Listbox.Option
-            key={person.id}
-            value={person}
-            disabled={person.unavailable}
-          >
-            {person.name}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </Listbox>
+    <select
+      className={'u-bg-gray-1'}
+      onChange={onChangeHandler}
+      value={selected}
+    >
+      {TEXT_STYLES.map((style) => (
+        <option key={style.id} value={style.id}>
+          {style.name}
+        </option>
+      ))}
+    </select>
   );
 };
 

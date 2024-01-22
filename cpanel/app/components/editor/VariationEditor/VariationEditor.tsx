@@ -44,7 +44,7 @@ const VariationEditor: React.FC<VariationEditorProps> = (props) => {
   };
 
   const onSave = () => {
-    console.log('save', JSON.stringify(editor.children));
+    console.log('save', editor.children);
   };
 
   // Markup

@@ -1,6 +1,3 @@
-import { Popover } from '@headlessui/react';
-import { ColorResult } from '@uiw/color-convert';
-import Block from '@uiw/react-color-block';
 import classnames from 'classnames';
 import React from 'react';
 import { Editor, Element, Transforms } from 'slate';
@@ -10,7 +7,7 @@ import { TextStyle } from '~/components/editor/TextStyle';
 import { ToggleStyle } from '~/components/editor/ToggleStyle';
 import { DEFAULT_TEXT_COLOR } from '~/components/editor/VariationEditor/constants';
 
-import { Action } from './types';
+import { Action, CustomElement } from './types';
 
 export interface ToolbarProps {
   onClick: (action: Action, value?: string | boolean) => void;
@@ -34,11 +31,12 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
     onClick(action, value);
   };
 
-  const onPickColor = (color: ColorResult) => {
-    onClick(Action.Color, color.hex);
+  const onPickColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    onClick(Action.Color, value);
   };
 
-  const onStylePick = (toTransform: any) => {
+  const onStylePick = (toTransform: Partial<CustomElement>) => {
     Transforms.setNodes<Element>(editor, toTransform);
   };
 
@@ -57,19 +55,10 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
         action={Action.Strikethrough}
         onToggle={onToggleClick(Action.Strikethrough)}
       />
-      <Popover className="u-inline-block u-mx-1x">
-        <Popover.Button>
-          <div
-            className="u-rounded"
-            style={{ backgroundColor: color, height: 14, width: 14 }}
-          />
-        </Popover.Button>
-        <Popover.Panel className="u-absolute u-z-10">
-          <Block color={'#fff'} onChange={onPickColor} />
-        </Popover.Panel>
-      </Popover>
 
-      <TextStyle onChange={onStylePick} value={'paragraph'} />
+      <input onChange={onPickColor} type="color" value={color} />
+
+      <TextStyle onChange={onStylePick} />
     </div>
   );
 };
