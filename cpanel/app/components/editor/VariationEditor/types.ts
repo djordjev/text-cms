@@ -11,17 +11,22 @@ export enum Action {
 
 type StrAct = Action.Color;
 type BoolAct = Exclude<Action, StrAct>;
+export type Alignment = 'left' | 'center' | 'right';
+
+export type ElementCommon = {
+  align?: Alignment;
+};
 
 export type ParagraphElement = {
   type: 'paragraph';
   children: CustomText[];
-};
+} & ElementCommon;
 
 export type HeadingElement = {
   type: 'heading';
   level: number;
   children: CustomText[];
-};
+} & ElementCommon;
 
 export type CustomElement = ParagraphElement | HeadingElement;
 

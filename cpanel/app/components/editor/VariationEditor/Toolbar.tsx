@@ -3,6 +3,7 @@ import React from 'react';
 import { Editor, Element, Transforms } from 'slate';
 import { useSlate } from 'slate-react';
 
+import { TextAlignment } from '~/components/editor/TextAlignment';
 import { TextStyle } from '~/components/editor/TextStyle';
 import { ToggleStyle } from '~/components/editor/ToggleStyle';
 import { DEFAULT_TEXT_COLOR } from '~/components/editor/VariationEditor/constants';
@@ -40,6 +41,10 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
     Transforms.setNodes<Element>(editor, toTransform);
   };
 
+  const onAlignmentChange = (toTransform: Partial<CustomElement>) => {
+    Transforms.setNodes<Element>(editor, toTransform);
+  };
+
   return (
     <div className={classes}>
       <ToggleStyle action={Action.Bold} onToggle={onToggleClick(Action.Bold)} />
@@ -59,6 +64,8 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
       <input onChange={onPickColor} type="color" value={color} />
 
       <TextStyle onChange={onStylePick} />
+
+      <TextAlignment onChange={onAlignmentChange} />
     </div>
   );
 };

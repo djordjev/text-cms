@@ -1,8 +1,18 @@
+import classnames from 'classnames';
 import React from 'react';
 import { RenderElementProps } from 'slate-react';
 
 const Element: React.FC<RenderElementProps> = (props) => {
   const { attributes, children, element } = props;
+
+  const { align } = element;
+
+  // Styles
+  const classes = classnames({
+    'u-text-left': !align || align === 'left',
+    'u-text-center': align === 'center',
+    'u-text-right': align === 'right'
+  });
 
   // Markup
   const renderHeading = (level: number) => {
@@ -21,10 +31,14 @@ const Element: React.FC<RenderElementProps> = (props) => {
   };
 
   if (element.type === 'heading') {
-    return renderHeading(element.level);
+    return <div className={classes}>{renderHeading(element.level)}</div>;
   }
 
-  return <p {...attributes}>{children}</p>;
+  return (
+    <p className={classes} {...attributes}>
+      {children}
+    </p>
+  );
 };
 
 export { Element };
