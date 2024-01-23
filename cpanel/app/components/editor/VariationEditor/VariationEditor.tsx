@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { createEditor, Editor } from 'slate';
 import {
   Editable,
@@ -9,6 +9,8 @@ import {
   withReact
 } from 'slate-react';
 
+import { ConditionEditor } from '~/components/editor/ConditionEditor';
+
 import { INITIAL_VALUE } from './constants';
 import { Element } from './Element';
 import { Leaf } from './Leaf';
@@ -17,14 +19,14 @@ import type { Action } from './types';
 
 export interface VariationEditorProps {
   className?: string;
-  name: string;
 }
 
 const VariationEditor: React.FC<VariationEditorProps> = (props) => {
-  const { className, name } = props;
+  const { className } = props;
 
   // Hooks
   const [editor] = React.useState(() => withReact(createEditor()));
+  const [conditions, setConditions] = useState<string[]>([]);
 
   // Styles
   const classes = classnames('u-my-10x', className);
@@ -60,7 +62,11 @@ const VariationEditor: React.FC<VariationEditorProps> = (props) => {
 
   return (
     <div className={classes}>
-      {name}
+      <ConditionEditor
+        conditions={conditions}
+        fileName="filename.txt"
+        setConditions={setConditions}
+      />
 
       <div className={classesContent}>
         <Slate editor={editor} initialValue={INITIAL_VALUE}>
