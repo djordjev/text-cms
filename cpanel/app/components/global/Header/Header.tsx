@@ -1,16 +1,17 @@
-import { NavLink } from "@remix-run/react";
-import classnames from "classnames";
-import React from "react";
+import { NavLink } from '@remix-run/react';
+import { IconFolderOpen, IconHome, IconUserCircle } from '@tabler/icons-react';
+import classnames from 'classnames';
+import React from 'react';
 
 export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
   // Styles
-  const classesMenuItem = "u-mr-3x u-flex u-items-center";
+  const classesMenuItem = 'u-mr-3x u-flex u-items-center';
 
   const classesNav = ({ isActive }: { isActive: boolean }) => {
     return classnames(classesMenuItem, {
-      "u-text-primary-300": isActive,
+      'u-text-primary-300': isActive
     });
   };
 
@@ -18,31 +19,22 @@ const Header: React.FC<HeaderProps> = () => {
     <nav className="u-h-8xs u-shadow-md u-flex u-items-center u-px-3x u-bg-white">
       <div className="u-flex-1 u-flex u-items-center">
         <NavLink className={classesNav} to="/">
-          <img
-            alt="home"
-            className="u-mr-1x u-inline-block"
-            src="/svg/home.svg"
-            height={26}
-            width={26}
-            loading="lazy"
-          />
+          <IconHome className="u-mr-1x" />
           Home
         </NavLink>
 
         <NavLink className={classesNav} to="/finder">
-          <img
-            alt="home"
-            className="u-mr-1x u-inline-block"
-            src="/svg/folder.svg"
-            height={26}
-            width={26}
-            loading="lazy"
-          />
+          <IconFolderOpen className="u-mr-1x" />
           Finder
         </NavLink>
       </div>
 
-      <div className="u-flex-none">Account</div>
+      <div className="u-flex-none">
+        <NavLink className={classesNav} to="/account">
+          <IconUserCircle className="u-mr-1x" />
+          Account
+        </NavLink>
+      </div>
     </nav>
   );
 };
