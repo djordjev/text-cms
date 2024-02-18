@@ -11,13 +11,16 @@ const Header: React.FC<HeaderProps> = () => {
 
   const classesNav = ({ isActive }: { isActive: boolean }) => {
     return classnames(classesMenuItem, {
-      'u-text-primary-300': isActive
+      'u-text-primary': isActive
     });
   };
 
   return (
-    <nav className="u-h-8xs u-shadow-md u-flex u-items-center u-px-3x u-bg-white">
-      <div className="u-flex-1 u-flex u-items-center">
+    <nav className="u-navbar u-bg-base-100 u-glass">
+      <p className="u-text-xl u-font-bold u-text-primary-content u-mr-5x u-hidden md:u-block">
+        TextCMS
+      </p>
+      <div className="u-navbar-start">
         <NavLink className={classesNav} to="/">
           <IconHome className="u-mr-1x" />
           Home
@@ -29,7 +32,7 @@ const Header: React.FC<HeaderProps> = () => {
         </NavLink>
       </div>
 
-      <div className="u-flex-none">
+      <div className="u-navbar-end">
         <NavLink className={classesNav} to="/account">
           <IconUserCircle className="u-mr-1x" />
           Account

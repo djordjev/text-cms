@@ -1,23 +1,20 @@
-import classnames from "classnames";
+export interface FooterProps {}
 
 const Footer = () => {
-  // Styles
-  const classes = classnames(
-    "u-flex u-flex-col u-items-center u-border-t u-border-solid u-pt-2xs",
-    "u-border-b-primary-700 u-text-primary-300 u-text-primary-300 u-opacity-40"
-  );
-
   return (
-    <div className={classes}>
-      <div className="u-text-black">Created by Djordje Vukovic</div>
-      <a
-        href="https://github.com/djordjev/text-cms"
-        rel="noreferrer"
-        target="_blank"
-      >
-        GitHub
-      </a>
-    </div>
+    <footer className="u-footer u-footer-center u-p-2x u-bg-base-300 u-text-base-content">
+      <aside className="u-block">
+        <p className="u-inline-block">Copyright © 2024 - Djordje Vukovic</p>
+        <div className="u-mx-2xs u-inline">/</div>
+        <a
+          href="https://github.com/djordjev/text-cms"
+          rel="noreferrer"
+          target="_blank"
+        >
+          GitHub
+        </a>
+      </aside>
+    </footer>
   );
 };
 
