@@ -1,0 +1,25 @@
+name: 'CPanel actions'
+on:
+  pull_request:
+    paths:
+      - 'cpanel/**'
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./cpanel
+    strategy:
+      matrix:
+        node-version: [20.8]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: cpanel/package-lock.json
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test

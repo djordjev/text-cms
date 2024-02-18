@@ -1,4 +1,8 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
+import {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  type MetaFunction
+} from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
 
 import { add, getContentForPath } from '~/api/finder';
@@ -8,6 +12,13 @@ import { File } from '~/components/finder/File';
 import { Folder } from '~/components/finder/Folder';
 import { NewFile } from '~/components/modals/NewFile';
 import { CreateParam } from '~/types';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'TextCMS Finder' },
+    { name: 'description', content: 'Find text file' }
+  ];
+};
 
 export const loader = (args: LoaderFunctionArgs) => {
   const { params } = args;
