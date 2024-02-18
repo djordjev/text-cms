@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer 1`] = `
+<div>
+  <footer
+    class="u-footer u-footer-center u-p-2x u-bg-base-300 u-text-base-content"
+  >
+    <aside
+      class="u-block"
+    >
+      <p
+        class="u-inline-block"
+      >
+        Copyright © 2024 - Djordje Vukovic
+      </p>
+      <div
+        class="u-mx-2xs u-inline"
+      >
+        /
+      </div>
+      <a
+        href="https://github.com/djordjev/text-cms"
+        rel="noreferrer"
+        target="_blank"
+      >
+        GitHub
+      </a>
+    </aside>
+  </footer>
+</div>
+`;
