@@ -3,10 +3,15 @@ import { IconFolderOpen, IconHome, IconUserCircle } from '@tabler/icons-react';
 import classnames from 'classnames';
 import React from 'react';
 
-export interface HeaderProps {}
+export interface HeaderProps {
+  className?: string;
+}
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<HeaderProps> = (props) => {
+  const { className } = props;
+
   // Styles
+  const classes = classnames('u-navbar u-bg-base-100 u-glass', className);
   const classesMenuItem = 'u-mr-3x u-flex u-items-center';
 
   const classesNav = ({ isActive }: { isActive: boolean }) => {
@@ -16,7 +21,7 @@ const Header: React.FC<HeaderProps> = () => {
   };
 
   return (
-    <nav className="u-navbar u-bg-base-100 u-glass">
+    <nav className={classes}>
       <p className="u-text-xl u-font-bold u-text-primary-content u-mr-5x u-hidden md:u-block">
         TextCMS
       </p>
