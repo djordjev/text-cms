@@ -63,6 +63,9 @@ export default {
       '6z': '1600px'
     }
   },
-  plugins: [],
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['nord', 'dark']
+  },
   prefix: 'u-'
 } satisfies Config;
