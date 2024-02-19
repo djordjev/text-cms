@@ -65,7 +65,7 @@ const Finder = () => {
 
   return (
     <>
-      <div className="u-p-3xs">
+      <div>
         <Breadcrumbs />
         <Actions />
 
