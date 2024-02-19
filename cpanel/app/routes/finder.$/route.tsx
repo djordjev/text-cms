@@ -4,13 +4,17 @@ import {
   type MetaFunction
 } from '@remix-run/node';
 import { useLoaderData, useSearchParams } from '@remix-run/react';
+import { MouseEvent } from 'react';
 
 import { add, getContentForPath } from '~/api/finder';
-import { Actions } from '~/components/finder/Actions';
 import { Breadcrumbs } from '~/components/finder/Breadcrumbs';
+import { ContextMenu } from '~/components/finder/ContextMenu';
+import { ContextMenuController } from '~/components/finder/ContextMenuController';
 import { File } from '~/components/finder/File';
+import { FileFolderMenu } from '~/components/finder/FileFolderMenu';
 import { Folder } from '~/components/finder/Folder';
 import { NewFile } from '~/components/modals/NewFile';
+import { useContextMenu } from '~/hooks/finder/useContextMenu';
 import { CreateParam } from '~/types';
 
 export const meta: MetaFunction = () => {
@@ -46,6 +50,7 @@ export const action = async (args: ActionFunctionArgs) => {
 const Finder = () => {
   const structure = useLoaderData<typeof loader>();
   const [params, setParams] = useSearchParams();
+  const { contextMenu, onRightClick } = useContextMenu();
 
   const createParam = params.get('new');
   const isCreateModalOpen = ['file', 'folder'].includes(createParam ?? '');
@@ -56,20 +61,36 @@ const Finder = () => {
     setParams(params);
   };
 
+  const onFileOrFolderContextMenu = (e: MouseEvent<HTMLElement>) => {
+    onRightClick(e, () => <FileFolderMenu path={'dsa'} />);
+  };
+
+  const onBackgroundContextMenu = (e: MouseEvent<HTMLElement>) => {
+    onRightClick(e, () => <ContextMenu />);
+  };
+
   // Markup
   const renderFileOrFolder = (name: string) => {
-    if (name.endsWith('.txt')) return <File key={name} name={name} />;
+    const isFile = name.endsWith('.txt');
+    const Component = isFile ? File : Folder;
 
-    return <Folder key={name} name={name} />;
+    return (
+      <div key={name} onContextMenu={onFileOrFolderContextMenu}>
+        <Component name={name} />
+      </div>
+    );
   };
 
   return (
     <>
-      <div>
+      <div className="u-flex u-flex-col u-flex-grow">
         <Breadcrumbs />
-        <Actions />
+        {contextMenu}
 
-        <div className="u-mt-5x u-flex u-flex-wrap u-gap-5x">
+        <div
+          className="u-mt-5x u-flex u-flex-grow u-flex-wrap u-gap-5x"
+          onContextMenu={onBackgroundContextMenu}
+        >
           {structure.map(renderFileOrFolder)}
         </div>
       </div>

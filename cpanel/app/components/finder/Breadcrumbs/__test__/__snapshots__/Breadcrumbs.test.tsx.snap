@@ -2,7 +2,9 @@
 
 exports[`Breadcrumbs > renders home route 1`] = `
 NodeList [
-  <div>
+  <div
+    class="u-h-3xs u-flex u-items-center"
+  >
     <svg
       class="u-inline"
       fill="none"
@@ -26,7 +28,7 @@ NodeList [
       />
     </svg>
     <span
-      class="u-align-middle"
+      class="u-align-middle u-text-sm"
     >
       You\`re in base folder. Click on file/folder to navigate. Right click to get context menu for actions.
     </span>

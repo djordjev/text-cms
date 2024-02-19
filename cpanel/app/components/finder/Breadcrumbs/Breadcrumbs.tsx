@@ -41,9 +41,12 @@ const Breadcrumbs = () => {
 
   const renderHomeRoute = () => {
     return (
-      <div>
+      <div
+        className="u-flex u-items-center"
+        style={{ paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
+      >
         <IconHome className="u-inline" height={18} />
-        <span className="u-align-middle">
+        <span className="u-align-middle u-text-sm">
           You`re in base folder. Click on file/folder to navigate. Right click
           to get context menu for actions.
         </span>
