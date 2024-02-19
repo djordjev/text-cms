@@ -26,12 +26,12 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <Header />
-        <main className="main">
+      <body className="u-flex u-flex-col u-min-h-screen">
+        <Header className="u-flex-grow-0 u-flex-shrink-0" />
+        <main className="main u-flex-1 u-p-2x">
           <Outlet />
         </main>
-        <Footer />
+        <Footer className="u-flex-grow-0 u-flex-shrink-0" />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

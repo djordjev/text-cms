@@ -1,0 +1,151 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Breadcrumbs > renders home route 1`] = `
+NodeList [
+  <div>
+    <svg
+      class="u-inline"
+      fill="none"
+      height="18"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5 12l-2 0l9 -9l9 9l-2 0"
+      />
+      <path
+        d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+      />
+      <path
+        d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+      />
+    </svg>
+    <span
+      class="u-align-middle"
+    >
+      You\`re in base folder. Click on file/folder to navigate. Right click to get context menu for actions.
+    </span>
+  </div>,
+]
+`;
+
+exports[`Breadcrumbs > renders particular route 1`] = `
+NodeList [
+  <div
+    class="u-breadcrumbs u-text-sm"
+  >
+    <ul>
+      <li>
+        <a
+          class="hover:u-underline u-flex"
+          href="/finder"
+        >
+          <svg
+            class="tabler-icon tabler-icon-home"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12l-2 0l9 -9l9 9l-2 0"
+            />
+            <path
+              d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+            />
+            <path
+              d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+            />
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          class="hover:u-underline u-flex"
+          href="/finder/first"
+        >
+          <svg
+            class="tabler-icon tabler-icon-folder-open"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2"
+            />
+          </svg>
+          first
+        </a>
+      </li>
+      <li>
+        <a
+          class="hover:u-underline u-flex"
+          href="/finder/first/second"
+        >
+          <svg
+            class="tabler-icon tabler-icon-folder-open"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2"
+            />
+          </svg>
+          second
+        </a>
+      </li>
+      <li>
+        <a
+          class="hover:u-underline u-flex"
+          href="/finder/first/second/some-file.txt"
+        >
+          <svg
+            class="tabler-icon tabler-icon-file"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14 3v4a1 1 0 0 0 1 1h4"
+            />
+            <path
+              d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+            />
+          </svg>
+          some-file.txt
+        </a>
+      </li>
+    </ul>
+  </div>,
+]
+`;

@@ -1,7 +1,9 @@
 import { Link, useResolvedPath } from '@remix-run/react';
-import React from 'react';
+import { IconFile, IconFolderOpen, IconHome } from '@tabler/icons-react';
 
-import { getPathFromSegments, isFile, isFolder, isHome } from '~/utils/file';
+import { getPathFromSegments, isFolder, isHome } from '~/utils/file';
+
+export interface BreadcrumbsProps {}
 
 const Breadcrumbs = () => {
   // Hooks
@@ -9,59 +11,54 @@ const Breadcrumbs = () => {
 
   // Setup
   const segments = pathname.split('/').filter((p) => p);
+  const isHomepage = pathname === '/finder';
 
   // Markup
   const renderIcon = (path: string) => {
-    let icon: string = '';
+    if (isHome(path)) {
+      return <IconHome height={18} />;
+    }
 
     if (isFolder(path)) {
-      icon = '/svg/folder.svg';
+      return <IconFolderOpen height={18} />;
     }
 
-    if (isHome(path)) {
-      icon = '/svg/home.svg';
-    }
-
-    if (isFile(path)) {
-      icon = '/svg/file.svg';
-    }
-
-    return (
-      <img
-        alt=""
-        className="u-mr-1x"
-        height={20}
-        width={20}
-        src={icon}
-        loading="lazy"
-      />
-    );
+    return <IconFile height={18} />;
   };
 
-  const renderSegment = (segment: string, index: number) => {
-    const isLast = index === segments.length - 1;
+  const renderSegment = (segment: string) => {
     const path = getPathFromSegments(segments, segment);
 
     return (
-      <React.Fragment key={segment}>
+      <li key={segment}>
         <Link className="hover:u-underline u-flex" to={path}>
           {renderIcon(segment)}
           {isHome(segment) ? 'Home' : segment}
         </Link>
-        {!isLast && (
-          <img
-            alt="folder separator"
-            height={20}
-            width={20}
-            src="/svg/chevron-right.svg"
-            loading="lazy"
-          />
-        )}
-      </React.Fragment>
+      </li>
     );
   };
 
-  return <div className="u-flex u-gap-2xs">{segments.map(renderSegment)}</div>;
+  const renderHomeRoute = () => {
+    return (
+      <div>
+        <IconHome className="u-inline" height={18} />
+        <span className="u-align-middle">
+          You`re in base folder. Click on file/folder to navigate. Right click
+          to get context menu for actions.
+        </span>
+      </div>
+    );
+  };
+
+  // Short-circuit
+  if (isHomepage) return renderHomeRoute();
+
+  return (
+    <div className="u-breadcrumbs u-text-sm">
+      <ul>{segments.map(renderSegment)}</ul>
+    </div>
+  );
 };
 
 export { Breadcrumbs };
