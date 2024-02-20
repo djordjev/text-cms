@@ -8,9 +8,12 @@ export interface FolderProps {
 export const Folder: React.FC<FolderProps> = (props) => {
   const { name } = props;
 
+  // Styles
+  const classesName = `group-hover:u-underline u-max-w-full u-text-ellipsis u-overflow-hidden u-text-nowrap`;
+
   return (
     <Link
-      className="u-flex u-flex-col u-items-center u-group"
+      className="u-flex u-flex-col u-items-center u-group u-w-1z u-max-w-1z"
       relative="path"
       to={name}
     >
@@ -21,7 +24,7 @@ export const Folder: React.FC<FolderProps> = (props) => {
         src="/images/folder.png"
         width={60}
       />
-      <span className="group-hover:u-underline">{name}</span>
+      <span className={classesName}>{name}</span>
     </Link>
   );
 };

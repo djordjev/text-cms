@@ -3,7 +3,8 @@
 exports[`Breadcrumbs > renders home route 1`] = `
 NodeList [
   <div
-    class="u-h-3xs u-flex u-items-center"
+    class="u-flex u-items-center"
+    style="padding-top: 0.5rem; padding-bottom: 0.5rem;"
   >
     <svg
       class="u-inline"

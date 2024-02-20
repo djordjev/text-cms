@@ -9,7 +9,6 @@ import { MouseEvent } from 'react';
 import { add, getContentForPath } from '~/api/finder';
 import { Breadcrumbs } from '~/components/finder/Breadcrumbs';
 import { ContextMenu } from '~/components/finder/ContextMenu';
-import { ContextMenuController } from '~/components/finder/ContextMenuController';
 import { File } from '~/components/finder/File';
 import { FileFolderMenu } from '~/components/finder/FileFolderMenu';
 import { Folder } from '~/components/finder/Folder';
@@ -75,7 +74,11 @@ const Finder = () => {
     const Component = isFile ? File : Folder;
 
     return (
-      <div key={name} onContextMenu={onFileOrFolderContextMenu}>
+      <div
+        className="u-self-start u-w-1z u-max-w-1z"
+        key={name}
+        onContextMenu={onFileOrFolderContextMenu}
+      >
         <Component name={name} />
       </div>
     );
@@ -88,7 +91,7 @@ const Finder = () => {
         {contextMenu}
 
         <div
-          className="u-mt-5x u-flex u-flex-grow u-flex-wrap u-gap-5x"
+          className="u-mt-5x u-flex u-flex-grow u-flex-wrap"
           onContextMenu={onBackgroundContextMenu}
         >
           {structure.map(renderFileOrFolder)}

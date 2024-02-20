@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContextMenu 1`] = `
+NodeList [
+  <ul
+    class="u-menu u-bg-base-200 u-w-2z u-rounded-box"
+  >
+    <li>
+      <a
+        class="hover:u-underline u-flex u-items-center"
+        href="/?action=delete"
+      >
+        <svg
+          class="tabler-icon tabler-icon-square-x"
+          fill="none"
+          height="24"
+          stroke="red"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"
+          />
+          <path
+            d="M9 9l6 6m0 -6l-6 6"
+          />
+        </svg>
+        Delete
+      </a>
+    </li>
+  </ul>,
+]
+`;

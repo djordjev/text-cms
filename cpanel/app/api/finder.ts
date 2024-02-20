@@ -6,7 +6,7 @@ const hardcodedData: any = {
     inner1: {},
     inner2: {},
     inner3: {
-      'otherfile.txt': {}
+      'otherfile other than other.txt': {}
     }
   },
   folder2: {},

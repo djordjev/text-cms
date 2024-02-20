@@ -1,0 +1,73 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContextMenu 1`] = `
+NodeList [
+  <ul
+    class="u-menu u-bg-base-200 u-w-2z u-rounded-box"
+  >
+    <li>
+      <a
+        class="hover:u-underline u-flex u-items-center"
+        href="/?new=folder"
+      >
+        <svg
+          class="tabler-icon tabler-icon-folder-plus"
+          fill="none"
+          height="24"
+          stroke="#f5c24a"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5"
+          />
+          <path
+            d="M16 19h6"
+          />
+          <path
+            d="M19 16v6"
+          />
+        </svg>
+        New Folder
+      </a>
+    </li>
+    <li>
+      <a
+        class="hover:u-underline u-flex u-items-center"
+        href="/?new=file"
+      >
+        <svg
+          class="tabler-icon tabler-icon-file-plus"
+          fill="none"
+          height="24"
+          stroke="#5ab1e0"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14 3v4a1 1 0 0 0 1 1h4"
+          />
+          <path
+            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+          />
+          <path
+            d="M12 11l0 6"
+          />
+          <path
+            d="M9 14l6 0"
+          />
+        </svg>
+        New File
+      </a>
+    </li>
+  </ul>,
+]
+`;
