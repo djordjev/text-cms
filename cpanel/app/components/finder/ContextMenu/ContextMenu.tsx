@@ -13,7 +13,7 @@ const ContextMenu: FC<ContextMenuProps> = () => {
       <li>
         <Link
           className="hover:u-underline u-flex u-items-center"
-          to="?new=folder"
+          to="?action=new-folder"
         >
           <IconFolderPlus color={YELLOW} />
           New Folder
@@ -22,7 +22,7 @@ const ContextMenu: FC<ContextMenuProps> = () => {
       <li>
         <Link
           className="hover:u-underline u-flex u-items-center"
-          to="?new=file"
+          to="?action=new-file"
         >
           <IconFilePlus color={BLUE} />
           New File

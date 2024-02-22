@@ -8,7 +8,7 @@ NodeList [
     <li>
       <a
         class="hover:u-underline u-flex u-items-center"
-        href="/?new=folder"
+        href="/?action=new-folder"
       >
         <svg
           class="tabler-icon tabler-icon-folder-plus"
@@ -38,7 +38,7 @@ NodeList [
     <li>
       <a
         class="hover:u-underline u-flex u-items-center"
-        href="/?new=file"
+        href="/?action=new-file"
       >
         <svg
           class="tabler-icon tabler-icon-file-plus"

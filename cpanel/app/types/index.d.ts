@@ -1,1 +1,1 @@
-export type CreateParam = 'file' | 'folder';
+export type CreateParam = 'new-file' | 'new-folder';

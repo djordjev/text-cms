@@ -16,6 +16,8 @@ import { NewFile } from '~/components/modals/NewFile';
 import { useContextMenu } from '~/hooks/finder/useContextMenu';
 import { CreateParam } from '~/types';
 
+import { getCreateOpenModal } from './utils';
+
 export const meta: MetaFunction = () => {
   return [
     { title: 'TextCMS Finder' },
@@ -51,12 +53,11 @@ const Finder = () => {
   const [params, setParams] = useSearchParams();
   const { contextMenu, onRightClick } = useContextMenu();
 
-  const createParam = params.get('new');
-  const isCreateModalOpen = ['file', 'folder'].includes(createParam ?? '');
+  const openCreateModal = getCreateOpenModal(params);
 
   // Handlers
   const onClose = () => {
-    params.delete('new');
+    params.delete('action');
     setParams(params);
   };
 
@@ -98,11 +99,7 @@ const Finder = () => {
         </div>
       </div>
 
-      <NewFile
-        onClose={onClose}
-        open={isCreateModalOpen}
-        type={createParam as CreateParam}
-      />
+      <NewFile onClose={onClose} type={openCreateModal} />
     </>
   );
 };

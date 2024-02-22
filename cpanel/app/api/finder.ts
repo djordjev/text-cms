@@ -1,4 +1,4 @@
-import { CreateParam } from '~/types';
+import { ActionParam } from '~/types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const hardcodedData: any = {
@@ -32,7 +32,7 @@ const getContentForPath = (path: string) => {
   return Object.keys(currentObject);
 };
 
-const add = (path: string | undefined, name: string, type: CreateParam) => {
+const add = (path: string | undefined, name: string, type: ActionParam) => {
   const suffix = type === 'file' ? '.txt' : '';
   const finalName = `${name}${suffix}`;
 
