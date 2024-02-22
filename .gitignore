@@ -132,3 +132,6 @@ dist
 node_modules
 .idea
 
+database.db
+database.db-journal
+
