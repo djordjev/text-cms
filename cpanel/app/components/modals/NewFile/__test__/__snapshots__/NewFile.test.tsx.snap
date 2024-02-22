@@ -1,0 +1,130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`modal/NewFile > renders and closes 1`] = `
+<body>
+  <div
+    aria-hidden="true"
+  >
+    <div
+      style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+    />
+  </div>
+  <div
+    id="headlessui-portal-root"
+  >
+    <div
+      data-headlessui-portal=""
+    >
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+      <div>
+        <div
+          aria-labelledby="headlessui-dialog-title-:r3:"
+          aria-modal="true"
+          class="u-modal u-modal-open"
+          data-headlessui-state="open"
+          id="headlessui-dialog-:r0:"
+          role="dialog"
+        >
+          <div
+            aria-hidden="true"
+            class="u-fixed u-bg-black u-inset-0 u-opacity-15 u-modal-backdrop"
+            data-headlessui-state="open"
+            id="headlessui-dialog-overlay-:r1:"
+          />
+          <div
+            class="u-modal-box"
+            data-headlessui-state="open"
+            id="headlessui-dialog-panel-:r2:"
+          >
+            <h2
+              class="u-font-bold u-text-lg u-flex u-items-center"
+              data-headlessui-state="open"
+              id="headlessui-dialog-title-:r3:"
+            >
+              <span
+                class="u-flex-1 u-uppercase u-text-primary"
+              >
+                Create new 
+                file
+              </span>
+              <button
+                aria-label="close"
+                type="button"
+              >
+                <svg
+                  class="tabler-icon tabler-icon-x"
+                  fill="none"
+                  height="28"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="28"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 6l-12 12"
+                  />
+                  <path
+                    d="M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </h2>
+            <form
+              action="/"
+              class="u-flex u-flex-col u-modal-action"
+              method="post"
+            >
+              <label
+                class="u-w-full"
+                for="name"
+              >
+                <div
+                  class="u-label"
+                >
+                  Enter new 
+                  file
+                   name
+                </div>
+                <input
+                  class="u-input u-input-bordered u-input-primary u-w-full"
+                  id="name"
+                  name="name"
+                  type="text"
+                />
+              </label>
+              <input
+                name="type"
+                type="hidden"
+                value="new-file"
+              />
+              <div
+                class="u-divider"
+              />
+              <button
+                class="u-btn u-btn-accent u-uppercase"
+                type="submit"
+              >
+                Create
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+    </div>
+  </div>
+</body>
+`;

@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContextMenu 1`] = `
+NodeList [
+  <a
+    class="u-flex u-items-center u-flex-col u-group"
+    href="/editor//file name"
+  >
+    <img
+      alt="file name"
+      height="60"
+      loading="lazy"
+      src="/images/file.png"
+      width="60"
+    />
+    <span
+      class="group-hover:u-underline u-max-w-full u-text-ellipsis u-overflow-hidden u-text-nowrap"
+    >
+      file name
+    </span>
+  </a>,
+]
+`;
