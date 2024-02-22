@@ -3,14 +3,30 @@ import { PrismaClient } from '@prisma/client';
 const client = new PrismaClient();
 
 async function main() {
-  const types = ['file', 'folder'];
+  await client.fsNodeType.upsert({
+    where: { name: 'file' },
+    create: { id: 1, name: 'file' },
+    update: { id: 1, name: 'file' }
+  });
 
-  for (const [index, name] of types.entries()) {
-    const existing = await client.fsNodeType.findFirst({ where: { name } });
-    if (!existing) {
-      await client.fsNodeType.create({ data: { id: index + 1, name } });
-    }
-  }
+  const folder = await client.fsNodeType.upsert({
+    where: { name: 'folder' },
+    create: { id: 2, name: 'folder' },
+    update: { id: 2, name: 'folder' }
+  });
+
+  const rootFolder = {
+    name: '/',
+    path: '/',
+    type: { connect: { id: folder.id } },
+    parent: {}
+  };
+
+  await client.fsNode.upsert({
+    where: { path: '/', name: '/' },
+    create: rootFolder,
+    update: rootFolder
+  });
 }
 
 main()
@@ -21,5 +37,6 @@ main()
     console.error(e);
 
     await client.$disconnect();
+    // eslint-disable-next-line no-undef
     process.exit();
   });

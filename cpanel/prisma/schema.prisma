@@ -15,9 +15,9 @@ model FsNode {
   createdAt DateTime @default(now())
   id Int @id @default(autoincrement())
   name String
-  parent FsNode @relation("FileSystem", fields: [parentId], references: [id])
-  parentId Int
-  path String
+  parent FsNode? @relation("FileSystem", fields: [parentId], references: [id])
+  parentId Int?
+  path String @unique
   type FsNodeType @relation(fields: [typeId], references: [id])
   typeId Int
 }
