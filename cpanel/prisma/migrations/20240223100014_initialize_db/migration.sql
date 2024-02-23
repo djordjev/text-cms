@@ -17,7 +17,7 @@ CREATE TABLE "FsNodeType" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "FsNode_path_key" ON "FsNode"("path");
+CREATE UNIQUE INDEX "FsNode_path_name_key" ON "FsNode"("path", "name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "FsNodeType_name_key" ON "FsNodeType"("name");

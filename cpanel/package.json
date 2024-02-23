@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "migrate:dev": "npx prisma migrate dev --name initialize_db",
-    "seed:dev": "npx prisma db seed"
+    "seed:dev": "npx prisma db seed",
+    "reinitialize:dev": "rm -rf ./prisma/migrations && rm ./prisma/database.db && npm run migrate:dev"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",

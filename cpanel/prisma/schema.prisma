@@ -17,9 +17,10 @@ model FsNode {
   name String
   parent FsNode? @relation("FileSystem", fields: [parentId], references: [id])
   parentId Int?
-  path String @unique
+  path String
   type FsNodeType @relation(fields: [typeId], references: [id])
   typeId Int
+  @@unique([path, name])
 }
 
 model FsNodeType {

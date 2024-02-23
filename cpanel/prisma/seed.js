@@ -15,18 +15,17 @@ async function main() {
     update: { id: 2, name: 'folder' }
   });
 
-  const rootFolder = {
-    name: '/',
-    path: '/',
-    type: { connect: { id: folder.id } },
-    parent: {}
-  };
-
-  await client.fsNode.upsert({
-    where: { path: '/', name: '/' },
-    create: rootFolder,
-    update: rootFolder
-  });
+  const root = await client.fsNode.findFirst({ where: { name: '/' } });
+  if (!root) {
+    await client.fsNode.create({
+      data: {
+        name: '/',
+        path: '/',
+        type: { connect: { id: folder.id } },
+        parent: {}
+      }
+    });
+  }
 }
 
 main()
