@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`modal/NewFile > renders and closes 1`] = `
+exports[`DeleteNode 1`] = `
 <body>
   <div
     aria-hidden="true"
@@ -49,8 +49,7 @@ exports[`modal/NewFile > renders and closes 1`] = `
               <span
                 class="u-flex-1 u-uppercase u-text-primary"
               >
-                Create new 
-                file
+                Are you sure?
               </span>
               <button
                 aria-label="close"
@@ -82,40 +81,42 @@ exports[`modal/NewFile > renders and closes 1`] = `
               class="u-flex u-flex-col u-modal-action"
               method="post"
             >
-              <label
-                class="u-w-full"
-                for="name"
-              >
-                <div
-                  class="u-label"
-                >
-                  Enter new 
-                  file
-                   name
-                </div>
-                <input
-                  class="u-input u-input-bordered u-input-primary u-w-full"
-                  id="name"
-                  name="name"
-                  type="text"
-                />
-              </label>
               <input
-                name="type"
+                name="node"
                 type="hidden"
-                value="new-file"
+                value="filename.txt"
               />
+              <p>
+                Are you sure you want to delete
+                 
+                <span
+                  class="u-font-bold u-text-primary"
+                >
+                  filename.txt
+                </span>
+                ? This action is irreversible and will delete all content inside of it!
+              </p>
               <div
                 class="u-divider"
               />
-              <button
-                class="u-btn u-btn-accent u-uppercase"
-                name="_action"
-                type="submit"
-                value="create"
+              <div
+                class="u-grid u-grid-cols-2 u-gap-3x"
               >
-                Create
-              </button>
+                <button
+                  class="u-btn u-btn-secondary u-uppercase"
+                  type="button"
+                >
+                  No
+                </button>
+                <button
+                  class="u-btn u-btn-error u-uppercase"
+                  name="_action"
+                  type="submit"
+                  value="delete"
+                >
+                  Yes, delete
+                </button>
+              </div>
             </form>
           </div>
         </div>
