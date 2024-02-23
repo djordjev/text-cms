@@ -96,6 +96,7 @@ const Finder = () => {
         <div
           className="u-mt-5x u-flex u-flex-grow u-flex-wrap"
           onContextMenu={onBackgroundContextMenu}
+          data-testid="background"
         >
           {renderFolderContent()}
         </div>

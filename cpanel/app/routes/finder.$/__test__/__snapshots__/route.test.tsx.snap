@@ -1,0 +1,95 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`finder.$ route 1`] = `
+NodeList [
+  <div
+    class="u-flex u-flex-col u-flex-grow"
+  >
+    <div
+      class="u-flex u-items-center"
+      style="padding-top: 0.5rem; padding-bottom: 0.5rem;"
+    >
+      <svg
+        class="u-inline"
+        fill="none"
+        height="18"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12l-2 0l9 -9l9 9l-2 0"
+        />
+        <path
+          d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+        />
+        <path
+          d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+        />
+      </svg>
+      <span
+        class="u-align-middle u-text-sm"
+      >
+        Home
+      </span>
+    </div>
+    <div
+      class="u-mt-5x u-flex u-flex-grow u-flex-wrap"
+      data-testid="background"
+    >
+      <div
+        class="u-self-start u-w-1z u-max-w-1z"
+      >
+        <a
+          class="u-flex u-flex-col u-items-center u-group u-w-1z u-max-w-1z"
+          href="/finder/Folder1"
+        >
+          <img
+            alt="Folder1"
+            height="60"
+            loading="lazy"
+            src="/images/folder.png"
+            width="60"
+          />
+          <span
+            class="group-hover:u-underline u-max-w-full u-text-ellipsis u-overflow-hidden u-text-nowrap"
+          >
+            Folder1
+          </span>
+        </a>
+      </div>
+      <div
+        class="u-self-start u-w-1z u-max-w-1z"
+      >
+        <a
+          class="u-flex u-items-center u-flex-col u-group"
+          href="/editor/finder/File1.txt"
+        >
+          <img
+            alt="File1.txt"
+            height="60"
+            loading="lazy"
+            src="/images/file.png"
+            width="60"
+          />
+          <span
+            class="group-hover:u-underline u-max-w-full u-text-ellipsis u-overflow-hidden u-text-nowrap"
+          >
+            File1.txt
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>,
+  <div
+    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+  />,
+  <div
+    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+  />,
+]
+`;
