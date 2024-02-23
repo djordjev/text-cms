@@ -1,4 +1,4 @@
-import { client } from './sql.server';
+import { client } from '~/api/sql/sql.server';
 
 const add = async (path: string, name: string, type: string) => {
   const strType = type === 'new-folder' ? 'folder' : 'file';
