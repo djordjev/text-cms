@@ -21,7 +21,7 @@ describe('Breadcrumbs', () => {
   it('renders home route', () => {
     const { container } = render(createComponent());
 
-    expect(screen.getByText(/You`re in base folder/)).toBeInTheDocument();
+    expect(screen.getByText('Home')).toBeInTheDocument();
 
     expect(container.childNodes).toMatchSnapshot();
   });
@@ -29,8 +29,6 @@ describe('Breadcrumbs', () => {
   it('renders particular route', () => {
     const route = '/finder/first/second/some-file.txt';
     const { container } = render(createComponent(route));
-
-    expect(screen.queryByText(/You`re in base folder/)).not.toBeInTheDocument();
 
     const segments = ['Home', 'first', 'second', 'some-file.txt'];
     segments.forEach((segment) => {

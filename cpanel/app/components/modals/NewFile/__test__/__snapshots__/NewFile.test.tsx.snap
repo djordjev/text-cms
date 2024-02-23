@@ -110,7 +110,9 @@ exports[`modal/NewFile > renders and closes 1`] = `
               />
               <button
                 class="u-btn u-btn-accent u-uppercase"
+                name="_action"
                 type="submit"
+                value="create"
               >
                 Create
               </button>
