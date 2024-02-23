@@ -4,6 +4,7 @@ import { IconX } from '@tabler/icons-react';
 import React, { FormEvent } from 'react';
 
 import type { CreateParam } from '~/types';
+import { BUTTON_ACTION } from '~/utils/constants';
 
 export interface NewFileProps {
   type: CreateParam | null;
@@ -68,7 +69,12 @@ const NewFile: React.FC<NewFileProps> = (props) => {
 
           <div className="u-divider" />
 
-          <button className="u-btn u-btn-accent u-uppercase" type="submit">
+          <button
+            className="u-btn u-btn-accent u-uppercase"
+            name={BUTTON_ACTION}
+            type="submit"
+            value="create"
+          >
             Create
           </button>
         </Form>

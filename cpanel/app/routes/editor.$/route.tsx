@@ -1,7 +1,7 @@
 import { VariationEditor } from '~/components/editor/VariationEditor';
 
 const Editor = () => {
-  return <VariationEditor name="variation 1" />;
+  return <VariationEditor />;
 };
 
 export default Editor;

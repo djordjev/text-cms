@@ -15,12 +15,12 @@ model FsNode {
   createdAt DateTime @default(now())
   id Int @id @default(autoincrement())
   name String
-  parent FsNode? @relation("FileSystem", fields: [parentId], references: [id])
+  parent FsNode? @relation("FileSystem", fields: [parentId], references: [id], onDelete: Cascade)
   parentId Int?
-  path String
+  path String @unique
   type FsNodeType @relation(fields: [typeId], references: [id])
   typeId Int
-  @@unique([path, name])
+  @@index([path])
 }
 
 model FsNodeType {

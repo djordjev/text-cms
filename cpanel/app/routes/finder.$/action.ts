@@ -1,25 +1,41 @@
 import { ActionFunctionArgs } from '@remix-run/node';
 
-import { add } from '~/api/finder.server';
-import { CreateParam } from '~/types';
+import { add, remove } from '~/api/finder.server';
+import { FormValues } from '~/types';
+import { getStringFormEntry } from '~/utils/form';
 
-const actionCreateNode = async (args: ActionFunctionArgs) => {
-  const { params, request } = args;
+const actionCreateNode = async (path: string, values: FormValues) => {
+  const type = getStringFormEntry(values, 'type');
+  const name = getStringFormEntry(values, 'name');
 
-  const path = `/${params['*']}`;
+  await add(path, name, type);
 
-  const data = await request.formData();
+  return null;
+};
 
-  const type = data.get('type') as CreateParam;
-  const name = data.get('name') as string;
+const actionDeleteNode = async (values: FormValues) => {
+  const node = getStringFormEntry(values, 'node');
 
-  add(path, name, type);
+  await remove(node);
 
   return null;
 };
 
 const action = async (args: ActionFunctionArgs) => {
-  return await actionCreateNode(args);
+  const { params, request } = args;
+  const data = await request.formData();
+
+  const { _action, ...values } = Object.fromEntries(data);
+  const path = `/${params['*']}`;
+
+  switch (_action) {
+    case 'create':
+      return await actionCreateNode(path, values);
+    case 'delete':
+      return await actionDeleteNode(values);
+    default:
+      throw new Error('Unknown action');
+  }
 };
 
 export { action };

@@ -6,7 +6,7 @@ CREATE TABLE "FsNode" (
     "parentId" INTEGER,
     "path" TEXT NOT NULL,
     "typeId" INTEGER NOT NULL,
-    CONSTRAINT "FsNode_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "FsNode" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT "FsNode_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "FsNode" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "FsNode_typeId_fkey" FOREIGN KEY ("typeId") REFERENCES "FsNodeType" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -17,7 +17,10 @@ CREATE TABLE "FsNodeType" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "FsNode_path_name_key" ON "FsNode"("path", "name");
+CREATE UNIQUE INDEX "FsNode_path_key" ON "FsNode"("path");
+
+-- CreateIndex
+CREATE INDEX "FsNode_path_idx" ON "FsNode"("path");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "FsNodeType_name_key" ON "FsNodeType"("name");

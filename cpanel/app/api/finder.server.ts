@@ -33,6 +33,10 @@ const add = async (path: string, name: string, type: string) => {
   }
 };
 
+const remove = async (file: string) => {
+  await client.fsNode.delete({ where: { path: file } });
+};
+
 const getContentForPath = async (path: string) => {
   const folder = await client.fsNode.findFirst({
     where: { path },
@@ -44,4 +48,4 @@ const getContentForPath = async (path: string) => {
   return folder.children;
 };
 
-export { add, getContentForPath };
+export { add, getContentForPath, remove };
