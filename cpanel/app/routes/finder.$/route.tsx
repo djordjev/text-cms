@@ -57,7 +57,7 @@ const Finder = () => {
 
   // Markup
   const renderFileOrFolder = (node: SerializeFrom<FsNode>) => {
-    const { name, path } = node;
+    const { id, name, path } = node;
     const isFile = name.endsWith('.txt');
     const Component = isFile ? File : Folder;
 
@@ -67,7 +67,7 @@ const Finder = () => {
         key={name}
         onContextMenu={onFileOrFolderContextMenu(path)}
       >
-        <Component name={name} />
+        <Component name={name} id={id} />
       </div>
     );
   };

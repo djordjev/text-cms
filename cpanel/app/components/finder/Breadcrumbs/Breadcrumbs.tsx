@@ -33,7 +33,7 @@ const Breadcrumbs = () => {
       <li key={segment}>
         <Link className="hover:u-underline u-flex" to={path}>
           {renderIcon(segment)}
-          {isHome(segment) ? 'Home' : segment}
+          {isHome(segment) ? 'Home' : decodeURI(segment)}
         </Link>
       </li>
     );
