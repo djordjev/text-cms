@@ -48,4 +48,12 @@ const getContentForPath = async (path: string) => {
   return folder.children;
 };
 
-export { add, getContentForPath, remove };
+const getFileById = async (id: number) => {
+  const file = await client.fsNode.findFirstOrThrow({
+    where: { id }
+  });
+
+  return file;
+};
+
+export { add, getContentForPath, getFileById, remove };

@@ -4,7 +4,7 @@ vi.mock('~/api/sql/sql.server');
 
 import { client } from '~/api/sql/__mocks__/sql.server';
 
-import { add, getContentForPath, remove } from '../finder.server';
+import { add, getContentForPath, getFileById, remove } from '../finder.server';
 
 describe('finder', () => {
   describe('remove', () => {
@@ -102,6 +102,31 @@ describe('finder', () => {
           type: { connect: folderType }
         }
       });
+    });
+  });
+
+  describe('getFileById', () => {
+    it('returns file by id', async () => {
+      const node = newNode({ id: 10, name: 'test name.txt' });
+      client.fsNode.findFirstOrThrow.mockResolvedValue(node);
+
+      const result = await getFileById(10);
+
+      expect(result.id).toBe(node.id);
+      expect(result.name).toBe(node.name);
+    });
+
+    it('throws an error when not found', async () => {
+      const err = new Error('message');
+      client.fsNode.findFirstOrThrow.mockRejectedValue(err);
+
+      expect.assertions(1);
+
+      try {
+        await getFileById(10);
+      } catch (e) {
+        expect((e as Error).message).toBe(err.message);
+      }
     });
   });
 });
