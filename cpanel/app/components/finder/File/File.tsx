@@ -1,18 +1,16 @@
-import { Link, useLocation } from '@remix-run/react';
+import { Link } from '@remix-run/react';
 import React from 'react';
 
 export interface FileProps {
+  id: number;
   name: string;
 }
 
 export const File: React.FC<FileProps> = (props) => {
-  const { name } = props;
-
-  // Hooks
-  const { pathname } = useLocation();
+  const { id, name } = props;
 
   // Setup
-  const link = `/editor${pathname}/${name}`;
+  const link = `/editor/${id}`;
 
   // Styles
   const classesName = `group-hover:u-underline u-max-w-full u-text-ellipsis u-overflow-hidden u-text-nowrap`;
