@@ -4,7 +4,7 @@ exports[`ContextMenu 1`] = `
 NodeList [
   <a
     class="u-flex u-items-center u-flex-col u-group"
-    href="/editor/42"
+    href="/viewer/42"
   >
     <img
       alt="file name"
