@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useSlate } from 'slate-react';
 
 import { getSelectedStyleOption } from '~/components/editor/TextStyle/helpers';
-import { CustomElement } from '~/components/editor/VariationEditor/types';
+import { CustomElement } from '~/types/editor';
 
 import { TEXT_STYLES } from './constants';
 import { getSelectedStyle } from './utils';
@@ -36,7 +36,7 @@ const TextStyle: FC<TextStyleProps> = (props) => {
 
   return (
     <select
-      className={'u-bg-gray-1'}
+      className="u-select-sm u-select-bordered"
       onChange={onChangeHandler}
       value={selected}
     >

@@ -1,5 +1,6 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
 
+import { getFileContentByPath } from '~/api/file.server';
 import { getFileById } from '~/api/finder.server';
 
 const loader = async (args: LoaderFunctionArgs) => {
@@ -9,9 +10,11 @@ const loader = async (args: LoaderFunctionArgs) => {
 
   if (!id) throw new Error('unable to find file');
 
-  const result = await getFileById(Number.parseInt(id, 10));
+  const info = await getFileById(Number.parseInt(id, 10));
 
-  return json(result);
+  const content = await getFileContentByPath(info.path);
+
+  return json({ content, info });
 };
 
 export { loader };

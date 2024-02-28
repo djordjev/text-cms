@@ -3,14 +3,17 @@ import { ReactEditor } from 'slate-react';
 
 export enum Action {
   Bold = 'bold',
+  Click = 'click',
+  Color = 'color',
   Italic = 'italic',
-  Underline = 'underline',
   Strikethrough = 'strikethrough',
-  Color = 'color'
+  Underline = 'underline'
 }
 
 type StrAct = Action.Color;
 type BoolAct = Exclude<Action, StrAct>;
+type ClickAct = Action.Click;
+
 export type Alignment = 'left' | 'center' | 'right';
 
 export type ElementCommon = {
@@ -30,10 +33,19 @@ export type HeadingElement = {
 
 export type CustomElement = ParagraphElement | HeadingElement;
 
+export type ClickActionPayload = {
+  action?: string;
+  href?: string;
+  type: 'link' | 'primary' | 'secondary';
+};
+
 type StringActions = { [key in StrAct]?: string };
 type BoolActions = { [key in BoolAct]?: boolean };
+type ClickActions = { [key in ClickAct]?: ClickActionPayload };
 
-type CustomText = { text: string } & BoolActions & StringActions;
+export type AnyAction = string | boolean | ClickActionPayload;
+
+type CustomText = { text: string } & BoolActions & StringActions & ClickActions;
 
 declare module 'slate' {
   interface CustomTypes {

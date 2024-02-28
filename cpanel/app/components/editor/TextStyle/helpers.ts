@@ -1,5 +1,5 @@
 import { TEXT_STYLES } from '~/components/editor/TextStyle/constants';
-import { CustomElement } from '~/components/editor/VariationEditor/types';
+import { CustomElement } from '~/types/editor';
 
 const getSelectedStyleOption = (selected?: CustomElement) => {
   if (!selected) return TEXT_STYLES[TEXT_STYLES.length - 1].id;

@@ -1,20 +1,25 @@
+import {
+  IconBold,
+  IconItalic,
+  IconStrikethrough,
+  IconUnderline,
+  TablerIconsProps
+} from '@tabler/icons-react';
+import classnames from 'classnames';
 import { FC, MouseEvent } from 'react';
 import { Editor } from 'slate';
 import { useSlate } from 'slate-react';
 
-import { Bold } from '~/components/editor/icons/Bold';
-import { Italic } from '~/components/editor/icons/Italic';
-import { IconProps } from '~/components/editor/icons/Props';
-import { Strikethrough } from '~/components/editor/icons/Strikethrough';
-import { Underline } from '~/components/editor/icons/Underline';
-import { Action } from '~/components/editor/VariationEditor/types';
+import { Action } from '~/types/editor';
+
 export interface ToggleStyleProps {
   action: Action;
+  className?: string;
   onToggle: (isSelected: boolean) => void;
 }
 
 const ToggleStyle: FC<ToggleStyleProps> = (props) => {
-  const { action, onToggle } = props;
+  const { action, className, onToggle } = props;
 
   // Hooks
   const editor = useSlate();
@@ -23,7 +28,12 @@ const ToggleStyle: FC<ToggleStyleProps> = (props) => {
   const marks = Editor.marks(editor);
   const active = !!marks?.[action];
 
-  const iconProps: IconProps = { active, height: 14, width: 14 };
+  const iconProps: TablerIconsProps = { height: 20, width: 20 };
+
+  // Styles
+  const classes = classnames('u-p-1xs', className, {
+    'u-bg-accent u-rounded-md': active
+  });
 
   // Handlers
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -33,18 +43,18 @@ const ToggleStyle: FC<ToggleStyleProps> = (props) => {
 
   // Markup
   const renderIcon = () => {
-    if (action === Action.Bold) return <Bold {...iconProps} />;
-    if (action === Action.Italic) return <Italic {...iconProps} />;
-    if (action === Action.Underline) return <Underline {...iconProps} />;
+    if (action === Action.Bold) return <IconBold {...iconProps} />;
+    if (action === Action.Italic) return <IconItalic {...iconProps} />;
+    if (action === Action.Underline) return <IconUnderline {...iconProps} />;
     if (action === Action.Strikethrough) {
-      return <Strikethrough {...iconProps} />;
+      return <IconStrikethrough {...iconProps} />;
     }
 
     return null;
   };
 
   return (
-    <button className="u-mr-2xs" type="button" onMouseDown={onClick}>
+    <button className={classes} onMouseDown={onClick} type="button">
       {renderIcon()}
     </button>
   );

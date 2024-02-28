@@ -1,7 +1,7 @@
 import { BaseEditor, Editor, Element } from 'slate';
 import { ReactEditor } from 'slate-react';
 
-import { CustomElement } from '~/components/editor/VariationEditor/types';
+import { CustomElement } from '~/types/editor';
 
 const getSelectedStyle = (editor: BaseEditor & ReactEditor) => {
   const { selection } = editor;
