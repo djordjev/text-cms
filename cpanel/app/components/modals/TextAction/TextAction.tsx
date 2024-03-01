@@ -8,8 +8,8 @@ import { BUTTON_ACTION } from '~/utils/constants';
 
 export interface TextActionProps {
   className?: string;
-  open: boolean;
   onComplete: (payload?: ClickActionPayload) => void;
+  open: boolean;
 }
 
 const TextAction: FC<TextActionProps> = (props) => {
@@ -58,6 +58,7 @@ const TextAction: FC<TextActionProps> = (props) => {
 
         <form className="u-flex u-flex-col u-pt-3x" onSubmit={onSubmit}>
           <select
+            aria-label="type selection"
             className="u-select u-select-bordered u-w-full u-mb-2xs"
             name="action_type"
           >
@@ -102,7 +103,6 @@ const TextAction: FC<TextActionProps> = (props) => {
               className="u-btn u-btn-primary u-uppercase"
               name={BUTTON_ACTION}
               type="submit"
-              value="delete"
             >
               Add Action
             </button>

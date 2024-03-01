@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { useSlate } from 'slate-react';
 
-import { getSelectedStyleOption } from '~/components/editor/TextStyle/helpers';
+import {
+  getSelectedStyle,
+  getSelectedStyleOption
+} from '~/components/editor/TextStyle/helpers';
 import { CustomElement } from '~/types/editor';
 
 import { TEXT_STYLES } from './constants';
-import { getSelectedStyle } from './utils';
 
 export interface TextStyleProps {
   onChange: (selected: Partial<CustomElement>) => void;

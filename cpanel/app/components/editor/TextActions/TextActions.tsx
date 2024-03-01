@@ -46,12 +46,6 @@ const TextActions: FC<TextActionsProps> = (props) => {
     onClick(payload);
   };
 
-  // Markdown
-
-  // Life-cycle
-
-  // Short-circuit
-
   return (
     <>
       <button className={classes} onClick={onToggle} type="button">

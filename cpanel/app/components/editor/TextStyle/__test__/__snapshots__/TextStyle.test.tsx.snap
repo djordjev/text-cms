@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TextStyle 1`] = `
+NodeList [
+  <select
+    class="u-select-sm u-select-bordered"
+  >
+    <option
+      value="heading_1"
+    >
+      Heading 1
+    </option>
+    <option
+      value="heading_2"
+    >
+      Heading 2
+    </option>
+    <option
+      value="heading_3"
+    >
+      Heading 3
+    </option>
+    <option
+      value="heading_4"
+    >
+      Heading 4
+    </option>
+    <option
+      value="heading_5"
+    >
+      Heading 5
+    </option>
+    <option
+      value="heading_7"
+    >
+      Heading 6
+    </option>
+    <option
+      value="paragraph"
+    >
+      Paragraph
+    </option>
+  </select>,
+]
+`;

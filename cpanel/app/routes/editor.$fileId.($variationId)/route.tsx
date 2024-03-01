@@ -36,6 +36,11 @@ const Editor = () => {
     }
   };
 
+  const onSave = () => {
+    console.log(JSON.parse(JSON.stringify(editor.children)));
+    console.log(editor);
+  };
+
   // Markup
   const renderLeaf = useCallback(
     (props: RenderLeafProps) => <Leaf {...props} />,
@@ -61,6 +66,10 @@ const Editor = () => {
           />
         </Slate>
       </div>
+
+      <button className="u-btn u-btn-primary" onClick={onSave} type="button">
+        Save
+      </button>
     </div>
   );
 };

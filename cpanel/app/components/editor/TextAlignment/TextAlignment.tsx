@@ -7,14 +7,8 @@ import classnames from 'classnames';
 import { FC } from 'react';
 import { useSlate } from 'slate-react';
 
-import { getSelectedStyle } from '~/components/editor/TextStyle/utils';
+import { getSelectedStyle } from '~/components/editor/TextStyle/helpers';
 import { Alignment, CustomElement } from '~/types/editor';
-
-export const TEXT_ALIGNMENTS = [
-  { icon: IconAlignLeft, id: 'left', name: 'Left' },
-  { icon: IconAlignCenter, id: 'center', name: 'Center' },
-  { icon: IconAlignRight, id: 'right', name: 'Right' }
-];
 
 export interface TextAlignmentProps {
   className?: string;

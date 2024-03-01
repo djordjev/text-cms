@@ -45,7 +45,9 @@ type ClickActions = { [key in ClickAct]?: ClickActionPayload };
 
 export type AnyAction = string | boolean | ClickActionPayload;
 
-type CustomText = { text: string } & BoolActions & StringActions & ClickActions;
+export type CustomText = { text: string } & BoolActions &
+  StringActions &
+  ClickActions;
 
 declare module 'slate' {
   interface CustomTypes {

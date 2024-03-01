@@ -28,7 +28,7 @@ const ToggleStyle: FC<ToggleStyleProps> = (props) => {
   const marks = Editor.marks(editor);
   const active = !!marks?.[action];
 
-  const iconProps: TablerIconsProps = { height: 20, width: 20 };
+  const iconProps: TablerIconsProps = { height: 20, role: 'img', width: 20 };
 
   // Styles
   const classes = classnames('u-p-1xs', className, {
