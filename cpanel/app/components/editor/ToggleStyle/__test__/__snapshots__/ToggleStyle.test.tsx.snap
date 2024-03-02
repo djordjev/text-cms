@@ -1,0 +1,128 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ToggleStyle > bold 1`] = `
+NodeList [
+  <button
+    class="u-p-1xs"
+    type="button"
+  >
+    <svg
+      class="tabler-icon tabler-icon-bold"
+      fill="none"
+      height="20"
+      role="img"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7 5h6a3.5 3.5 0 0 1 0 7h-6z"
+      />
+      <path
+        d="M13 12h1a3.5 3.5 0 0 1 0 7h-7v-7"
+      />
+    </svg>
+  </button>,
+   ,
+]
+`;
+
+exports[`ToggleStyle > italic 1`] = `
+NodeList [
+  <button
+    class="u-p-1xs"
+    type="button"
+  >
+    <svg
+      class="tabler-icon tabler-icon-italic"
+      fill="none"
+      height="20"
+      role="img"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11 5l6 0"
+      />
+      <path
+        d="M7 19l6 0"
+      />
+      <path
+        d="M14 5l-4 14"
+      />
+    </svg>
+  </button>,
+   ,
+]
+`;
+
+exports[`ToggleStyle > strikethrough 1`] = `
+NodeList [
+  <button
+    class="u-p-1xs"
+    type="button"
+  >
+    <svg
+      class="tabler-icon tabler-icon-strikethrough"
+      fill="none"
+      height="20"
+      role="img"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5 12l14 0"
+      />
+      <path
+        d="M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5"
+      />
+    </svg>
+  </button>,
+   ,
+]
+`;
+
+exports[`ToggleStyle > underline 1`] = `
+NodeList [
+  <button
+    class="u-p-1xs"
+    type="button"
+  >
+    <svg
+      class="tabler-icon tabler-icon-underline"
+      fill="none"
+      height="20"
+      role="img"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7 5v5a5 5 0 0 0 10 0v-5"
+      />
+      <path
+        d="M5 19h14"
+      />
+    </svg>
+  </button>,
+   ,
+]
+`;

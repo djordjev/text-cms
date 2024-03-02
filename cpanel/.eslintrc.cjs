@@ -76,6 +76,14 @@ module.exports = {
       ],
     },
 
+    // Tests
+    {
+      files: ["**/*.test.{ts,tsx}"],
+      rules: {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+
     // Node
     {
       files: [".eslintrc.js"],

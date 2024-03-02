@@ -10,7 +10,7 @@ export const File: React.FC<FileProps> = (props) => {
   const { id, name } = props;
 
   // Setup
-  const link = `/editor/${id}`;
+  const link = `/viewer/${id}`;
 
   // Styles
   const classesName = `group-hover:u-underline u-max-w-full u-text-ellipsis u-overflow-hidden u-text-nowrap`;

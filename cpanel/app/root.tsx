@@ -28,7 +28,7 @@ export default function App() {
       </head>
       <body className="u-flex u-flex-col u-min-h-screen">
         <Header className="u-flex-grow-0 u-flex-shrink-0" />
-        <main className="main u-flex u-flex-1 u-p-2x">
+        <main className="main u-flex u-flex-1 u-p-2x u-bg-base-200">
           <Outlet />
         </main>
         <Footer className="u-flex-grow-0 u-flex-shrink-0" />

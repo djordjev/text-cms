@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  redis:
+    image: 'redis:7-alpine'
+    ports:
+      - 6379:6379
+    environment:
+      REDIS_PASSWORD: dev_pass
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
+    name: 'RedisVolume'

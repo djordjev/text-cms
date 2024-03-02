@@ -4,15 +4,6 @@ export default {
   content: ['./app/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
-      'primary-100': '#003EB3',
-      'primary-300': '#0074F0',
-      'primary-500': '#14A9FF',
-      'primary-700': '#85DCFF',
-      'success-300': '#199033',
-      'success-500': '#32A94C',
-      'success-700': '#4CC366',
-      white: '#FFFFFF',
-      black: '#000000',
       gray: {
         9: '#191919',
         8: '#333333',

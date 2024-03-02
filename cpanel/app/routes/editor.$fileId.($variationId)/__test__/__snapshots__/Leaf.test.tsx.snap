@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Leaf > actions > renders link 1`] = `
+NodeList [
+  <span
+    class=""
+    data-slate-leaf="true"
+    style="color: rgb(0, 0, 0);"
+  >
+    <span
+      class="u-tooltip u-bg-info u-rounded-md"
+      data-tip="Displays link with action attribute: google and link to www.google.com"
+    >
+      <div
+        data-testid="children"
+      />
+    </span>
+  </span>,
+]
+`;
+
+exports[`Leaf > regular fields > tests 'all props' prop 1`] = `
+NodeList [
+  <span
+    class="u-font-bold u-italic u-line-through u-underline"
+    data-slate-leaf="true"
+    style="color: rgb(0, 0, 0);"
+  >
+    <div
+      data-testid="children"
+    />
+  </span>,
+]
+`;
+
+exports[`Leaf > regular fields > tests 'bold' prop 1`] = `
+NodeList [
+  <span
+    class="u-font-bold"
+    data-slate-leaf="true"
+    style="color: rgb(0, 0, 0);"
+  >
+    <div
+      data-testid="children"
+    />
+  </span>,
+]
+`;
+
+exports[`Leaf > regular fields > tests 'italic' prop 1`] = `
+NodeList [
+  <span
+    class="u-italic"
+    data-slate-leaf="true"
+    style="color: rgb(0, 0, 0);"
+  >
+    <div
+      data-testid="children"
+    />
+  </span>,
+]
+`;
+
+exports[`Leaf > regular fields > tests 'strikethrough' prop 1`] = `
+NodeList [
+  <span
+    class="u-line-through"
+    data-slate-leaf="true"
+    style="color: rgb(0, 0, 0);"
+  >
+    <div
+      data-testid="children"
+    />
+  </span>,
+]
+`;
+
+exports[`Leaf > regular fields > tests 'underline' prop 1`] = `
+NodeList [
+  <span
+    class="u-underline"
+    data-slate-leaf="true"
+    style="color: rgb(0, 0, 0);"
+  >
+    <div
+      data-testid="children"
+    />
+  </span>,
+]
+`;
