@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Element > heading 1`] = `
+NodeList [
+  <div
+    class="u-text-right"
+  >
+    <h2
+      style="font-size: 32px;"
+    />
+  </div>,
+]
+`;
+
+exports[`Element > paragraph 1`] = `
+NodeList [
+  <p
+    class="u-text-left"
+  />,
+]
+`;

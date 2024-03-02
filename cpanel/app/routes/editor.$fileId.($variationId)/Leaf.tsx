@@ -4,7 +4,9 @@ import { RenderLeafProps } from 'slate-react';
 
 import { DEFAULT_TEXT_COLOR } from '~/routes/editor.$fileId.($variationId)/constants';
 
-const Leaf: React.FC<RenderLeafProps> = (props) => {
+export interface LeafProps extends RenderLeafProps {}
+
+const Leaf: React.FC<LeafProps> = (props) => {
   const { attributes, children, leaf } = props;
 
   const classes = classnames({

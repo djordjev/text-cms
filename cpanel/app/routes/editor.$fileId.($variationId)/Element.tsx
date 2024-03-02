@@ -2,7 +2,9 @@ import classnames from 'classnames';
 import React from 'react';
 import { RenderElementProps } from 'slate-react';
 
-const Element: React.FC<RenderElementProps> = (props) => {
+export interface ElementProps extends RenderElementProps {}
+
+const Element: React.FC<ElementProps> = (props) => {
   const { attributes, children, element } = props;
 
   const { align } = element;
