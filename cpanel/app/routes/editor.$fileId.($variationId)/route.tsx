@@ -24,7 +24,7 @@ const Editor = () => {
   const classesBorder = `u-border u-border-solid u-border-secondary u-rounded`;
   const classesContent = classnames(
     classesBorder,
-    'u-container u-mx-auto u-bg-white'
+    'u-mx-auto u-bg-white u-mb-3xs'
   );
 
   // Handlers
@@ -67,7 +67,11 @@ const Editor = () => {
         </Slate>
       </div>
 
-      <button className="u-btn u-btn-primary" onClick={onSave} type="button">
+      <button
+        className="u-btn u-btn-primary u-mx-auto u-block u-min-w-2z u-uppercase"
+        onClick={onSave}
+        type="button"
+      >
         Save
       </button>
     </div>
