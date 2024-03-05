@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { createEditor, Editor as SlateEditor } from 'slate';
 import {
   Editable,
@@ -9,7 +9,9 @@ import {
   withReact
 } from 'slate-react';
 
+import { ConditionEditor } from '~/components/editor/ConditionEditor';
 import { Toolbar } from '~/components/editor/Toolbar';
+import { ConditionGroup } from '~/types/condition';
 import type { Action, AnyAction } from '~/types/editor';
 
 import { INITIAL_VALUE } from './constants';
@@ -18,7 +20,8 @@ import { Leaf } from './Leaf';
 
 const Editor = () => {
   // Hooks
-  const [editor] = React.useState(() => withReact(createEditor()));
+  const [editor] = useState(() => withReact(createEditor()));
+  const [conditions, setConditions] = useState<ConditionGroup>();
 
   // Styles
   const classesBorder = `u-border u-border-solid u-border-secondary u-rounded`;
@@ -41,6 +44,10 @@ const Editor = () => {
     console.log(editor);
   };
 
+  const onChangeCondition = (newConditions: ConditionGroup) => {
+    setConditions(newConditions);
+  };
+
   // Markup
   const renderLeaf = useCallback(
     (props: RenderLeafProps) => <Leaf {...props} />,
@@ -53,7 +60,13 @@ const Editor = () => {
   );
 
   return (
-    <div className="u-w-full">
+    <div className="u-w-full u-pt-4x">
+      <ConditionEditor
+        className="u-mb-3x"
+        conditions={conditions}
+        onChange={onChangeCondition}
+      />
+
       <div className={classesContent}>
         <Slate editor={editor} initialValue={INITIAL_VALUE}>
           <Toolbar onClick={onClick} />

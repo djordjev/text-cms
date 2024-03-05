@@ -1,83 +1,77 @@
-import { FC, Fragment, useState } from 'react';
+import { IconInfinity, IconMathFunction } from '@tabler/icons-react';
+import { FC } from 'react';
 
-import { Condition } from '~/components/modals/Condition';
+import { Condition } from '~/components/editor/Condition';
+import { DEFAULT_CONDITION_DESCRIPTOR } from '~/constants/condition';
+import { ConditionAndChain, ConditionGroup } from '~/types/condition';
 
 export interface ConditionEditorProps {
-  fileName: string;
-  conditions: string[];
-  setConditions: (condition: string[]) => void;
+  className?: string;
+  conditions?: ConditionGroup;
+  onChange?: (newConditions: ConditionGroup) => void;
 }
 
 const ConditionEditor: FC<ConditionEditorProps> = (props) => {
-  const { conditions, fileName, setConditions } = props;
+  const { className, conditions = [], onChange } = props;
 
-  // Hooks
-  const [open, setOpen] = useState(false);
+  // Setup
+  const hasCondition = !!conditions?.length;
 
   // Handlers
-  const onClose = () => setOpen(false);
-
-  const onOpen = () => setOpen(true);
-
-  const onSave = (res: string) => {
-    setConditions([...conditions, res]);
+  const onAddNewVariation = () => {
+    onChange?.([...conditions, [DEFAULT_CONDITION_DESCRIPTOR]]);
   };
 
-  const onRemove = (index: number) => () => {
-    const newConditions = [...conditions];
-    newConditions.splice(index, 1);
-    setConditions(newConditions);
+  const onChainChange = (index: number, newChain: ConditionAndChain) => {
+    const newGroup = [...conditions];
+    newGroup[index] = newChain;
+
+    onChange?.(newGroup);
   };
 
-  // Markup
-  const renderCurrentConditions = () => {
-    if (!conditions.length) {
-      return <div className="u-text-primary-100 u-font-bold">Always</div>;
-    }
+  // Markdown
+  const renderTitle = () => {
+    const Icon = hasCondition ? IconMathFunction : IconInfinity;
+    const copy = hasCondition
+      ? 'This variation renders under following conditions:'
+      : 'This variation renders unconditionally!';
 
-    return conditions.map((cond, index) => {
-      const isLast = index === conditions.length - 1;
-      return (
-        <Fragment key={cond}>
-          <div className="u-text-primary-100 u-font-bold u-flex u-justify-between">
-            {cond}
-            <button type="button" onClick={onRemove(index)}>
-              <img
-                alt="close"
-                height={28}
-                width={28}
-                src="/svg/close.svg"
-                loading="lazy"
-              />
-            </button>
-          </div>
-          {!isLast && <div className="u-font-bold u-text-center">OR</div>}
-        </Fragment>
-      );
-    });
+    return (
+      <div className="u-py-2x u-font-bold u-text-primary u-tracking-wide">
+        <Icon className="u-inline" />
+        {copy}
+      </div>
+    );
+  };
+
+  const renderChain = (chain: ConditionAndChain, index: number) => {
+    return (
+      <Condition
+        andChain={chain}
+        index={index}
+        key={index}
+        onChainChange={onChainChange}
+      />
+    );
+  };
+
+  const renderConditions = () => {
+    if (!conditions?.length) return null;
+
+    return <div>{conditions.map(renderChain)}</div>;
   };
 
   return (
-    <div className="u-flex container-sm u-mx-auto u-mb-3xs u-items-center">
-      <div className="u-max-w-3z u-mr-2x">
-        <h3 className="u-font-bold u-text-lg">Condition Editor</h3>
-        <p className="u-text-sm u-mb-2x">
-          When requesting file <span className="u-font-bold">{fileName}</span>{' '}
-          this variation will be returned if:
-        </p>
-
-        <button
-          className="btn-secondary u-w-full"
-          onClick={onOpen}
-          type="button"
-        >
-          Add Condition
-        </button>
-      </div>
-
-      <div className="u-flex-1">{renderCurrentConditions()}</div>
-
-      {open && <Condition open={open} onClose={onClose} onSave={onSave} />}
+    <div className={className}>
+      {renderTitle()}
+      {renderConditions()}
+      <button
+        className="u-btn u-btn-outline u-btn-secondary u-uppercase"
+        onClick={onAddNewVariation}
+        type="button"
+      >
+        Add new condition
+      </button>
     </div>
   );
 };

@@ -3,8 +3,39 @@
 exports[`route 1`] = `
 NodeList [
   <div
-    class="u-w-full"
+    class="u-w-full u-pt-4x"
   >
+    <div
+      class="u-mb-3x"
+    >
+      <div
+        class="u-py-2x u-font-bold u-text-primary u-tracking-wide"
+      >
+        <svg
+          class="u-inline"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.828 9.172a4 4 0 1 0 0 5.656a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828"
+          />
+        </svg>
+        This variation renders unconditionally!
+      </div>
+      <button
+        class="u-btn u-btn-outline u-btn-secondary u-uppercase"
+        type="button"
+      >
+        Add new condition
+      </button>
+    </div>
     <div
       class="u-border u-border-solid u-border-secondary u-rounded u-mx-auto u-bg-white u-mb-3xs"
     >

@@ -1,5 +1,5 @@
 import { createRemixStub } from '@remix-run/testing';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { createEditor } from 'slate';
 import { Slate, withReact } from 'slate-react';
 
