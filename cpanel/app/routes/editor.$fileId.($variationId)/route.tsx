@@ -1,6 +1,7 @@
+import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import classnames from 'classnames';
 import { useCallback, useState } from 'react';
-import { createEditor, Editor as SlateEditor } from 'slate';
+import { createEditor, Descendant, Editor as SlateEditor } from 'slate';
 import {
   Editable,
   RenderElementProps,
@@ -13,21 +14,41 @@ import { ConditionEditor } from '~/components/editor/ConditionEditor';
 import { Toolbar } from '~/components/editor/Toolbar';
 import { ConditionGroup } from '~/types/condition';
 import type { Action, AnyAction } from '~/types/editor';
+import { BUTTON_ACTION } from '~/utils/constants';
 
+import { action, ACTION_UPSERT } from './action';
 import { INITIAL_VALUE } from './constants';
 import { Element } from './Element';
 import { Leaf } from './Leaf';
+import { loader } from './loader';
 
 const Editor = () => {
+  // Data
+  const actionResponse = useActionData<typeof action>();
+  const loaderResponse = useLoaderData<typeof loader>();
+
+  // Setup for hooks
+  console.log(loaderResponse);
+
   // Hooks
   const [editor] = useState(() => withReact(createEditor()));
   const [conditions, setConditions] = useState<ConditionGroup>();
+  const [content, setContent] = useState(JSON.stringify(INITIAL_VALUE));
+
+  // Setup
+  const strConditions = conditions ? JSON.stringify(conditions) : '';
+  const nameError = actionResponse?.errors?.['name'] ?? '';
 
   // Styles
   const classesBorder = `u-border u-border-solid u-border-secondary u-rounded`;
   const classesContent = classnames(
     classesBorder,
     'u-mx-auto u-bg-white u-mb-3xs'
+  );
+
+  const classesName = classnames(
+    'u-input u-input-bordered u-input-primary u-w-full',
+    { 'u-input-error': nameError }
   );
 
   // Handlers
@@ -37,11 +58,6 @@ const Editor = () => {
     } else {
       SlateEditor.removeMark(editor, action);
     }
-  };
-
-  const onSave = () => {
-    console.log(JSON.parse(JSON.stringify(editor.children)));
-    console.log(editor);
   };
 
   const onChangeCondition = (newConditions: ConditionGroup) => {
@@ -59,16 +75,41 @@ const Editor = () => {
     []
   );
 
+  const onSlateChange = useCallback((value: Descendant[]) => {
+    const isAstChange = editor.operations.some(
+      (op) => 'set_selection' !== op.type
+    );
+
+    if (!isAstChange) return;
+
+    setContent(JSON.stringify(value));
+  }, []);
+
   return (
-    <div className="u-w-full u-pt-4x">
+    <Form className="u-w-full u-pt-4x" method="POST">
+      <input
+        className={classesName}
+        defaultValue={loaderResponse?.name ?? ''}
+        name="name"
+        placeholder="Variation Name"
+        type="text"
+      />
+      <em className="u-text-error">{nameError}</em>
+
       <ConditionEditor
         className="u-mb-3x"
         conditions={conditions}
         onChange={onChangeCondition}
       />
 
+      <input type="hidden" name="condition" value={strConditions} />
+
       <div className={classesContent}>
-        <Slate editor={editor} initialValue={INITIAL_VALUE}>
+        <Slate
+          editor={editor}
+          initialValue={INITIAL_VALUE}
+          onChange={onSlateChange}
+        >
           <Toolbar onClick={onClick} />
 
           <Editable
@@ -80,15 +121,20 @@ const Editor = () => {
         </Slate>
       </div>
 
+      <input type="hidden" name="text" value={content} />
+
       <button
         className="u-btn u-btn-primary u-mx-auto u-block u-min-w-2z u-uppercase"
-        onClick={onSave}
-        type="button"
+        name={BUTTON_ACTION}
+        type="submit"
+        value={ACTION_UPSERT}
       >
         Save
       </button>
-    </div>
+    </Form>
   );
 };
+
+export { action, loader };
 
 export default Editor;

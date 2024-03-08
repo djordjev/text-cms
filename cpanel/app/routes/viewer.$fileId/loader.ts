@@ -12,9 +12,9 @@ const loader = async (args: LoaderFunctionArgs) => {
 
   const info = await getFileById(Number.parseInt(id, 10));
 
-  const content = await getFileContentByPath(info.path);
+  const variations = await getFileContentByPath(info.path);
 
-  return json({ content, info });
+  return json({ info, variations });
 };
 
 export { loader };

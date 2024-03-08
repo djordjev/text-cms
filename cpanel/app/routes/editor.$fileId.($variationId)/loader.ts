@@ -2,6 +2,7 @@ import { LoaderFunctionArgs } from '@remix-run/node';
 
 import { getFileContentByPath } from '~/api/file.server';
 import { getFileById } from '~/api/finder.server';
+import { FileVariation } from '~/types';
 
 const loader = async (args: LoaderFunctionArgs) => {
   const { params } = args;
@@ -9,21 +10,30 @@ const loader = async (args: LoaderFunctionArgs) => {
   const fileId = params.fileId;
   const variationId = params.variationId;
 
-  if (!variationId || !fileId) return null;
+  if (!fileId) return null;
 
   const fileInfo = await getFileById(Number.parseInt(fileId, 10));
 
   const file = await getFileContentByPath(fileInfo.path);
 
-  if (!file) throw new Error('no file');
+  if (!file) {
+    const empty: Partial<FileVariation> = {
+      condition: undefined,
+      id: undefined,
+      name: '',
+      text: undefined
+    };
 
-  const parsed = JSON.parse(file) as {
-    id: string;
-    condition: string;
-    content: string;
-  }[];
+    return empty;
+  }
 
-  return parsed.find((i) => i.id === variationId);
+  const variation = file.find((i) => i.id === variationId);
+
+  const response = {
+    name: variation?.name
+  };
+
+  return response;
 };
 
 export { loader };
