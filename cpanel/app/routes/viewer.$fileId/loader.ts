@@ -17,9 +17,7 @@ const loader = async (args: LoaderFunctionArgs) => {
 
   const variations = await getFileContentByPath(info.path);
 
-  if (!variations) throw new Error('Error 500');
-
-  return json({ info, variations });
+  return json({ info, variations: variations ?? [] });
 };
 
 export { loader };

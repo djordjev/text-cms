@@ -43,7 +43,7 @@ const Viewer: FC<ViewerProps> = () => {
   };
 
   const renderContent = () => {
-    if (!variations) return renderEmpty();
+    if (!variations.length) return renderEmpty();
 
     return (
       <div className="u-p-4x">

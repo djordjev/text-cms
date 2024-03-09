@@ -11,17 +11,10 @@ export interface TextProps {
 const Text: FC<TextProps> = (props) => {
   const { className, text } = props;
 
-  // Hooks
-
   // Setup
   const parsed = useMemo(() => JSON.parse(text), [text]);
 
-  // Styles
-
-  // Handlers
-
   // Markup
-
   const renderChild = (child: CustomText, index: number) => {
     const { click, text } = child;
 
@@ -39,17 +32,41 @@ const Text: FC<TextProps> = (props) => {
 
     if (click) {
       const { type } = click;
-      const elem = { primary: 'button', secondary: 'button', link: 'a' };
 
-      const strElem = elem[type as 'primary' | 'secondary' | 'link'];
-
-      const actionClasses = classnames(classes, 'u-btn', {
-        'u-btn-primary': type === 'primary',
-        'u-btn-secondary': type === 'secondary',
-        'u-btn-link': type === 'link'
+      const actionClasses = classnames(classes, {
+        'u-btn u-btn-primary': type === 'primary',
+        'u-btn u-btn-secondary': type === 'secondary',
+        'u-link u-link-primary': type === 'link'
       });
 
-      return createElement(strElem, { className: actionClasses, style }, text);
+      const onClick = () =>
+        alert(`Clicked action element with action: ${click.action}`);
+
+      const commonProps = {
+        className: actionClasses,
+        onClick,
+        key: index,
+        style
+      };
+
+      switch (type) {
+        case 'link':
+          return (
+            <a
+              {...commonProps}
+              href={click.href}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {text}
+            </a>
+          );
+        case 'primary':
+        case 'secondary':
+          return <button {...commonProps}>{text}</button>;
+        default:
+          throw new Error('unknown type');
+      }
     }
 
     return (
@@ -60,24 +77,38 @@ const Text: FC<TextProps> = (props) => {
   };
 
   const renderBlock = (cnt: CustomElement, index: number) => {
-    const { children, type } = cnt;
+    const { align, children, type } = cnt;
 
-    if (type === 'paragraph') {
-      return <p key={index}>{children.map(renderChild)}</p>;
+    let elem: string;
+
+    switch (type) {
+      case 'heading':
+        elem = `h${cnt.level}`;
+        break;
+      case 'paragraph':
+        elem = 'p';
+        break;
+      default:
+        return null;
     }
 
-    if (type === 'heading') {
-      const { level } = cnt;
-      const strElem = `h${level}`;
+    const blockClasses = classnames({
+      'u-text-left': align === 'left',
+      'u-text-center': align === 'center',
+      'u-text-right': align === 'right',
+      'u-text-4xl': elem === 'h1',
+      'u-text-3xl': elem === 'h2',
+      'u-text-lg': elem === 'h3',
+      'u-text-md': elem === 'h4',
+      'u-text-sm': elem === 'h5',
+      'u-text-xs': elem === 'h6'
+    });
 
-      return createElement(
-        strElem,
-        { key: index },
-        ...children.map(renderChild)
-      );
-    }
-
-    return null;
+    return createElement(
+      elem,
+      { className: blockClasses, key: index },
+      ...children.map(renderChild)
+    );
   };
 
   // Short-circuit
