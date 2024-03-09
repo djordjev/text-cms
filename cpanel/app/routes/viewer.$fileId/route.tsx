@@ -30,8 +30,6 @@ const Viewer: FC<ViewerProps> = () => {
     'u-w-full u-opacity-45 u-pointer-events-none u-mt-10x'
   );
 
-  // Handlers
-
   // Markdown
   const renderEmpty = () => {
     return (
@@ -55,10 +53,6 @@ const Viewer: FC<ViewerProps> = () => {
       </div>
     );
   };
-
-  // Life-cycle
-
-  // Short-circuit
 
   return (
     <div className="u-w-full">

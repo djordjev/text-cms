@@ -1,6 +1,8 @@
 import classnames from 'classnames';
 import { createElement, CSSProperties, FC, useMemo } from 'react';
 
+import { CustomElement, CustomText } from '~/types/editor';
+
 export interface TextProps {
   className?: string;
   text: string;
@@ -17,11 +19,10 @@ const Text: FC<TextProps> = (props) => {
   // Styles
 
   // Handlers
-  console.log(JSON.parse(text));
 
   // Markup
 
-  const renderChild = (child: any, index: number) => {
+  const renderChild = (child: CustomText, index: number) => {
     const { click, text } = child;
 
     const classes = classnames({
@@ -58,22 +59,25 @@ const Text: FC<TextProps> = (props) => {
     );
   };
 
-  const renderBlock = (cnt: any, index: number) => {
+  const renderBlock = (cnt: CustomElement, index: number) => {
     const { children, type } = cnt;
 
     if (type === 'paragraph') {
-      return <p>{children.map(renderChild)}</p>;
+      return <p key={index}>{children.map(renderChild)}</p>;
     }
 
     if (type === 'heading') {
       const { level } = cnt;
       const strElem = `h${level}`;
 
-      const elem = createElement(strElem, {}, ...children.map(renderChild));
-      return elem;
+      return createElement(
+        strElem,
+        { key: index },
+        ...children.map(renderChild)
+      );
     }
 
-    return <div key={index}>{JSON.stringify(cnt)}</div>;
+    return null;
   };
 
   // Short-circuit

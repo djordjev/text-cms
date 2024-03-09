@@ -49,11 +49,7 @@ const getContentForPath = async (path: string) => {
 };
 
 const getFileById = async (id: number) => {
-  const file = await client.fsNode.findFirstOrThrow({
-    where: { id }
-  });
-
-  return file;
+  return client.fsNode.findFirst({ where: { id } });
 };
 
 export { add, getContentForPath, getFileById, remove };

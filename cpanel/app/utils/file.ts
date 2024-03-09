@@ -5,6 +5,7 @@ import {
   ConditionGroup,
   ConditionOperator
 } from '~/types/condition';
+import { CustomElement } from '~/types/editor';
 
 const isHome = (name: string) => {
   return name.toLowerCase() === 'finder';
@@ -34,29 +35,6 @@ const getPathFromSegments = (segments: string[], segment: string) => {
   return `/${joined}`;
 };
 
-const parseFileVariations = (str: string): FileVariation[] | null => {
-  if (!str) return null;
-
-  const parsed = JSON.parse(str);
-
-  if (!Array.isArray(parsed)) return null;
-
-  const hasFields = parsed.every((e) => e.name && e.id && e.text);
-
-  if (!hasFields) return null;
-
-  return parsed.map((i) => {
-    const variation: FileVariation = {
-      condition: i.condition ?? undefined,
-      id: i.id,
-      name: i.name,
-      text: i.text
-    };
-
-    return variation;
-  });
-};
-
 const parseDescriptor = (descriptor: unknown): ConditionDescriptor => {
   const msg = 'incorrect descriptor format';
 
@@ -74,13 +52,7 @@ const parseDescriptor = (descriptor: unknown): ConditionDescriptor => {
 
   if (!isValid) throw new Error(msg);
 
-  const result: ConditionDescriptor = [
-    name,
-    operator as ConditionOperator,
-    value
-  ];
-
-  return result;
+  return [name, operator as ConditionOperator, value];
 };
 
 const parseAndChain = (andChain: unknown): ConditionAndChain => {
@@ -103,11 +75,49 @@ const parseConditions = (str?: string): ConditionGroup | null => {
   }
 };
 
+const parseText = (text: string): CustomElement[] => {
+  if (!text) throw new Error('invalid text format');
+
+  const parsed = JSON.parse(text);
+
+  if (!Array.isArray(parsed)) throw new Error('invalid text format');
+
+  return parsed.map((v) => {
+    const descendant: CustomElement = { ...v };
+
+    return descendant;
+  });
+};
+
+const parseFileVariations = (str: string): FileVariation[] | null => {
+  if (!str) return null;
+
+  const parsed = JSON.parse(str);
+
+  if (!Array.isArray(parsed)) return null;
+
+  const hasFields = parsed.every((e) => e.name && e.id && e.text);
+
+  if (!hasFields) return null;
+
+  return parsed.map((i) => {
+    const variation: FileVariation = {
+      condition: i.condition,
+      id: i.id,
+      name: i.name,
+      text: i.text
+    };
+
+    return variation;
+  });
+};
+
 export {
   getPathFromSegments,
   isFile,
   isFolder,
   isHome,
   parseConditions,
-  parseFileVariations
+  parseFileVariations,
+  parseText
 };

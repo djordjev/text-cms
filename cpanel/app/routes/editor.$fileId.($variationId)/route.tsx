@@ -17,8 +17,8 @@ import type { Action, AnyAction } from '~/types/editor';
 import { BUTTON_ACTION } from '~/utils/constants';
 
 import { action, ACTION_UPSERT } from './action';
-import { INITIAL_VALUE } from './constants';
 import { Element } from './Element';
+import { ErrorBoundary } from './ErrorBoundary';
 import { Leaf } from './Leaf';
 import { loader } from './loader';
 
@@ -28,12 +28,15 @@ const Editor = () => {
   const loaderResponse = useLoaderData<typeof loader>();
 
   // Setup for hooks
-  console.log(loaderResponse);
+  const text = loaderResponse.text;
+  const condition = loaderResponse.condition ?? undefined;
 
   // Hooks
   const [editor] = useState(() => withReact(createEditor()));
-  const [conditions, setConditions] = useState<ConditionGroup>();
-  const [content, setContent] = useState(JSON.stringify(INITIAL_VALUE));
+  const [content, setContent] = useState(() => JSON.stringify(text));
+  const [conditions, setConditions] = useState<ConditionGroup | undefined>(
+    condition
+  );
 
   // Setup
   const strConditions = conditions ? JSON.stringify(conditions) : '';
@@ -105,11 +108,7 @@ const Editor = () => {
       <input type="hidden" name="condition" value={strConditions} />
 
       <div className={classesContent}>
-        <Slate
-          editor={editor}
-          initialValue={INITIAL_VALUE}
-          onChange={onSlateChange}
-        >
+        <Slate editor={editor} initialValue={text} onChange={onSlateChange}>
           <Toolbar onClick={onClick} />
 
           <Editable
@@ -135,6 +134,6 @@ const Editor = () => {
   );
 };
 
-export { action, loader };
+export { action, ErrorBoundary, loader };
 
 export default Editor;

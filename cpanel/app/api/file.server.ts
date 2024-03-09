@@ -52,7 +52,14 @@ const addVariation = async (path: string, variation: FileVariation) => {
 
   const allVariations = content ?? [];
 
-  allVariations.push(variation);
+  const ids = allVariations.map((v) => v.id);
+  const index = ids.indexOf(variation.id);
+
+  if (index === -1) {
+    allVariations.push(variation);
+  } else {
+    allVariations[index] = variation;
+  }
 
   await storeFileContent(path, allVariations);
 

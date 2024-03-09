@@ -6,7 +6,6 @@ import { FC, Fragment } from 'react';
 import { Text } from '~/components/viewer/Text';
 import { FileVariation } from '~/types';
 import { ConditionAndChain, ConditionDescriptor } from '~/types/condition';
-import { parseConditions } from '~/utils/file';
 
 export interface VariationProps {
   className?: string;
@@ -62,10 +61,7 @@ const Variation: FC<VariationProps> = (props) => {
       );
     }
 
-    const parsed = parseConditions(condition);
-    if (!parsed) return null;
-
-    return <div>{parsed.map(renderAndChain)}</div>;
+    return <div>{condition.map(renderAndChain)}</div>;
   };
 
   const renderEdit = () => {
@@ -73,7 +69,7 @@ const Variation: FC<VariationProps> = (props) => {
     const to = `/editor/${fileId}/${variation.id}`;
 
     return (
-      <Link className="u-btn u-btn-link" to={to}>
+      <Link className="u-link u-link-primary" to={to}>
         <IconEdit className="u-inline" /> Edit
       </Link>
     );
@@ -99,7 +95,7 @@ const Variation: FC<VariationProps> = (props) => {
 
       <div>
         <h5 className="u-italic u-mb-2xs">Text:</h5>
-        <Text text={text} />
+        <Text text={JSON.stringify(text)} />
       </div>
     </div>
   );
