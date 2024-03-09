@@ -108,25 +108,21 @@ describe('finder', () => {
   describe('getFileById', () => {
     it('returns file by id', async () => {
       const node = newNode({ id: 10, name: 'test name.txt' });
-      client.fsNode.findFirstOrThrow.mockResolvedValue(node);
+      client.fsNode.findFirst.mockResolvedValue(node);
 
       const result = await getFileById(10);
 
-      expect(result.id).toBe(node.id);
-      expect(result.name).toBe(node.name);
+      expect(result?.id).toBe(node.id);
+      expect(result?.name).toBe(node.name);
     });
 
-    it('throws an error when not found', async () => {
-      const err = new Error('message');
-      client.fsNode.findFirstOrThrow.mockRejectedValue(err);
+    it('returns null when not found', async () => {
+      client.fsNode.findFirst.mockResolvedValue(null);
 
       expect.assertions(1);
 
-      try {
-        await getFileById(10);
-      } catch (e) {
-        expect((e as Error).message).toBe(err.message);
-      }
+      const result = await getFileById(10);
+      expect(result).toBeNull();
     });
   });
 });

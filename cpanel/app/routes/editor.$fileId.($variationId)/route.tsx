@@ -12,7 +12,6 @@ import {
 
 import { ConditionEditor } from '~/components/editor/ConditionEditor';
 import { Toolbar } from '~/components/editor/Toolbar';
-import { ConditionGroup } from '~/types/condition';
 import type { Action, AnyAction } from '~/types/editor';
 import { BUTTON_ACTION } from '~/utils/constants';
 
@@ -29,17 +28,12 @@ const Editor = () => {
 
   // Setup for hooks
   const text = loaderResponse.text;
-  const condition = loaderResponse.condition ?? undefined;
 
   // Hooks
   const [editor] = useState(() => withReact(createEditor()));
   const [content, setContent] = useState(() => JSON.stringify(text));
-  const [conditions, setConditions] = useState<ConditionGroup | undefined>(
-    condition
-  );
 
   // Setup
-  const strConditions = conditions ? JSON.stringify(conditions) : '';
   const nameError = actionResponse?.errors?.['name'] ?? '';
 
   // Styles
@@ -61,10 +55,6 @@ const Editor = () => {
     } else {
       SlateEditor.removeMark(editor, action);
     }
-  };
-
-  const onChangeCondition = (newConditions: ConditionGroup) => {
-    setConditions(newConditions);
   };
 
   // Markup
@@ -101,11 +91,8 @@ const Editor = () => {
 
       <ConditionEditor
         className="u-mb-3x"
-        conditions={conditions}
-        onChange={onChangeCondition}
+        defaultCondition={loaderResponse.condition ?? undefined}
       />
-
-      <input type="hidden" name="condition" value={strConditions} />
 
       <div className={classesContent}>
         <Slate editor={editor} initialValue={text} onChange={onSlateChange}>

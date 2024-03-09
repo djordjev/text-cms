@@ -1,5 +1,5 @@
 import { IconInfinity, IconMathFunction } from '@tabler/icons-react';
-import { FC } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import { Condition } from '~/components/editor/Condition';
 import { DEFAULT_CONDITION_DESCRIPTOR } from '~/constants/condition';
@@ -7,26 +7,29 @@ import { ConditionAndChain, ConditionGroup } from '~/types/condition';
 
 export interface ConditionEditorProps {
   className?: string;
-  conditions?: ConditionGroup;
-  onChange?: (newConditions: ConditionGroup) => void;
+  defaultCondition?: ConditionGroup;
 }
 
 const ConditionEditor: FC<ConditionEditorProps> = (props) => {
-  const { className, conditions = [], onChange } = props;
+  const { className, defaultCondition = [] } = props;
+
+  // Hooks
+  const [condition, setCondition] = useState<ConditionGroup>(defaultCondition);
 
   // Setup
-  const hasCondition = !!conditions?.length;
+  const hasCondition = !!condition?.length;
+  const value = useMemo(() => JSON.stringify(condition), [condition]);
 
   // Handlers
   const onAddNewVariation = () => {
-    onChange?.([...conditions, [DEFAULT_CONDITION_DESCRIPTOR]]);
+    setCondition([...condition, [DEFAULT_CONDITION_DESCRIPTOR]]);
   };
 
   const onChainChange = (index: number, newChain: ConditionAndChain) => {
-    const newGroup = [...conditions];
+    const newGroup = [...condition];
     newGroup[index] = newChain;
 
-    onChange?.(newGroup);
+    setCondition(newGroup);
   };
 
   // Markdown
@@ -56,9 +59,9 @@ const ConditionEditor: FC<ConditionEditorProps> = (props) => {
   };
 
   const renderConditions = () => {
-    if (!conditions?.length) return null;
+    if (!condition?.length) return null;
 
-    return <div>{conditions.map(renderChain)}</div>;
+    return <div>{condition.map(renderChain)}</div>;
   };
 
   return (
@@ -72,6 +75,13 @@ const ConditionEditor: FC<ConditionEditorProps> = (props) => {
       >
         Add new condition
       </button>
+
+      <input
+        data-testid="condition"
+        name="condition"
+        type="hidden"
+        value={value}
+      />
     </div>
   );
 };
