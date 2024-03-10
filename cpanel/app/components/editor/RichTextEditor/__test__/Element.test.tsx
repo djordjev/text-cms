@@ -1,10 +1,7 @@
 import { createRemixStub } from '@remix-run/testing';
 import { render } from '@testing-library/react';
 
-import {
-  Element,
-  ElementProps
-} from '../../../components/editor/RichTextEditor/Element';
+import { Element, ElementProps } from '../Element';
 
 test('Element', () => {
   const attributes: any = {};

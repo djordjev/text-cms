@@ -16,8 +16,6 @@ export interface VariationProps {
 const Variation: FC<VariationProps> = (props) => {
   const { className, fileId, variation } = props;
 
-  // Hooks
-
   // Setup
   const { condition, id, name, text } = variation;
 
@@ -26,8 +24,6 @@ const Variation: FC<VariationProps> = (props) => {
     'u-card u-shadow-xl u-mb-5x u-bg-base-300 u-p-3xs',
     className
   );
-
-  // Handlers
 
   // Markup
   const renderDescriptor = (descriptor: ConditionDescriptor, index: number) => {

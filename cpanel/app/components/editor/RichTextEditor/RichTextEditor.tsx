@@ -86,7 +86,12 @@ const RichTextEditor: FC<RichTextEditorProps> = (props) => {
         />
       </Slate>
 
-      <input type="hidden" name="text" value={content} />
+      <input
+        data-testid="editor-content"
+        type="hidden"
+        name="text"
+        value={content}
+      />
     </div>
   );
 };

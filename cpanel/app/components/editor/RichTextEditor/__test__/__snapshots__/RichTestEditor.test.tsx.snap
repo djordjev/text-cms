@@ -1,0 +1,451 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RichTextEditor 1`] = `
+NodeList [
+  <div
+    class="u-border u-border-solid u-border-secondary u-rounded u-mx-auto u-bg-white u-mb-3xs"
+  >
+    <div
+      class="u-flex u-items-center u-bg-base-300 u-mb-2x u-p-2xs"
+    >
+      <div
+        class="u-flex u-items-center"
+      >
+        <button
+          class="u-p-1xs u-mr-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-bold"
+            fill="none"
+            height="20"
+            role="img"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 5h6a3.5 3.5 0 0 1 0 7h-6z"
+            />
+            <path
+              d="M13 12h1a3.5 3.5 0 0 1 0 7h-7v-7"
+            />
+          </svg>
+        </button>
+        <button
+          class="u-p-1xs u-mr-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-italic"
+            fill="none"
+            height="20"
+            role="img"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 5l6 0"
+            />
+            <path
+              d="M7 19l6 0"
+            />
+            <path
+              d="M14 5l-4 14"
+            />
+          </svg>
+        </button>
+        <button
+          class="u-p-1xs u-mr-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-underline"
+            fill="none"
+            height="20"
+            role="img"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 5v5a5 5 0 0 0 10 0v-5"
+            />
+            <path
+              d="M5 19h14"
+            />
+          </svg>
+        </button>
+        <button
+          class="u-p-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-strikethrough"
+            fill="none"
+            height="20"
+            role="img"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12l14 0"
+            />
+            <path
+              d="M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="u-bg-neutral u-mx-2xs"
+        style="height: 18px; width: 1px;"
+      />
+      <input
+        class="u-bg-transparent u-mr-1x"
+        type="color"
+        value="#000000"
+      />
+      <div
+        class="u-bg-neutral u-mx-2xs"
+        style="height: 18px; width: 1px;"
+      />
+      <select
+        class="u-select-sm u-select-bordered"
+      >
+        <option
+          value="heading_1"
+        >
+          Heading 1
+        </option>
+        <option
+          value="heading_2"
+        >
+          Heading 2
+        </option>
+        <option
+          value="heading_3"
+        >
+          Heading 3
+        </option>
+        <option
+          value="heading_4"
+        >
+          Heading 4
+        </option>
+        <option
+          value="heading_5"
+        >
+          Heading 5
+        </option>
+        <option
+          value="heading_7"
+        >
+          Heading 6
+        </option>
+        <option
+          value="paragraph"
+        >
+          Paragraph
+        </option>
+      </select>
+      <div
+        class="u-bg-neutral u-mx-2xs"
+        style="height: 18px; width: 1px;"
+      />
+      <div>
+        <button
+          aria-label="Left"
+          class="u-p-1xs u-bg-accent u-rounded-md"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-align-left"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6l16 0"
+            />
+            <path
+              d="M4 12l10 0"
+            />
+            <path
+              d="M4 18l14 0"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="Center"
+          class="u-p-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-align-center"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6l16 0"
+            />
+            <path
+              d="M8 12l8 0"
+            />
+            <path
+              d="M6 18l12 0"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="Right"
+          class="u-p-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-align-right"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6l16 0"
+            />
+            <path
+              d="M10 12l10 0"
+            />
+            <path
+              d="M6 18l14 0"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="u-bg-neutral u-mx-2xs"
+        style="height: 18px; width: 1px;"
+      />
+      <button
+        class="u-p-1xs"
+        type="button"
+      >
+        <svg
+          class="tabler-icon tabler-icon-link"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 15l6 -6"
+          />
+          <path
+            d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"
+          />
+          <path
+            d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
+          />
+        </svg>
+      </button>
+      <div
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+      />
+    </div>
+    <div
+      aria-multiline="true"
+      autocapitalize="false"
+      autocorrect="false"
+      class="u-outline-0 u-p-2xs"
+      contenteditable="true"
+      data-slate-editor="true"
+      data-slate-node="value"
+      role="textbox"
+      spellcheck="false"
+      style="position: relative; white-space: pre-wrap; word-wrap: break-word;"
+      zindex="-1"
+    >
+      <div
+        class="u-text-center"
+      >
+        <h3
+          data-slate-node="element"
+          style="font-size: 24px;"
+        >
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class=""
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                HEADING
+              </span>
+            </span>
+          </span>
+        </h3>
+      </div>
+      <p
+        class="u-text-left"
+        data-slate-node="element"
+      >
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class=""
+            data-slate-leaf="true"
+            style="color: rgb(0, 0, 0);"
+          >
+            <span
+              data-slate-string="true"
+            >
+              A 
+            </span>
+          </span>
+        </span>
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class="u-italic"
+            data-slate-leaf="true"
+            style="color: rgb(0, 0, 0);"
+          >
+            <span
+              data-slate-string="true"
+            >
+              line
+            </span>
+          </span>
+        </span>
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class=""
+            data-slate-leaf="true"
+            style="color: rgb(0, 0, 0);"
+          >
+            <span
+              data-slate-string="true"
+            >
+               of 
+            </span>
+          </span>
+        </span>
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class="u-font-bold"
+            data-slate-leaf="true"
+            style="color: rgb(228, 17, 17);"
+          >
+            <span
+              data-slate-string="true"
+            >
+              text
+            </span>
+          </span>
+        </span>
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class=""
+            data-slate-leaf="true"
+            style="color: rgb(0, 0, 0);"
+          >
+            <span
+              data-slate-string="true"
+            >
+               in a 
+            </span>
+          </span>
+        </span>
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class="u-font-bold"
+            data-slate-leaf="true"
+            style="color: rgb(0, 0, 0);"
+          >
+            <span
+              data-slate-string="true"
+            >
+              paragraph
+            </span>
+          </span>
+        </span>
+        <span
+          data-slate-node="text"
+        >
+          <span
+            class=""
+            data-slate-leaf="true"
+            style="color: rgb(0, 0, 0);"
+          >
+            <span
+              data-slate-string="true"
+            >
+              .
+            </span>
+          </span>
+        </span>
+      </p>
+    </div>
+    <input
+      data-testid="editor-content"
+      name="text"
+      type="hidden"
+      value="[{"type":"heading","children":[{"text":"HEADING"}],"level":3,"align":"center"},{"type":"paragraph","children":[{"text":"A "},{"text":"line","italic":true},{"text":" of "},{"text":"text","color":"#e41111","bold":true},{"text":" in a "},{"text":"paragraph","bold":true},{"text":"."}]}]"
+    />
+  </div>,
+]
+`;

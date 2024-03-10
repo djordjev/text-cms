@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Text 1`] = `
+NodeList [
+  <div>
+    <h3
+      class="u-text-center u-text-lg"
+    >
+      <span
+        class=""
+      >
+        HEADING
+      </span>
+    </h3>
+    <p
+      class=""
+    >
+      <span
+        class=""
+      >
+        A 
+      </span>
+      <span
+        class="u-italic"
+      >
+        line
+      </span>
+      <span
+        class=""
+      >
+         of 
+      </span>
+      <span
+        class="u-font-bold"
+        style="color: rgb(228, 17, 17);"
+      >
+        text
+      </span>
+      <span
+        class=""
+      >
+         in a 
+      </span>
+      <span
+        class="u-font-bold"
+      >
+        paragraph
+      </span>
+      <span
+        class=""
+      >
+        .
+      </span>
+    </p>
+  </div>,
+]
+`;

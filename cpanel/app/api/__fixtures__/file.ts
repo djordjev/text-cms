@@ -14,7 +14,8 @@ export const FILE_CONTENT = [
       [
         ['b', '=', 1],
         ['c', '>', 12]
-      ]
+      ],
+      [['w', '=', 'true']]
     ],
     text: TEST_EDITOR
   }
