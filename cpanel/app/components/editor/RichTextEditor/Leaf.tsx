@@ -2,8 +2,6 @@ import classnames from 'classnames';
 import React from 'react';
 import { RenderLeafProps } from 'slate-react';
 
-import { DEFAULT_TEXT_COLOR } from '~/routes/editor.$fileId.($variationId)/constants';
-
 export interface LeafProps extends RenderLeafProps {}
 
 const Leaf: React.FC<LeafProps> = (props) => {
@@ -16,9 +14,7 @@ const Leaf: React.FC<LeafProps> = (props) => {
     'u-underline': leaf.underline
   });
 
-  const style = {
-    color: leaf.color ?? DEFAULT_TEXT_COLOR
-  };
+  const style = { color: leaf.color ?? '#000000' };
 
   // Markup
   const renderChildren = () => {

@@ -1,7 +1,10 @@
 import { createRemixStub } from '@remix-run/testing';
 import { render, screen } from '@testing-library/react';
 
-import { Leaf, LeafProps } from '../Leaf';
+import {
+  Leaf,
+  LeafProps
+} from '../../../components/editor/RichTextEditor/Leaf';
 
 describe('Leaf', () => {
   let props: LeafProps;

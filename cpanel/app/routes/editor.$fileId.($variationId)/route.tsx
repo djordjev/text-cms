@@ -1,24 +1,12 @@
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import classnames from 'classnames';
-import { useCallback, useState } from 'react';
-import { createEditor, Descendant, Editor as SlateEditor } from 'slate';
-import {
-  Editable,
-  RenderElementProps,
-  RenderLeafProps,
-  Slate,
-  withReact
-} from 'slate-react';
 
 import { ConditionEditor } from '~/components/editor/ConditionEditor';
-import { Toolbar } from '~/components/editor/Toolbar';
-import type { Action, AnyAction } from '~/types/editor';
+import { RichTextEditor } from '~/components/editor/RichTextEditor';
 import { BUTTON_ACTION } from '~/utils/constants';
 
 import { action, ACTION_UPSERT } from './action';
-import { Element } from './Element';
 import { ErrorBoundary } from './ErrorBoundary';
-import { Leaf } from './Leaf';
 import { loader } from './loader';
 
 const Editor = () => {
@@ -26,57 +14,15 @@ const Editor = () => {
   const actionResponse = useActionData<typeof action>();
   const loaderResponse = useLoaderData<typeof loader>();
 
-  // Setup for hooks
-  const text = loaderResponse.text;
-
-  // Hooks
-  const [editor] = useState(() => withReact(createEditor()));
-  const [content, setContent] = useState(() => JSON.stringify(text));
-
   // Setup
   const nameError = actionResponse?.errors?.['name'] ?? '';
+  const text = loaderResponse.text;
 
   // Styles
-  const classesBorder = `u-border u-border-solid u-border-secondary u-rounded`;
-  const classesContent = classnames(
-    classesBorder,
-    'u-mx-auto u-bg-white u-mb-3xs'
-  );
-
   const classesName = classnames(
     'u-input u-input-bordered u-input-primary u-w-full',
     { 'u-input-error': nameError }
   );
-
-  // Handlers
-  const onClick = (action: Action, value?: AnyAction) => {
-    if (value) {
-      SlateEditor.addMark(editor, action, value);
-    } else {
-      SlateEditor.removeMark(editor, action);
-    }
-  };
-
-  // Markup
-  const renderLeaf = useCallback(
-    (props: RenderLeafProps) => <Leaf {...props} />,
-    []
-  );
-
-  const renderElement = useCallback(
-    (props: RenderElementProps) => <Element {...props} />,
-    []
-  );
-
-  const onSlateChange = useCallback((value: Descendant[]) => {
-    const isAstChange = editor.operations.some(
-      (op) => 'set_selection' !== op.type
-    );
-
-    if (!isAstChange) return;
-
-    setContent(JSON.stringify(value));
-  }, []);
 
   return (
     <Form className="u-w-full u-pt-4x" method="POST">
@@ -94,20 +40,7 @@ const Editor = () => {
         defaultCondition={loaderResponse.condition ?? undefined}
       />
 
-      <div className={classesContent}>
-        <Slate editor={editor} initialValue={text} onChange={onSlateChange}>
-          <Toolbar onClick={onClick} />
-
-          <Editable
-            className="u-outline-0 u-p-2xs"
-            spellCheck={true}
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
-          />
-        </Slate>
-      </div>
-
-      <input type="hidden" name="text" value={content} />
+      <RichTextEditor defaultValue={text} />
 
       <button
         className="u-btn u-btn-primary u-mx-auto u-block u-min-w-2z u-uppercase"
