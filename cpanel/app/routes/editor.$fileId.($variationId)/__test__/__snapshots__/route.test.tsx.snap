@@ -1,0 +1,950 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`route 1`] = `
+NodeList [
+  <form
+    action="/editor/10"
+    class="u-w-full u-pt-4x"
+    method="post"
+  >
+    <input
+      class="u-input u-input-bordered u-input-primary u-w-full"
+      name="name"
+      placeholder="Variation Name"
+      type="text"
+      value="Second Variation"
+    />
+    <em
+      class="u-text-error"
+    />
+    <div
+      class="u-mb-3x"
+    >
+      <div
+        class="u-py-2x u-font-bold u-text-primary u-tracking-wide"
+      >
+        <svg
+          class="u-inline"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 19a2 2 0 0 0 2 2c2 0 2 -4 3 -9s1 -9 3 -9a2 2 0 0 1 2 2"
+          />
+          <path
+            d="M5 12h6"
+          />
+          <path
+            d="M15 12l6 6"
+          />
+          <path
+            d="M15 18l6 -6"
+          />
+        </svg>
+        This variation renders under following conditions:
+      </div>
+      <div>
+        <div
+          class="u-p-2x u-border u-border-solid u-border-info u-rounded-lg u-mb-3xs"
+        >
+          <div>
+            <div
+              class="u-flex u-gap-4x u-mb-1x last:u-mb-0"
+            >
+              <label
+                class="u-input u-input-bordered u-flex u-items-center u-gap-2 u-flex-1"
+              >
+                <svg
+                  aria-label="Variable"
+                  class="u-mr-2x"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 4c-2.5 5 -2.5 10 0 16m14 -16c2.5 5 2.5 10 0 16m-10 -11h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1"
+                  />
+                  <path
+                    d="M8 16c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5"
+                  />
+                </svg>
+                <input
+                  class="u-grow"
+                  placeholder="Enter variable name from payload"
+                  type="text"
+                  value="b"
+                />
+              </label>
+              <select
+                aria-label="operator"
+                class="u-select u-select-bordered"
+              >
+                <option>
+                  =
+                </option>
+                <option>
+                  &gt;
+                </option>
+                <option>
+                  &gt;=
+                </option>
+                <option>
+                  &lt;
+                </option>
+                <option>
+                  &lt;=
+                </option>
+              </select>
+              <label
+                class="u-input u-input-bordered u-flex u-items-center u-gap-2 u-flex-1"
+              >
+                <svg
+                  aria-label="Value"
+                  class="u-mr-2x"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 9l3 3l-3 3"
+                  />
+                  <path
+                    d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+                  />
+                </svg>
+                <input
+                  class="u-grow"
+                  placeholder="Enter required value"
+                  type="text"
+                  value="1"
+                />
+              </label>
+              <button
+                aria-label="delete-line"
+                type="button"
+              >
+                <svg
+                  class="tabler-icon tabler-icon-trash"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 7l16 0"
+                  />
+                  <path
+                    d="M10 11l0 6"
+                  />
+                  <path
+                    d="M14 11l0 6"
+                  />
+                  <path
+                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                  />
+                  <path
+                    d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="u-flex u-gap-4x u-mb-1x last:u-mb-0"
+            >
+              <label
+                class="u-input u-input-bordered u-flex u-items-center u-gap-2 u-flex-1"
+              >
+                <svg
+                  aria-label="Variable"
+                  class="u-mr-2x"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 4c-2.5 5 -2.5 10 0 16m14 -16c2.5 5 2.5 10 0 16m-10 -11h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1"
+                  />
+                  <path
+                    d="M8 16c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5"
+                  />
+                </svg>
+                <input
+                  class="u-grow"
+                  placeholder="Enter variable name from payload"
+                  type="text"
+                  value="c"
+                />
+              </label>
+              <select
+                aria-label="operator"
+                class="u-select u-select-bordered"
+              >
+                <option>
+                  =
+                </option>
+                <option>
+                  &gt;
+                </option>
+                <option>
+                  &gt;=
+                </option>
+                <option>
+                  &lt;
+                </option>
+                <option>
+                  &lt;=
+                </option>
+              </select>
+              <label
+                class="u-input u-input-bordered u-flex u-items-center u-gap-2 u-flex-1"
+              >
+                <svg
+                  aria-label="Value"
+                  class="u-mr-2x"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 9l3 3l-3 3"
+                  />
+                  <path
+                    d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+                  />
+                </svg>
+                <input
+                  class="u-grow"
+                  placeholder="Enter required value"
+                  type="text"
+                  value="12"
+                />
+              </label>
+              <button
+                aria-label="delete-line"
+                type="button"
+              >
+                <svg
+                  class="tabler-icon tabler-icon-trash"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 7l16 0"
+                  />
+                  <path
+                    d="M10 11l0 6"
+                  />
+                  <path
+                    d="M14 11l0 6"
+                  />
+                  <path
+                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                  />
+                  <path
+                    d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              aria-label="add and condition"
+              class="u-btm-sm u-btn-link u-mt-2xs"
+              type="button"
+            >
+              <svg
+                class="u-inline u-mr-1xs"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 4c-2.5 5 -2.5 10 0 16m14 -16c1.38 2.76 2 5.52 1.855 8.448m-11.855 -3.448h1c1 0 1 1 2.016 3.527c.785 1.972 .944 3.008 1.483 3.346"
+                />
+                <path
+                  d="M8 16c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5"
+                />
+                <path
+                  d="M16 19h6"
+                />
+                <path
+                  d="M19 16v6"
+                />
+              </svg>
+               Add AND condition
+            </button>
+          </div>
+        </div>
+        <div
+          class="u-p-2x u-border u-border-solid u-border-info u-rounded-lg u-mb-3xs"
+        >
+          <div>
+            <div
+              class="u-flex u-gap-4x u-mb-1x last:u-mb-0"
+            >
+              <label
+                class="u-input u-input-bordered u-flex u-items-center u-gap-2 u-flex-1"
+              >
+                <svg
+                  aria-label="Variable"
+                  class="u-mr-2x"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 4c-2.5 5 -2.5 10 0 16m14 -16c2.5 5 2.5 10 0 16m-10 -11h1c1 0 1 1 2.016 3.527c.984 2.473 .984 3.473 1.984 3.473h1"
+                  />
+                  <path
+                    d="M8 16c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5"
+                  />
+                </svg>
+                <input
+                  class="u-grow"
+                  placeholder="Enter variable name from payload"
+                  type="text"
+                  value="w"
+                />
+              </label>
+              <select
+                aria-label="operator"
+                class="u-select u-select-bordered"
+              >
+                <option>
+                  =
+                </option>
+                <option>
+                  &gt;
+                </option>
+                <option>
+                  &gt;=
+                </option>
+                <option>
+                  &lt;
+                </option>
+                <option>
+                  &lt;=
+                </option>
+              </select>
+              <label
+                class="u-input u-input-bordered u-flex u-items-center u-gap-2 u-flex-1"
+              >
+                <svg
+                  aria-label="Value"
+                  class="u-mr-2x"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 9l3 3l-3 3"
+                  />
+                  <path
+                    d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+                  />
+                </svg>
+                <input
+                  class="u-grow"
+                  placeholder="Enter required value"
+                  type="text"
+                  value="true"
+                />
+              </label>
+              <button
+                aria-label="delete-line"
+                type="button"
+              >
+                <svg
+                  class="tabler-icon tabler-icon-trash"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 7l16 0"
+                  />
+                  <path
+                    d="M10 11l0 6"
+                  />
+                  <path
+                    d="M14 11l0 6"
+                  />
+                  <path
+                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                  />
+                  <path
+                    d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              aria-label="add and condition"
+              class="u-btm-sm u-btn-link u-mt-2xs"
+              type="button"
+            >
+              <svg
+                class="u-inline u-mr-1xs"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 4c-2.5 5 -2.5 10 0 16m14 -16c1.38 2.76 2 5.52 1.855 8.448m-11.855 -3.448h1c1 0 1 1 2.016 3.527c.785 1.972 .944 3.008 1.483 3.346"
+                />
+                <path
+                  d="M8 16c1.5 0 3 -2 4 -3.5s2.5 -3.5 4 -3.5"
+                />
+                <path
+                  d="M16 19h6"
+                />
+                <path
+                  d="M19 16v6"
+                />
+              </svg>
+               Add AND condition
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        class="u-btn u-btn-outline u-btn-secondary u-uppercase"
+        type="button"
+      >
+        Add new condition
+      </button>
+      <input
+        data-testid="condition"
+        name="condition"
+        type="hidden"
+        value="[[["b","=","1"],["c",">","12"]],[["w","=","true"]]]"
+      />
+    </div>
+    <div
+      class="u-border u-border-solid u-border-secondary u-rounded u-mx-auto u-bg-white u-mb-3xs"
+    >
+      <div
+        class="u-flex u-items-center u-bg-base-300 u-mb-2x u-p-2xs"
+      >
+        <div
+          class="u-flex u-items-center"
+        >
+          <button
+            class="u-p-1xs u-mr-1xs"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-bold"
+              fill="none"
+              height="20"
+              role="img"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 5h6a3.5 3.5 0 0 1 0 7h-6z"
+              />
+              <path
+                d="M13 12h1a3.5 3.5 0 0 1 0 7h-7v-7"
+              />
+            </svg>
+          </button>
+          <button
+            class="u-p-1xs u-mr-1xs"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-italic"
+              fill="none"
+              height="20"
+              role="img"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 5l6 0"
+              />
+              <path
+                d="M7 19l6 0"
+              />
+              <path
+                d="M14 5l-4 14"
+              />
+            </svg>
+          </button>
+          <button
+            class="u-p-1xs u-mr-1xs"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-underline"
+              fill="none"
+              height="20"
+              role="img"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 5v5a5 5 0 0 0 10 0v-5"
+              />
+              <path
+                d="M5 19h14"
+              />
+            </svg>
+          </button>
+          <button
+            class="u-p-1xs"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-strikethrough"
+              fill="none"
+              height="20"
+              role="img"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 12l14 0"
+              />
+              <path
+                d="M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="u-bg-neutral u-mx-2xs"
+          style="height: 18px; width: 1px;"
+        />
+        <input
+          class="u-bg-transparent u-mr-1x"
+          type="color"
+          value="#000000"
+        />
+        <div
+          class="u-bg-neutral u-mx-2xs"
+          style="height: 18px; width: 1px;"
+        />
+        <select
+          class="u-select-sm u-select-bordered"
+        >
+          <option
+            value="heading_1"
+          >
+            Heading 1
+          </option>
+          <option
+            value="heading_2"
+          >
+            Heading 2
+          </option>
+          <option
+            value="heading_3"
+          >
+            Heading 3
+          </option>
+          <option
+            value="heading_4"
+          >
+            Heading 4
+          </option>
+          <option
+            value="heading_5"
+          >
+            Heading 5
+          </option>
+          <option
+            value="heading_7"
+          >
+            Heading 6
+          </option>
+          <option
+            value="paragraph"
+          >
+            Paragraph
+          </option>
+        </select>
+        <div
+          class="u-bg-neutral u-mx-2xs"
+          style="height: 18px; width: 1px;"
+        />
+        <div>
+          <button
+            aria-label="Left"
+            class="u-p-1xs u-bg-accent u-rounded-md"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-align-left"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 6l16 0"
+              />
+              <path
+                d="M4 12l10 0"
+              />
+              <path
+                d="M4 18l14 0"
+              />
+            </svg>
+          </button>
+          <button
+            aria-label="Center"
+            class="u-p-1xs"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-align-center"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 6l16 0"
+              />
+              <path
+                d="M8 12l8 0"
+              />
+              <path
+                d="M6 18l12 0"
+              />
+            </svg>
+          </button>
+          <button
+            aria-label="Right"
+            class="u-p-1xs"
+            type="button"
+          >
+            <svg
+              class="tabler-icon tabler-icon-align-right"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 6l16 0"
+              />
+              <path
+                d="M10 12l10 0"
+              />
+              <path
+                d="M6 18l14 0"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="u-bg-neutral u-mx-2xs"
+          style="height: 18px; width: 1px;"
+        />
+        <button
+          class="u-p-1xs"
+          type="button"
+        >
+          <svg
+            class="tabler-icon tabler-icon-link"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 15l6 -6"
+            />
+            <path
+              d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"
+            />
+            <path
+              d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
+            />
+          </svg>
+        </button>
+        <div
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+        />
+      </div>
+      <div
+        aria-multiline="true"
+        autocapitalize="false"
+        autocorrect="false"
+        class="u-outline-0 u-p-2xs"
+        contenteditable="true"
+        data-slate-editor="true"
+        data-slate-node="value"
+        role="textbox"
+        spellcheck="false"
+        style="position: relative; white-space: pre-wrap; word-wrap: break-word;"
+        zindex="-1"
+      >
+        <div
+          class="u-text-center"
+        >
+          <h3
+            data-slate-node="element"
+            style="font-size: 24px;"
+          >
+            <span
+              data-slate-node="text"
+            >
+              <span
+                class=""
+                data-slate-leaf="true"
+                style="color: rgb(0, 0, 0);"
+              >
+                <span
+                  data-slate-string="true"
+                >
+                  HEADING
+                </span>
+              </span>
+            </span>
+          </h3>
+        </div>
+        <p
+          class="u-text-left"
+          data-slate-node="element"
+        >
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class=""
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                A 
+              </span>
+            </span>
+          </span>
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class="u-italic"
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                line
+              </span>
+            </span>
+          </span>
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class=""
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                 of 
+              </span>
+            </span>
+          </span>
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class="u-font-bold"
+              data-slate-leaf="true"
+              style="color: rgb(228, 17, 17);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                text
+              </span>
+            </span>
+          </span>
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class=""
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                 in a 
+              </span>
+            </span>
+          </span>
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class="u-font-bold"
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                paragraph
+              </span>
+            </span>
+          </span>
+          <span
+            data-slate-node="text"
+          >
+            <span
+              class=""
+              data-slate-leaf="true"
+              style="color: rgb(0, 0, 0);"
+            >
+              <span
+                data-slate-string="true"
+              >
+                .
+              </span>
+            </span>
+          </span>
+        </p>
+      </div>
+      <input
+        data-testid="editor-content"
+        name="text"
+        type="hidden"
+        value="[{"type":"heading","children":[{"text":"HEADING"}],"level":3,"align":"center"},{"type":"paragraph","children":[{"text":"A "},{"text":"line","italic":true},{"text":" of "},{"text":"text","color":"#e41111","bold":true},{"text":" in a "},{"text":"paragraph","bold":true},{"text":"."}]}]"
+      />
+    </div>
+    <button
+      class="u-btn u-btn-primary u-mx-auto u-block u-min-w-2z u-uppercase"
+      name="_action"
+      type="submit"
+      value="upsert"
+    >
+      Save
+    </button>
+  </form>,
+]
+`;
