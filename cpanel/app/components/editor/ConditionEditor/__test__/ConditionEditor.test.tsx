@@ -7,8 +7,6 @@ import { DEFAULT_CONDITION_DESCRIPTOR } from '~/constants/condition';
 import { ConditionEditor, ConditionEditorProps } from '../ConditionEditor';
 
 describe('ConditionEditor', () => {
-  const onChange = vi.fn();
-
   let props: ConditionEditorProps;
 
   const createComponent = () => {
@@ -24,15 +22,14 @@ describe('ConditionEditor', () => {
 
   beforeEach(() => {
     props = {
-      conditions: [
+      defaultCondition: [
         [
           ['a1', '=', 'on'],
           ['a2', '=', 'off'],
           ['a3', '>', '3']
         ],
         [['b1', '<', '100']]
-      ],
-      onChange
+      ]
     };
   });
 
@@ -47,28 +44,30 @@ describe('ConditionEditor', () => {
       screen.getByText('This variation renders under following conditions:')
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: 'Add new condition' }));
-
-    expect(onChange).toHaveBeenCalledOnce();
-    expect(onChange).toHaveBeenCalledWith([
-      ...props.conditions!,
-      [DEFAULT_CONDITION_DESCRIPTOR]
-    ]);
-
     const variables = screen.queryAllByRole('textbox', { name: 'Variable' });
     expect(variables).toHaveLength(4);
 
+    fireEvent.click(screen.getByRole('button', { name: 'Add new condition' }));
+
     const values = screen.queryAllByRole('textbox', { name: 'Value' });
-    expect(values).toHaveLength(4);
+    expect(values).toHaveLength(5);
 
     const operators = screen.queryAllByRole('combobox', { name: 'operator' });
-    expect(operators).toHaveLength(4);
+    expect(operators).toHaveLength(5);
+
+    const hidden = screen.getByTestId('condition') as HTMLInputElement;
+    expect(hidden.value).toBe(
+      JSON.stringify([
+        ...props.defaultCondition!,
+        [DEFAULT_CONDITION_DESCRIPTOR]
+      ])
+    );
 
     expect(container.childNodes).toMatchSnapshot();
   });
 
   it('renders empty', () => {
-    props.conditions = [];
+    props.defaultCondition = [];
     const { container } = render(createComponent());
 
     expect(
@@ -81,8 +80,8 @@ describe('ConditionEditor', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Add new condition' }));
 
-    expect(onChange).toHaveBeenCalledOnce();
-    expect(onChange).toHaveBeenCalledWith([[DEFAULT_CONDITION_DESCRIPTOR]]);
+    const hidden = screen.getByTestId('condition') as HTMLInputElement;
+    expect(hidden.value).toBe(JSON.stringify([[DEFAULT_CONDITION_DESCRIPTOR]]));
 
     expect(container.childNodes).toMatchSnapshot();
   });

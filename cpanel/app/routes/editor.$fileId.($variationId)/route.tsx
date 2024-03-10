@@ -1,94 +1,59 @@
+import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import classnames from 'classnames';
-import { useCallback, useState } from 'react';
-import { createEditor, Editor as SlateEditor } from 'slate';
-import {
-  Editable,
-  RenderElementProps,
-  RenderLeafProps,
-  Slate,
-  withReact
-} from 'slate-react';
 
 import { ConditionEditor } from '~/components/editor/ConditionEditor';
-import { Toolbar } from '~/components/editor/Toolbar';
-import { ConditionGroup } from '~/types/condition';
-import type { Action, AnyAction } from '~/types/editor';
+import { RichTextEditor } from '~/components/editor/RichTextEditor';
+import { BUTTON_ACTION } from '~/constants';
 
-import { INITIAL_VALUE } from './constants';
-import { Element } from './Element';
-import { Leaf } from './Leaf';
+import { action, ACTION_UPSERT } from './action';
+import { ErrorBoundary } from './ErrorBoundary';
+import { loader } from './loader';
 
 const Editor = () => {
-  // Hooks
-  const [editor] = useState(() => withReact(createEditor()));
-  const [conditions, setConditions] = useState<ConditionGroup>();
+  // Data
+  const actionResponse = useActionData<typeof action>();
+  const loaderResponse = useLoaderData<typeof loader>();
+
+  // Setup
+  const nameError = actionResponse?.errors?.['name'] ?? '';
+  const text = loaderResponse.text;
 
   // Styles
-  const classesBorder = `u-border u-border-solid u-border-secondary u-rounded`;
-  const classesContent = classnames(
-    classesBorder,
-    'u-mx-auto u-bg-white u-mb-3xs'
-  );
-
-  // Handlers
-  const onClick = (action: Action, value?: AnyAction) => {
-    if (value) {
-      SlateEditor.addMark(editor, action, value);
-    } else {
-      SlateEditor.removeMark(editor, action);
-    }
-  };
-
-  const onSave = () => {
-    console.log(JSON.parse(JSON.stringify(editor.children)));
-    console.log(editor);
-  };
-
-  const onChangeCondition = (newConditions: ConditionGroup) => {
-    setConditions(newConditions);
-  };
-
-  // Markup
-  const renderLeaf = useCallback(
-    (props: RenderLeafProps) => <Leaf {...props} />,
-    []
-  );
-
-  const renderElement = useCallback(
-    (props: RenderElementProps) => <Element {...props} />,
-    []
+  const classesName = classnames(
+    'u-input u-input-bordered u-input-primary u-w-full',
+    { 'u-input-error': nameError }
   );
 
   return (
-    <div className="u-w-full u-pt-4x">
+    <Form className="u-w-full u-pt-4x" method="POST">
+      <input
+        className={classesName}
+        defaultValue={loaderResponse?.name ?? ''}
+        name="name"
+        placeholder="Variation Name"
+        type="text"
+      />
+      <em className="u-text-error">{nameError}</em>
+
       <ConditionEditor
         className="u-mb-3x"
-        conditions={conditions}
-        onChange={onChangeCondition}
+        defaultCondition={loaderResponse.condition ?? undefined}
       />
 
-      <div className={classesContent}>
-        <Slate editor={editor} initialValue={INITIAL_VALUE}>
-          <Toolbar onClick={onClick} />
-
-          <Editable
-            className="u-outline-0 u-p-2xs"
-            spellCheck={true}
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
-          />
-        </Slate>
-      </div>
+      <RichTextEditor defaultValue={text} />
 
       <button
         className="u-btn u-btn-primary u-mx-auto u-block u-min-w-2z u-uppercase"
-        onClick={onSave}
-        type="button"
+        name={BUTTON_ACTION}
+        type="submit"
+        value={ACTION_UPSERT}
       >
         Save
       </button>
-    </div>
+    </Form>
   );
 };
+
+export { action, ErrorBoundary, loader };
 
 export default Editor;

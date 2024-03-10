@@ -6,7 +6,6 @@ import { TextActions } from '~/components/editor/TextActions';
 import { TextAlignment } from '~/components/editor/TextAlignment';
 import { TextStyle } from '~/components/editor/TextStyle';
 import { ToggleStyle } from '~/components/editor/ToggleStyle';
-import { DEFAULT_TEXT_COLOR } from '~/routes/editor.$fileId.($variationId)/constants';
 import {
   Action,
   AnyAction,
@@ -26,7 +25,7 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
 
   // Setup
   const marks = Editor.marks(editor);
-  const color = marks?.[Action.Color] ?? DEFAULT_TEXT_COLOR;
+  const color = marks?.[Action.Color] ?? '#000000';
 
   // Styles
   const classes = `u-flex u-items-center u-bg-base-300 u-mb-2x u-p-2xs`;

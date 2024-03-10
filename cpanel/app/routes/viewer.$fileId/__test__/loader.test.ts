@@ -34,7 +34,7 @@ test('editor.$fileId/loader', async () => {
   expect(serialized.info.name).toBe(response.name);
   expect(serialized.info.path).toBe(response.path);
 
-  expect(serialized.content).toStrictEqual(content);
+  expect(serialized.variations).toStrictEqual(content);
 
   expect(mocks.getFileById).toHaveBeenCalledOnce();
   expect(mocks.getFileById).toHaveBeenCalledWith(123);

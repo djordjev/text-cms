@@ -4,6 +4,8 @@ import { IconFileX } from '@tabler/icons-react';
 import classnames from 'classnames';
 import { FC } from 'react';
 
+import { Variation } from '~/components/viewer/Variation';
+
 import { loader } from './loader';
 
 export interface ViewerProps {}
@@ -17,7 +19,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 const Viewer: FC<ViewerProps> = () => {
   // Hooks
-  const { content, info } = useLoaderData<typeof loader>();
+  const { info, variations } = useLoaderData<typeof loader>();
 
   // Setup
   const { id, path } = info;
@@ -27,8 +29,6 @@ const Viewer: FC<ViewerProps> = () => {
     'u-flex u-items-center u-flex-col u-justify-center',
     'u-w-full u-opacity-45 u-pointer-events-none u-mt-10x'
   );
-
-  // Handlers
 
   // Markdown
   const renderEmpty = () => {
@@ -43,14 +43,16 @@ const Viewer: FC<ViewerProps> = () => {
   };
 
   const renderContent = () => {
-    if (!content) return renderEmpty();
+    if (!variations.length) return renderEmpty();
 
-    return null;
+    return (
+      <div className="u-p-4x">
+        {variations.map((v) => (
+          <Variation key={v.id} fileId={id} variation={v} />
+        ))}
+      </div>
+    );
   };
-
-  // Life-cycle
-
-  // Short-circuit
 
   return (
     <div className="u-w-full">
