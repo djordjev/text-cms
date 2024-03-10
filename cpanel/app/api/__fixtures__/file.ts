@@ -4,7 +4,7 @@ export const FILE_CONTENT = [
   {
     id: '1',
     name: 'First Variation',
-    condition: [[['a', '=', 1]]],
+    condition: [[['a', '=', '1']]],
     text: TEST_EDITOR
   },
   {
@@ -12,8 +12,8 @@ export const FILE_CONTENT = [
     name: 'Second Variation',
     condition: [
       [
-        ['b', '=', 1],
-        ['c', '>', 12]
+        ['b', '=', '1'],
+        ['c', '>', '12']
       ],
       [['w', '=', 'true']]
     ],

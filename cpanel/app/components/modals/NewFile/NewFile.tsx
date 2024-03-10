@@ -3,8 +3,8 @@ import { Form, useResolvedPath } from '@remix-run/react';
 import { IconX } from '@tabler/icons-react';
 import React, { FormEvent } from 'react';
 
+import { BUTTON_ACTION } from '~/constants';
 import type { CreateParam } from '~/types';
-import { BUTTON_ACTION } from '~/utils/constants';
 
 export interface NewFileProps {
   type: CreateParam | null;

@@ -3,8 +3,8 @@ import { IconX } from '@tabler/icons-react';
 import classnames from 'classnames';
 import { FC, FormEvent } from 'react';
 
+import { BUTTON_ACTION } from '~/constants';
 import { ClickActionPayload } from '~/types/editor';
-import { BUTTON_ACTION } from '~/utils/constants';
 
 export interface TextActionProps {
   className?: string;

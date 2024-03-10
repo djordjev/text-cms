@@ -3,7 +3,7 @@ import { Form, useResolvedPath, useSearchParams } from '@remix-run/react';
 import { IconX } from '@tabler/icons-react';
 import { FC } from 'react';
 
-import { BUTTON_ACTION } from '~/utils/constants';
+import { BUTTON_ACTION } from '~/constants';
 
 export interface DeleteNodeProps {
   onClose: () => void;
