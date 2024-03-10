@@ -1,7 +1,6 @@
-import { newNode } from '~/api/__fixtures__/node';
-
 vi.mock('~/api/sql/sql.server');
 
+import { newNode } from '~/api/__fixtures__/node';
 import { client } from '~/api/sql/__mocks__/sql.server';
 
 import { add, getContentForPath, getFileById, remove } from '../finder.server';
