@@ -10,6 +10,22 @@ services:
     volumes:
       - redis_data:/data
 
+  cpanel:
+    build:
+      context: ./cpanel
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: file:/db/database.db
+      REDIS_URL: redis://:dev_pass@redis:6379/0
+    volumes:
+      - sqlite:/db
+    depends_on:
+      - redis
+
 volumes:
   redis_data:
     name: 'RedisVolume'
+
+  sqlite:
+    name: 'SQLite'
