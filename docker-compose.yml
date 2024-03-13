@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  api:
+    build:
+      context: ./server
+    ports:
+      - 3001:3001
+    environment:
+      REDIS_URL: redis://:dev_pass@redis:6379/0
+      PORT: 3011
+      METHOD: GET
+    depends_on:
+      - redis
+
   redis:
     image: 'redis:7-alpine'
     ports:
