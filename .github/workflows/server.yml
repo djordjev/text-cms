@@ -1,0 +1,23 @@
+name: 'Server actions'
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22.x'
+      - name: Install dependencies
+        run: go mod tidy
+      - name: Build
+        run: go build -o ./build/server ./cmd/server.go
+      - name: Test with the Go CLI
+        run: go test -v ./...
