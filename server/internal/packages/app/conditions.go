@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strings"
 	"sync"
 )
@@ -76,7 +77,7 @@ func (cm *conditionMatcher) checkDescriptor(descriptor Descriptor) (result bool,
 
 	value, found := cm.getValueFromPayload(variable)
 	if !found {
-		return false, nil
+		return false, fmt.Errorf("unable to pluck data from payload %s", variable)
 	}
 
 	switch value.(type) {
@@ -103,7 +104,7 @@ func (cm *conditionMatcher) checkDescriptor(descriptor Descriptor) (result bool,
 		}
 	}
 
-	return false, errors.New("error parsing type")
+	return
 
 }
 
