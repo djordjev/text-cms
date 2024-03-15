@@ -39,6 +39,12 @@ func TestRun(t *testing.T) {
 			payload:   map[string]any{"a": "NOT OK"},
 			condition: `[[["a", "=", "OK"]]]`,
 		},
+		{
+			name:      "returns true when no condition",
+			result:    true,
+			payload:   map[string]any{},
+			condition: "",
+		},
 	}
 
 	for _, test := range tests {

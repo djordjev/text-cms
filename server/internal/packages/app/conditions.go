@@ -37,6 +37,7 @@ func (cm *conditionMatcher) run() {
 
 	if cm.condition == "" {
 		*cm.result = true
+		return
 	}
 
 	parsed := make(Group, 3)
