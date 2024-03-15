@@ -1,7 +1,8 @@
 package app
 
 import (
-	"errors"
+	"fmt"
+	"math"
 	"slices"
 	"strconv"
 	"strings"
@@ -11,15 +12,15 @@ var numericOperators = []string{"=", ">", ">=", "<", "<="}
 var stringOperators = []string{"="}
 var boolOperators = []string{"="}
 
-func compareInt(value int, operator string, expected string) (result bool, error error) {
+func compareInt(value int, operator string, expected string) (result bool, err error) {
 	contains := slices.Contains(numericOperators, operator)
 	if !contains {
-		return false, errors.New("invalid operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
-	intExpected, error := strconv.Atoi(expected)
-	if error != nil {
-		return false, errors.New("unable to parse string to int")
+	intExpected, err := strconv.Atoi(expected)
+	if err != nil {
+		return false, fmt.Errorf("invalid expected int value %s", expected)
 	}
 
 	switch operator {
@@ -44,27 +45,27 @@ func compareInt(value int, operator string, expected string) (result bool, error
 			result = value <= intExpected
 		}
 	default:
-		return false, errors.New("unknown operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
 	return
 }
 
-func compareFloat(value float64, operator string, expected string) (result bool, error error) {
+func compareFloat(value float64, operator string, expected string) (result bool, err error) {
 	contains := slices.Contains(numericOperators, operator)
 	if !contains {
-		return false, errors.New("invalid operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
-	floatExpected, error := strconv.ParseFloat(expected, 32)
-	if error != nil {
-		return false, errors.New("unable to parse string to int")
+	floatExpected, err := strconv.ParseFloat(expected, 64)
+	if err != nil {
+		return false, fmt.Errorf("invalid expected float value %s", expected)
 	}
 
 	switch operator {
 	case "=":
 		{
-			result = value == floatExpected
+			result = math.Abs(value-floatExpected) < 0.001
 		}
 	case ">":
 		{
@@ -83,7 +84,7 @@ func compareFloat(value float64, operator string, expected string) (result bool,
 			result = value <= floatExpected
 		}
 	default:
-		return false, errors.New("unknown operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
 	return
@@ -92,7 +93,7 @@ func compareFloat(value float64, operator string, expected string) (result bool,
 func compareString(value string, operator string, expected string) (result bool, error error) {
 	contains := slices.Contains(stringOperators, operator)
 	if !contains {
-		return false, errors.New("invalid operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
 	switch operator {
@@ -101,7 +102,7 @@ func compareString(value string, operator string, expected string) (result bool,
 			result = value == expected
 		}
 	default:
-		return false, errors.New("unknown operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
 	return
@@ -110,10 +111,15 @@ func compareString(value string, operator string, expected string) (result bool,
 func compareBool(value bool, operator string, expected string) (result bool, error error) {
 	contains := slices.Contains(boolOperators, operator)
 	if !contains {
-		return false, errors.New("invalid operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
-	expectTrue := strings.ToLower(expected) == "true"
+	formatted := strings.ToLower(expected)
+	if formatted != "true" && formatted != "false" && formatted != "t" && formatted != "f" {
+		return false, fmt.Errorf("can not compare boolean with %s", formatted)
+	}
+
+	expectTrue := formatted == "true" || formatted == "t"
 
 	switch operator {
 	case "=":
@@ -121,7 +127,7 @@ func compareBool(value bool, operator string, expected string) (result bool, err
 			result = value == expectTrue
 		}
 	default:
-		return false, errors.New("unknown operator")
+		return false, fmt.Errorf("unknown operator %s", operator)
 	}
 
 	return
