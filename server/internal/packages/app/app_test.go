@@ -9,6 +9,8 @@ import (
 	"testing"
 )
 
+var ctx = context.TODO()
+
 type mockRepo struct {
 	mock.Mock
 }
@@ -18,8 +20,27 @@ func (m *mockRepo) GetFileVariations(ctx context.Context, path string) (file []u
 	return args.Get(0).([]utils.File), args.Error(1)
 }
 
+func newMockRepo() Repository {
+	repo := &mockRepo{}
+
+	repo.
+		On("GetFileVariations", ctx, "/somefile.txt").
+		Return([]utils.File{{
+			Id:        "1",
+			Name:      "First Variation",
+			Condition: `[[["first", "=", "t"]]]`,
+			Text:      "text for first variation",
+		}, {
+			Id:        "2",
+			Name:      "Second Variation",
+			Condition: `[[["first", "=", "f"], ["second", "=", "t"]]]`,
+			Text:      "text for second variation",
+		}}, nil)
+
+	return repo
+}
+
 func TestGetFileContent(t *testing.T) {
-	ctx := context.TODO()
 
 	type testCase struct {
 		name          string
@@ -52,26 +73,8 @@ func TestGetFileContent(t *testing.T) {
 				Path:    "/somefile.txt",
 				Payload: map[string]any{"first": false, "second": true},
 			},
-			newRepository: func() Repository {
-				repo := &mockRepo{}
-
-				repo.
-					On("GetFileVariations", ctx, "/somefile.txt").
-					Return([]utils.File{{
-						Id:        "1",
-						Name:      "First Variation",
-						Condition: `[[["first", "=", "t"]]]`,
-						Text:      "text for first variation",
-					}, {
-						Id:        "2",
-						Name:      "Second Variation",
-						Condition: `[[["first", "=", "f"], ["second", "=", "t"]]]`,
-						Text:      "text for second variation",
-					}}, nil)
-
-				return repo
-			},
-			result: utils.Response("text for second variation"),
+			newRepository: newMockRepo,
+			result:        utils.Response("text for second variation"),
 		},
 		{
 			name: "it returns empty string if no variation is matched",
@@ -79,26 +82,8 @@ func TestGetFileContent(t *testing.T) {
 				Path:    "/somefile.txt",
 				Payload: map[string]any{},
 			},
-			newRepository: func() Repository {
-				repo := &mockRepo{}
-
-				repo.
-					On("GetFileVariations", ctx, "/somefile.txt").
-					Return([]utils.File{{
-						Id:        "1",
-						Name:      "First Variation",
-						Condition: `[[["first", "=", "t"]]]`,
-						Text:      "text for first variation",
-					}, {
-						Id:        "2",
-						Name:      "Second Variation",
-						Condition: `[[["first", "=", "f"], ["second", "=", "t"]]]`,
-						Text:      "text for second variation",
-					}}, nil)
-
-				return repo
-			},
-			result: utils.Response(""),
+			newRepository: newMockRepo,
+			result:        utils.Response(""),
 		},
 	}
 
