@@ -3,6 +3,7 @@ package rest
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -31,42 +32,43 @@ func (s *Server) Run() (err error) {
 	return
 }
 
+func (s *Server) getFile(w http.ResponseWriter, r *http.Request) {
+	pathname := fmt.Sprintf("/%s", r.PathValue("pathname"))
+
+	payload := make(map[string]any)
+
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	json.Unmarshal(body, &payload)
+
+	request := utils.Request{
+		Path:    pathname,
+		Payload: payload,
+	}
+
+	ctx, _ := context.WithTimeout(r.Context(), Timeout)
+
+	response, err := s.app.GetFileContent(ctx, request)
+	if errors.Is(err, utils.ErrFileNotFound) {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	} else if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write([]byte(response))
+}
+
 func (s *Server) setUpRoutes() {
-	s.mux.HandleFunc(fmt.Sprintf("%s /file/{pathname...}", s.config.Method),
-		func(w http.ResponseWriter, r *http.Request) {
-			pathname := fmt.Sprintf("/%s", r.PathValue("pathname"))
+	fileEndpoint := fmt.Sprintf("%s /file/{pathname...}", s.config.Method)
 
-			payload := make(map[string]any)
-
-			body, err := io.ReadAll(r.Body)
-			if err != nil {
-				w.WriteHeader(http.StatusInternalServerError)
-				return
-			}
-
-			json.Unmarshal(body, &payload)
-
-			request := utils.Request{
-				Path:    pathname,
-				Payload: payload,
-			}
-
-			ctx, _ := context.WithTimeout(r.Context(), Timeout)
-
-			response, err := s.app.GetFileContent(ctx, request)
-			if err != nil {
-				w.WriteHeader(http.StatusInternalServerError)
-				return
-			}
-
-			responseBytes, err := json.Marshal(response)
-			if err != nil {
-				w.WriteHeader(http.StatusInternalServerError)
-				return
-			}
-
-			w.Write(responseBytes)
-		})
+	s.mux.HandleFunc(fileEndpoint, s.getFile)
 }
 
 func NewRestServer(config utils.Config, app Domain) *Server {

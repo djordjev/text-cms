@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"os"
@@ -17,9 +18,19 @@ func main() {
 		return
 	}
 
-	client := redis.NewClient(&redis.Options{
-		Addr: config.RedisURL,
-	})
+	opts, err := redis.ParseURL(config.RedisURL)
+	if err != nil {
+		fmt.Println("unable to parse redis connection string")
+		os.Exit(1)
+	}
+
+	client := redis.NewClient(opts)
+
+	_, err = client.Ping(context.Background()).Result()
+	if err != nil {
+		fmt.Println("unable to connect to redis database")
+		os.Exit(1)
+	}
 
 	repo := repository.NewRepo(client)
 
