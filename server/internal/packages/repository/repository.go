@@ -21,8 +21,7 @@ type RedisFile struct {
 func (r *Repo) GetFileVariations(ctx context.Context, path string) (_ []utils.File, err error) {
 	result, err := r.client.Get(ctx, path).Result()
 	if err != nil {
-		err = utils.ErrFileNotFound
-		return
+		return []utils.File{}, utils.ErrFileNotFound
 	}
 
 	variations := make([]RedisFile, 0, 5)

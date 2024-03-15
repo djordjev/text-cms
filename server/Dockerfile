@@ -6,13 +6,13 @@ ADD . .
 
 RUN ["go", "mod", "tidy"]
 
-RUN ["go", "build", "-o", "./build/server", "./cmd/server.go"]
+RUN ["go", "build", "-o", "./_out/server", "./cmd/server.go"]
 
 FROM alpine:latest
 
 WORKDIR "/usr/app"
 
-COPY --from=builder /usr/app/build/server server
+COPY --from=builder /usr/app/_out/server server
 
 RUN chmod -R 777 server
 

@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strings"
 	"sync"
 )
@@ -10,6 +11,8 @@ import (
 type Descriptor [3]string
 type AndChain []Descriptor
 type Group []AndChain
+
+var ErrorNoVariable = errors.New("unable to pluck data")
 
 type conditionMatcher struct {
 	condition string
@@ -36,6 +39,7 @@ func (cm *conditionMatcher) run() {
 
 	if cm.condition == "" {
 		*cm.result = true
+		return
 	}
 
 	parsed := make(Group, 3)
@@ -60,8 +64,10 @@ func (cm *conditionMatcher) run() {
 
 func (cm *conditionMatcher) checkAndChain(andChain AndChain) (result bool, err error) {
 	for _, descriptor := range andChain {
-		res, err := cm.checkDescriptor(descriptor)
-		if err != nil || !res {
+		res, descError := cm.checkDescriptor(descriptor)
+		if errors.Is(descError, ErrorNoVariable) || !res {
+			return false, nil
+		} else if err != nil {
 			return false, err
 		}
 	}
@@ -76,7 +82,7 @@ func (cm *conditionMatcher) checkDescriptor(descriptor Descriptor) (result bool,
 
 	value, found := cm.getValueFromPayload(variable)
 	if !found {
-		return false, nil
+		return false, fmt.Errorf("%w from payload %s, ", ErrorNoVariable, variable)
 	}
 
 	switch value.(type) {
@@ -103,7 +109,7 @@ func (cm *conditionMatcher) checkDescriptor(descriptor Descriptor) (result bool,
 		}
 	}
 
-	return false, errors.New("error parsing type")
+	return
 
 }
 

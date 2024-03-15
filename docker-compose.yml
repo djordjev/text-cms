@@ -9,7 +9,7 @@ services:
     environment:
       REDIS_URL: redis://:dev_pass@redis:6379/0
       PORT: 3011
-      METHOD: GET
+      METHOD: POST
     depends_on:
       - redis
 

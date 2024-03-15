@@ -135,5 +135,5 @@ node_modules
 database.db
 database.db-journal
 
-server/build
+server/_out
 
