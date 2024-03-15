@@ -106,14 +106,16 @@ func TestCompareInt(t *testing.T) {
 	}
 
 	for _, test := range table {
-		result, err := compareInt(test.value, test.operator, test.expected)
+		t.Run(test.name, func(t *testing.T) {
+			result, err := compareInt(test.value, test.operator, test.expected)
 
-		require.Equal(t, result, test.result)
-		if test.error != "" {
-			require.ErrorContains(t, err, test.error)
-		} else {
-			require.NoError(t, err)
-		}
+			require.Equal(t, result, test.result)
+			if test.error != "" {
+				require.ErrorContains(t, err, test.error)
+			} else {
+				require.NoError(t, err)
+			}
+		})
 	}
 }
 
@@ -218,14 +220,16 @@ func TestCompareFloat(t *testing.T) {
 	}
 
 	for _, test := range table {
-		result, err := compareFloat(test.value, test.operator, test.expected)
+		t.Run(test.name, func(t *testing.T) {
+			result, err := compareFloat(test.value, test.operator, test.expected)
 
-		require.Equal(t, result, test.result)
-		if test.error != "" {
-			require.ErrorContains(t, err, test.error)
-		} else {
-			require.NoError(t, err)
-		}
+			require.Equal(t, result, test.result)
+			if test.error != "" {
+				require.ErrorContains(t, err, test.error)
+			} else {
+				require.NoError(t, err)
+			}
+		})
 	}
 
 }

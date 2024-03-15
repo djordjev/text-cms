@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"fmt"
 	"server/internal/packages/utils"
 	"sync"
 )
@@ -17,6 +18,7 @@ type Repository interface {
 func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (response utils.Response, err error) {
 	variations, err := d.repo.GetFileVariations(ctx, payload.Path)
 	if err != nil {
+		err = fmt.Errorf("file not found %s", payload.Path)
 		return
 	}
 
