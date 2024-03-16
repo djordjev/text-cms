@@ -37,7 +37,7 @@ func (cm *conditionMatcher) run() {
 		panic(errors.New("not provided sync vars"))
 	}
 
-	if cm.condition == "" {
+	if cm.condition == "" || cm.condition == "[]" {
 		*cm.result = true
 		return
 	}

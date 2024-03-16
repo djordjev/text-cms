@@ -5,10 +5,10 @@ services:
     build:
       context: ./server
     ports:
-      - 3001:3001
+      - 3004:3004
     environment:
       REDIS_URL: redis://:dev_pass@redis:6379/0
-      PORT: 3011
+      PORT: 3004
       METHOD: POST
     depends_on:
       - redis
@@ -27,9 +27,8 @@ services:
       context: ./cpanel
     ports:
       - 3000:3000
-    environment:
-      DATABASE_URL: file:/db/database.db
-      REDIS_URL: redis://:dev_pass@redis:6379/0
+    env_file:
+      - ./cpanel/.env.docker
     volumes:
       - sqlite:/db
     depends_on:

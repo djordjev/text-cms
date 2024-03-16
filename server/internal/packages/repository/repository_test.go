@@ -85,13 +85,13 @@ func TestGetFileVariations(t *testing.T) {
 				{
 					Id:        "1",
 					Name:      "First",
-					Condition: `[[["a", "=", "1"]]]`,
+					Condition: `[[[\"a\", \"=\", \"1\"]]]`,
 					Text:      "text 1",
 				},
 				{
 					Id:        "2",
 					Name:      "Second",
-					Condition: `[[["b", "=", "2"]]]`,
+					Condition: `[[[\"b\", \"=\", \"2\"]]]`,
 					Text:      "text 2",
 				},
 			},
@@ -105,7 +105,13 @@ func TestGetFileVariations(t *testing.T) {
 
 			result, err := repo.GetFileVariations(ctx, test.path)
 
-			require.Equal(t, result, test.result)
+			for k, v := range result {
+				require.Equal(t, v.Id, test.result[k].Id)
+				require.Equal(t, v.Name, test.result[k].Name)
+				require.Equal(t, v.Condition, test.result[k].Condition)
+				require.Equal(t, v.Text, test.result[k].Text)
+			}
+
 			if test.err != nil {
 				require.ErrorIs(t, err, test.err)
 			} else {

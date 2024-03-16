@@ -25,7 +25,7 @@ func ReadConfig(reader EnvReader) (cfg Config, err error) {
 	}
 
 	if port == "" {
-		cfg.Port = 3001
+		cfg.Port = 3004
 	} else {
 		cfg.Port, err = strconv.Atoi(port)
 		if err != nil {
