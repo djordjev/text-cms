@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-var ctx = context.TODO()
+var ctx = utils.AddLoggerToContext(context.TODO(), utils.NewEmptyLogger())
 
 type mockRepo struct {
 	mock.Mock
@@ -65,7 +65,7 @@ func TestGetFileContent(t *testing.T) {
 			},
 
 			result: utils.Response(""),
-			error:  "file not found /somefile.txt",
+			error:  "/somefile.txt not found",
 		},
 		{
 			name: "it returns matched variation",
@@ -77,13 +77,13 @@ func TestGetFileContent(t *testing.T) {
 			result:        utils.Response("text for second variation"),
 		},
 		{
-			name: "it returns empty string if no variation is matched",
+			name: "it returns empty array if no variation is matched",
 			payload: utils.Request{
 				Path:    "/somefile.txt",
 				Payload: map[string]any{},
 			},
 			newRepository: newMockRepo,
-			result:        utils.Response(""),
+			result:        utils.Response("[]"),
 		},
 	}
 

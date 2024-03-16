@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/redis/go-redis/v9"
+	"log/slog"
 	"os"
 	"server/internal/packages/app"
 	"server/internal/packages/repository"
@@ -12,12 +13,14 @@ import (
 )
 
 func main() {
+	// parse config
 	config, err := utils.ReadConfig(os.Getenv)
 	if err != nil {
 		fmt.Println("unable to read config")
 		return
 	}
 
+	// create redis repository
 	opts, err := redis.ParseURL(config.RedisURL)
 	if err != nil {
 		fmt.Println("unable to parse redis connection string")
@@ -34,8 +37,13 @@ func main() {
 
 	repo := repository.NewRepo(client)
 
+	// create logger
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil)).With("app", "text-cms")
+
+	// create app logic layer
 	domain := app.NewDomain(repo)
 
-	server := rest.NewRestServer(config, domain)
+	// start server
+	server := rest.NewRestServer(config, domain, logger)
 	server.Run()
 }

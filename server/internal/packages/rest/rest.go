@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"server/internal/packages/utils"
 	"time"
@@ -16,6 +17,7 @@ const Timeout = 5 * time.Second
 type Server struct {
 	app    Domain
 	config utils.Config
+	logger *slog.Logger
 	mux    *http.ServeMux
 }
 
@@ -24,9 +26,9 @@ type Domain interface {
 }
 
 func (s *Server) Run() (err error) {
-	addr := fmt.Sprintf("localhost:%d", s.config.Port)
+	addr := fmt.Sprintf(":%d", s.config.Port)
 
-	fmt.Printf("Running server %s\n", addr)
+	s.logger.Info("Running server", "address", addr)
 	err = http.ListenAndServe(addr, s.mux)
 
 	return
@@ -65,16 +67,24 @@ func (s *Server) getFile(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(response))
 }
 
+func (s *Server) ping(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("pong"))
+}
+
 func (s *Server) setUpRoutes() {
 	fileEndpoint := fmt.Sprintf("%s /file/{pathname...}", s.config.Method)
 
-	s.mux.HandleFunc(fileEndpoint, s.getFile)
+	s.logger.Info(fmt.Sprintf("setting up the route to %s", fileEndpoint))
+
+	s.mux.HandleFunc(fileEndpoint, mwRecover(mwLogger(s.logger, s.getFile)))
+	s.mux.HandleFunc("GET /ping", mwRecover(mwLogger(s.logger, s.ping)))
 }
 
-func NewRestServer(config utils.Config, app Domain) *Server {
-	srv := &Server{app: app, config: config}
+func NewRestServer(config utils.Config, app Domain, logger *slog.Logger) *Server {
+	srv := &Server{app: app, config: config, logger: logger}
 
 	srv.mux = http.NewServeMux()
+
 	srv.setUpRoutes()
 
 	return srv

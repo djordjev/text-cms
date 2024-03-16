@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"github.com/redis/go-redis/v9"
 	"server/internal/packages/utils"
+	"strings"
 )
 
 type Repo struct {
@@ -12,10 +13,10 @@ type Repo struct {
 }
 
 type RedisFile struct {
-	Id        string `json:"id"`
-	Name      string `json:"name"`
-	Condition string `json:"condition"`
-	Text      string `json:"text"`
+	Id        string          `json:"id"`
+	Name      string          `json:"name"`
+	Condition json.RawMessage `json:"condition"`
+	Text      json.RawMessage `json:"text"`
 }
 
 func (r *Repo) GetFileVariations(ctx context.Context, path string) (_ []utils.File, err error) {
@@ -35,8 +36,8 @@ func (r *Repo) GetFileVariations(ctx context.Context, path string) (_ []utils.Fi
 		file[k] = utils.File{
 			Id:        v.Id,
 			Name:      v.Name,
-			Condition: v.Condition,
-			Text:      v.Text,
+			Condition: strings.Trim(string(v.Condition), "\""),
+			Text:      strings.Trim(string(v.Text), "\""),
 		}
 	}
 

@@ -69,7 +69,7 @@ func TestHttpServer(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			url := "/files/somefile.txt"
 
-			server := NewRestServer(utils.Config{Method: "GET"}, test.newMockDomain())
+			server := NewRestServer(utils.Config{Method: "GET"}, test.newMockDomain(), utils.NewEmptyLogger())
 
 			rr := httptest.NewRecorder()
 

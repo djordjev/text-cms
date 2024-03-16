@@ -1,2 +1,5 @@
 node_modules
 npm-debug.log
+
+prisma/database.db
+.env
