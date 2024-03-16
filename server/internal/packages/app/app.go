@@ -18,7 +18,7 @@ type Repository interface {
 func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (response utils.Response, err error) {
 	variations, err := d.repo.GetFileVariations(ctx, payload.Path)
 	if err != nil {
-		err = fmt.Errorf("file not found %s", payload.Path)
+		err = fmt.Errorf("%s %w", payload.Path, err)
 		return
 	}
 
@@ -34,6 +34,7 @@ func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (res
 			payload.Payload,
 			&wg,
 			&matcherResults[index],
+			utils.GetLoggerFromContext(ctx),
 		)
 
 		go matcher.run()
@@ -52,7 +53,7 @@ func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (res
 
 	if conditionMet == nil {
 		// if file exists but no condition is matched return empty response
-		return utils.Response(""), nil
+		return "[]", nil
 	}
 
 	return utils.Response(conditionMet.Text), nil

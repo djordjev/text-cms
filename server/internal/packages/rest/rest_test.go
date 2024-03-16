@@ -1,11 +1,9 @@
 package rest
 
 import (
-	"bytes"
 	"context"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"log/slog"
 	"net/http"
 	"net/http/httptest"
 	"server/internal/packages/utils"
@@ -71,10 +69,7 @@ func TestHttpServer(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			url := "/files/somefile.txt"
 
-			var buffer bytes.Buffer
-			logger := slog.New(slog.NewJSONHandler(&buffer, nil))
-
-			server := NewRestServer(utils.Config{Method: "GET"}, test.newMockDomain(), logger)
+			server := NewRestServer(utils.Config{Method: "GET"}, test.newMockDomain(), utils.NewEmptyLogger())
 
 			rr := httptest.NewRecorder()
 

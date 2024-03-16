@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log/slog"
 	"strings"
 	"sync"
 )
@@ -19,21 +20,32 @@ type conditionMatcher struct {
 	done      *sync.WaitGroup
 	payload   map[string]any
 	result    *bool
+	logger    *slog.Logger
 }
 
-func newConditionMatcher(condition string, payload map[string]any, done *sync.WaitGroup, result *bool) *conditionMatcher {
+func newConditionMatcher(condition string, payload map[string]any, done *sync.WaitGroup, result *bool, logger *slog.Logger) *conditionMatcher {
 	return &conditionMatcher{
 		condition: condition,
 		done:      done,
 		payload:   payload,
 		result:    result,
+		logger:    logger,
 	}
 }
 
 func (cm *conditionMatcher) run() {
-	defer cm.done.Done()
+	defer func() {
+		if cm.done != nil {
+			cm.done.Done()
+		}
+
+		if r := recover(); r != nil {
+			fmt.Println(fmt.Sprintf("recovering from %v", r))
+		}
+	}()
 
 	if cm.result == nil || cm.done == nil {
+		cm.logger.Error("internal error, not provided sync variables")
 		panic(errors.New("not provided sync vars"))
 	}
 
@@ -46,12 +58,14 @@ func (cm *conditionMatcher) run() {
 
 	err := json.Unmarshal([]byte(cm.condition), &parsed)
 	if err != nil {
+		cm.logger.Error(fmt.Sprintf("internal error, cant unmarshal condition %s", cm.condition))
 		panic(errors.New("cant unmarshal condition"))
 	}
 
 	for _, chain := range parsed {
 		result, err := cm.checkAndChain(chain)
 		if err != nil {
+			cm.logger.Error("internal error, cant parse and chain", "chain", chain)
 			panic(errors.New("cant parse"))
 		}
 
