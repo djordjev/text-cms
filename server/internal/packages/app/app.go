@@ -12,7 +12,7 @@ type Domain struct {
 }
 
 type Repository interface {
-	GetFileVariations(ctx context.Context, path string) (file []utils.File, err error)
+	GetFileVariations(ctx context.Context, path string) (file []utils.Variation, err error)
 }
 
 func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (response utils.Response, err error) {
@@ -42,7 +42,7 @@ func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (res
 
 	wg.Wait()
 
-	var conditionMet *utils.File
+	var conditionMet *utils.Variation
 
 	for k, v := range matcherResults {
 		if v == true {
@@ -51,12 +51,14 @@ func (d *Domain) GetFileContent(ctx context.Context, payload utils.Request) (res
 		}
 	}
 
-	if conditionMet == nil {
-		// if file exists but no condition is matched return empty response
-		return "[]", nil
-	}
+	parsedText := parseVariationText(conditionMet, payload.Payload)
 
-	return utils.Response(conditionMet.Text), nil
+	//if conditionMet == nil {
+	//	// if file exists but no condition is matched return empty response
+	//	return "[]", nil
+	//}
+
+	return utils.Response(parsedText), nil
 }
 
 func NewDomain(repository Repository) *Domain {
