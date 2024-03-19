@@ -7,12 +7,13 @@ export enum Action {
   Color = 'color',
   Italic = 'italic',
   Strikethrough = 'strikethrough',
+  Template = 'template',
   Underline = 'underline'
 }
 
 type StrAct = Action.Color;
-type BoolAct = Exclude<Action, StrAct>;
 type ClickAct = Action.Click;
+type BoolAct = Exclude<Action, StrAct | ClickAct>;
 
 export type Alignment = 'left' | 'center' | 'right';
 
@@ -31,7 +32,13 @@ export type HeadingElement = {
   children: CustomText[];
 } & ElementCommon;
 
-export type CustomElement = ParagraphElement | HeadingElement;
+export type TemplateElement = {
+  type: 'template';
+  default: string;
+  children: CustomText[];
+} & ElementCommon;
+
+export type CustomElement = ParagraphElement | HeadingElement | TemplateElement;
 
 export type ClickActionPayload = {
   action?: string;

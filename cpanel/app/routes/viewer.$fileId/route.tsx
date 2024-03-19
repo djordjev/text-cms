@@ -3,6 +3,7 @@ import { Link, useLoaderData } from '@remix-run/react';
 import { IconFileX } from '@tabler/icons-react';
 import classnames from 'classnames';
 import { FC } from 'react';
+import { Element } from 'slate';
 
 import { Variation } from '~/components/viewer/Variation';
 

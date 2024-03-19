@@ -25,7 +25,13 @@ const RichTextEditor: FC<RichTextEditorProps> = (props) => {
   const { className, defaultValue } = props;
 
   // Hooks
-  const [editor] = useState(() => withReact(createEditor()));
+  const [editor] = useState(() => {
+    const editor = withReact(createEditor());
+
+    editor.isInline = (e) => e.type === 'template';
+
+    return editor;
+  });
   const [content, setContent] = useState(() => JSON.stringify(defaultValue));
 
   // Styles
@@ -68,6 +74,8 @@ const RichTextEditor: FC<RichTextEditorProps> = (props) => {
     (props: RenderElementProps) => <Element {...props} />,
     []
   );
+
+  console.log(JSON.parse(content));
 
   return (
     <div className={classes}>

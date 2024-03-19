@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import { createElement, CSSProperties, FC, useMemo } from 'react';
+import { Element } from 'slate';
 
 import { CustomElement, CustomText } from '~/types/editor';
 
@@ -13,9 +14,10 @@ const Text: FC<TextProps> = (props) => {
 
   // Setup
   const parsed = useMemo(() => JSON.parse(text), [text]);
+  console.log(parsed);
 
   // Markup
-  const renderChild = (child: CustomText, index: number) => {
+  const renderLeaf = (child: CustomText, index: number) => {
     const { click, text } = child;
 
     const classes = classnames({
@@ -76,7 +78,11 @@ const Text: FC<TextProps> = (props) => {
     );
   };
 
-  const renderBlock = (cnt: CustomElement, index: number) => {
+  const renderElement = (cnt: CustomElement | CustomText, index: number) => {
+    if (!Element.isElement(cnt)) {
+      return renderLeaf(cnt, index);
+    }
+
     const { align, children, type } = cnt;
 
     let elem: string;
@@ -87,6 +93,9 @@ const Text: FC<TextProps> = (props) => {
         break;
       case 'paragraph':
         elem = 'p';
+        break;
+      case 'template':
+        elem = 'span';
         break;
       default:
         return null;
@@ -107,14 +116,14 @@ const Text: FC<TextProps> = (props) => {
     return createElement(
       elem,
       { className: blockClasses, key: index },
-      ...children.map(renderChild)
+      ...children.map(renderElement)
     );
   };
 
   // Short-circuit
   if (!text || !Array.isArray(parsed)) return null;
 
-  return <div className={className}>{parsed.map(renderBlock)}</div>;
+  return <div className={className}>{parsed.map(renderElement)}</div>;
 };
 
 export { Text };

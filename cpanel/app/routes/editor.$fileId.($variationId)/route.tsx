@@ -1,3 +1,4 @@
+import type { MetaFunction } from '@remix-run/node';
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import classnames from 'classnames';
 
@@ -8,6 +9,12 @@ import { BUTTON_ACTION } from '~/constants';
 import { action, ACTION_UPSERT } from './action';
 import { ErrorBoundary } from './ErrorBoundary';
 import { loader } from './loader';
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const title = data?.name ? `Edit ${data.name}` : 'Create new';
+
+  return [{ title }, { name: 'description', content: 'Edit Page' }];
+};
 
 const Editor = () => {
   // Data

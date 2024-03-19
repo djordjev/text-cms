@@ -36,6 +36,19 @@ const Element: React.FC<ElementProps> = (props) => {
     return <div className={classes}>{renderHeading(element.level)}</div>;
   }
 
+  if (element.type === 'template') {
+    const classesTemplate = classnames(
+      classes,
+      'u-border-dashed u-border u-border-primary'
+    );
+
+    return (
+      <span className={classesTemplate} {...attributes}>
+        {element.default}
+      </span>
+    );
+  }
+
   return (
     <p className={classes} {...attributes}>
       {children}
