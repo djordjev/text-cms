@@ -17,7 +17,7 @@ const Footer: FC<FooterProps> = (props) => {
   return (
     <footer className={classes}>
       <aside className="u-block">
-        <p className="u-inline-block">Copyright © 2024 - Djordje Vukovic</p>
+        <p className="u-inline-block">2024 - Djordje Vukovic</p>
         <div className="u-mx-2xs u-inline">/</div>
         <a
           href="https://github.com/djordjev/text-cms"
