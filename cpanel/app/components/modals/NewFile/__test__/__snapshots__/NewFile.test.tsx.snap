@@ -49,8 +49,7 @@ exports[`modal/NewFile > renders and closes 1`] = `
               <span
                 class="u-flex-1 u-uppercase u-text-primary"
               >
-                Create new 
-                file
+                Create new file
               </span>
               <button
                 aria-label="close"
