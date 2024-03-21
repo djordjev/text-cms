@@ -15,9 +15,9 @@ type mockRepo struct {
 	mock.Mock
 }
 
-func (m *mockRepo) GetFileVariations(ctx context.Context, path string) (file []utils.File, err error) {
+func (m *mockRepo) GetFileVariations(ctx context.Context, path string) (file []utils.Variation, err error) {
 	args := m.Called(ctx, path)
-	return args.Get(0).([]utils.File), args.Error(1)
+	return args.Get(0).([]utils.Variation), args.Error(1)
 }
 
 func newMockRepo() Repository {
@@ -25,7 +25,7 @@ func newMockRepo() Repository {
 
 	repo.
 		On("GetFileVariations", ctx, "/somefile.txt").
-		Return([]utils.File{{
+		Return([]utils.Variation{{
 			Id:        "1",
 			Name:      "First Variation",
 			Condition: `[[["first", "=", "t"]]]`,
@@ -59,7 +59,7 @@ func TestGetFileContent(t *testing.T) {
 				repo := &mockRepo{}
 				repo.
 					On("GetFileVariations", ctx, "/somefile.txt").
-					Return([]utils.File{}, errors.New("not found"))
+					Return([]utils.Variation{}, errors.New("not found"))
 
 				return repo
 			},
