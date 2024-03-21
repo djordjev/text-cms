@@ -5,6 +5,7 @@ import { useSlate } from 'slate-react';
 import { TextActions } from '~/components/editor/TextActions';
 import { TextAlignment } from '~/components/editor/TextAlignment';
 import { TextStyle } from '~/components/editor/TextStyle';
+import { TextTemplate } from '~/components/editor/TextTemplate';
 import { ToggleStyle } from '~/components/editor/ToggleStyle';
 import {
   Action,
@@ -101,6 +102,10 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
       {renderDivider()}
 
       <TextActions onClick={onSetClickAction} />
+
+      {renderDivider()}
+
+      <TextTemplate />
     </div>
   );
 };

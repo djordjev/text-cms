@@ -19,10 +19,10 @@ type RedisFile struct {
 	Text      json.RawMessage `json:"text"`
 }
 
-func (r *Repo) GetFileVariations(ctx context.Context, path string) (_ []utils.File, err error) {
+func (r *Repo) GetFileVariations(ctx context.Context, path string) (_ []utils.Variation, err error) {
 	result, err := r.client.Get(ctx, path).Result()
 	if err != nil {
-		return []utils.File{}, utils.ErrFileNotFound
+		return []utils.Variation{}, utils.ErrFileNotFound
 	}
 
 	variations := make([]RedisFile, 0, 5)
@@ -31,9 +31,9 @@ func (r *Repo) GetFileVariations(ctx context.Context, path string) (_ []utils.Fi
 		return
 	}
 
-	file := make([]utils.File, len(variations))
+	file := make([]utils.Variation, len(variations))
 	for k, v := range variations {
-		file[k] = utils.File{
+		file[k] = utils.Variation{
 			Id:        v.Id,
 			Name:      v.Name,
 			Condition: strings.Trim(string(v.Condition), "\""),

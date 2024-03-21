@@ -45,7 +45,7 @@ func TestGetFileVariations(t *testing.T) {
 		path          string
 		newClientMock func() redis.Cmdable
 
-		result []utils.File
+		result []utils.Variation
 		err    error
 	}
 
@@ -64,7 +64,7 @@ func TestGetFileVariations(t *testing.T) {
 
 				return client
 			},
-			result: []utils.File{},
+			result: []utils.Variation{},
 			err:    utils.ErrFileNotFound,
 		},
 		{
@@ -81,7 +81,7 @@ func TestGetFileVariations(t *testing.T) {
 				return client
 			},
 
-			result: []utils.File{
+			result: []utils.Variation{
 				{
 					Id:        "1",
 					Name:      "First",

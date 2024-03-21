@@ -9,7 +9,7 @@ type Request struct {
 
 type Response string
 
-type File struct {
+type Variation struct {
 	Id        string
 	Name      string
 	Condition string
