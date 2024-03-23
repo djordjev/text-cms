@@ -1,7 +1,9 @@
 import { NavLink } from '@remix-run/react';
 import { IconFolderOpen, IconHome, IconUserCircle } from '@tabler/icons-react';
 import classnames from 'classnames';
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { UserContext } from '~/context';
 
 export interface HeaderProps {
   className?: string;
@@ -9,6 +11,9 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const { className } = props;
+
+  // Hooks
+  const { username } = useContext(UserContext);
 
   // Styles
   const classes = classnames('u-navbar u-bg-base-100 u-glass', className);
@@ -18,6 +23,38 @@ const Header: React.FC<HeaderProps> = (props) => {
     return classnames(classesMenuItem, {
       'u-text-primary': isActive
     });
+  };
+
+  const classesLoggedIn = classnames(classesMenuItem, 'u-text-info');
+
+  // Markup
+  const renderAccount = () => {
+    if (!username) {
+      return (
+        <NavLink className={classesNav} to="/login">
+          <IconUserCircle className="u-mr-1x" />
+          Sign In
+        </NavLink>
+      );
+    }
+
+    return (
+      <form
+        action="/logout"
+        className="u-dropdown u-dropdown-hover"
+        method="POST"
+      >
+        <div tabIndex={0} role="button" className={classesLoggedIn}>
+          <IconUserCircle className="u-mr-1x" />
+          {username}
+        </div>
+        <ul className="u-dropdown-content u-z-[1] u-menu u-p-2 u-shadow u-bg-base-100 u-rounded-box u-w-52">
+          <li>
+            <button type="submit">Log out</button>
+          </li>
+        </ul>
+      </form>
+    );
   };
 
   return (
@@ -37,12 +74,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         </NavLink>
       </div>
 
-      <div className="u-navbar-end">
-        <NavLink className={classesNav} to="/login">
-          <IconUserCircle className="u-mr-1x" />
-          Account
-        </NavLink>
-      </div>
+      <div className="u-navbar-end">{renderAccount()}</div>
     </nav>
   );
 };

@@ -1,8 +1,11 @@
 import type { MetaFunction } from '@remix-run/node';
-import { Form, Link } from '@remix-run/react';
+import { Form, Link, useActionData } from '@remix-run/react';
 import { IconKey, IconMail } from '@tabler/icons-react';
 import { FC } from 'react';
 
+import { ErrorList } from '~/components/global/ErrorList';
+
+import { action } from './action';
 export interface AccountCreateProps {}
 
 export const meta: MetaFunction = () => {
@@ -13,6 +16,9 @@ export const meta: MetaFunction = () => {
 };
 
 const AccountCreate: FC<AccountCreateProps> = () => {
+  // Data
+  const data = useActionData<typeof action>();
+
   // Styles
   const classesInput = `u-input u-input-bordered u-flex u-items-center u-gap-2 u-mb-3xs`;
   const classesHeading = `u-uppercase u-tracking-wide u-font-bold u-text-center u-mb-3x`;
@@ -20,22 +26,34 @@ const AccountCreate: FC<AccountCreateProps> = () => {
   return (
     <div>
       <h1 className={classesHeading}>Create a new account</h1>
-      <Form className="u-mb-3xs">
+      <ErrorList errors={data?.errors} />
+      <Form className="u-mb-3xs" method="POST">
         <label className={classesInput}>
           <IconMail aria-label="username" className="u-mr-2x" />
-          <input type="text" className="u-grow" placeholder="Username" />
+          <input
+            className="u-grow"
+            name="username"
+            placeholder="Username"
+            type="text"
+          />
         </label>
         <label className={classesInput}>
           <IconKey aria-label="password" className="u-mr-2x" />
-          <input type="password" className="u-grow" placeholder="Password" />
+          <input
+            className="u-grow"
+            name="password"
+            placeholder="Password"
+            type="password"
+          />
         </label>
 
         <label className={classesInput}>
           <IconKey aria-label="repeat password" className="u-mr-2x" />
           <input
-            type="password-repeat"
             className="u-grow"
+            name="passwordRepeat"
             placeholder="Repeat password"
+            type="password"
           />
         </label>
 
@@ -54,4 +72,5 @@ const AccountCreate: FC<AccountCreateProps> = () => {
   );
 };
 
+export { action };
 export default AccountCreate;
