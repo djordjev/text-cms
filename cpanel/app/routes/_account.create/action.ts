@@ -30,5 +30,5 @@ export const action = async (args: ActionFunctionArgs) => {
 
   const user = await createUser(values.username, values.password);
 
-  if (user) return redirect('/');
+  if (user) return redirect('/login');
 };

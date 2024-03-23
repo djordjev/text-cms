@@ -45,7 +45,7 @@ describe('create account', () => {
     ]);
   });
 
-  it('redirects to homepage if success', async () => {
+  it('redirects to login page if success', async () => {
     const request = buildRequest({
       username: 'username',
       password: 'password',
@@ -56,6 +56,6 @@ describe('create account', () => {
 
     const result = await action({ request, params: {}, context: {} });
 
-    expect(result).toEqual(redirect('/'));
+    expect(result).toEqual(redirect('/login'));
   });
 });
