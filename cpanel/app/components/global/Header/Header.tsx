@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       </div>
 
       <div className="u-navbar-end">
-        <NavLink className={classesNav} to="/account">
+        <NavLink className={classesNav} to="/login">
           <IconUserCircle className="u-mr-1x" />
           Account
         </NavLink>
