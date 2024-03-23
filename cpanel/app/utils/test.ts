@@ -42,3 +42,9 @@ export const TEST_EDITOR: Descendant[] = [
     ]
   }
 ];
+
+export const buildRequest = (data: Record<string, string>, method = 'POST') => {
+  const form = new URLSearchParams(data);
+
+  return new Request('https://www.test.local', { body: form, method });
+};

@@ -1,5 +1,6 @@
 const mocks = vi.hoisted(() => ({ getContentForPath: vi.fn() }));
 vi.mock('~/api/finder.server', () => ({ ...mocks }));
+vi.mock('~/services/auth/auth.server');
 
 import { newNode } from '~/api/__fixtures__/node';
 

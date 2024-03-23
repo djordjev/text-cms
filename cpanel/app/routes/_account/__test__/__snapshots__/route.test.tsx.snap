@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`route 1`] = `
+NodeList [
+  <div
+    class="u-flex u-items-center u-justify-center u-w-full"
+  >
+    <div
+      class="u-card u-shadow-xl u-card-bordered u-bg-secondary u-text-secondary-content md:u-w-4/12"
+    >
+      <div
+        class="u-card-body"
+      />
+    </div>
+  </div>,
+]
+`;
