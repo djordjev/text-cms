@@ -5,11 +5,12 @@ import { CustomElement, CustomText } from '~/types/editor';
 
 export interface TextProps {
   className?: string;
+  displayClickAction: boolean;
   text: string;
 }
 
 const Text: FC<TextProps> = (props) => {
-  const { className, text } = props;
+  const { className, displayClickAction, text } = props;
 
   // Setup
   const parsed = useMemo(() => JSON.parse(text), [text]);
@@ -39,8 +40,11 @@ const Text: FC<TextProps> = (props) => {
         'u-link u-link-primary': type === 'link'
       });
 
-      const onClick = () =>
+      const onClick = () => {
+        if (!displayClickAction) return;
+
         alert(`Clicked action element with action: ${click.action}`);
+      };
 
       const commonProps = {
         className: actionClasses,
@@ -49,15 +53,14 @@ const Text: FC<TextProps> = (props) => {
         style
       };
 
+      const linkProps = displayClickAction
+        ? { rel: 'noreferrer', target: '_blank' }
+        : {};
+
       switch (type) {
         case 'link':
           return (
-            <a
-              {...commonProps}
-              href={click.href}
-              rel="noreferrer"
-              target="_blank"
-            >
+            <a {...commonProps} {...linkProps} href={click.href}>
               {text}
             </a>
           );

@@ -15,14 +15,26 @@ async function main() {
     update: { id: 2, name: 'folder' }
   });
 
-  const root = await client.fsNode.findFirst({ where: { name: '/' } });
+  let root = await client.fsNode.findFirst({ where: { name: '/' } });
   if (!root) {
-    await client.fsNode.create({
+    root = await client.fsNode.create({
       data: {
         name: '/',
         path: '/',
         type: { connect: { id: folder.id } },
         parent: {}
+      }
+    });
+  }
+
+  const home = await client.fsNode.findFirst({ where: { path: '/Home.txt' } });
+  if (!home) {
+    await client.fsNode.create({
+      data: {
+        name: 'Home.txt',
+        path: '/Home.txt',
+        type: { connect: { id: folder.id } },
+        parent: { connect: { id: root.id } }
       }
     });
   }

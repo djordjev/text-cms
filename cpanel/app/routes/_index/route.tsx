@@ -1,4 +1,9 @@
 import type { MetaFunction } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+
+import { Text } from '~/components/viewer/Text';
+
+import { loader } from './loader';
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,6 +12,16 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
-  return <div>Here comes random homepage</div>;
-}
+const Index = () => {
+  // Data
+  const data = useLoaderData<typeof loader>();
+
+  return (
+    <div className="u-p-4x">
+      <Text text={JSON.stringify(data)} />
+    </div>
+  );
+};
+
+export { loader };
+export default Index;
