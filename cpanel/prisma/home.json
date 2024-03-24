@@ -1,0 +1,125 @@
+[
+  {
+    "condition": [
+      [
+        [
+          "logged_in",
+          "=",
+          "true"
+        ]
+      ]
+    ],
+    "id": "992720be-79ff-412c-a0ff-7c19036910d5",
+    "name": "LoggedIn",
+    "text": [
+      {
+        "type": "heading",
+        "children": [
+          {
+            "text": "Welcome back {{ or .name \"user\" }}"
+          }
+        ],
+        "level": 2
+      },
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "text": "This page is pulling text from file "
+          },
+          {
+            "text": "Home.txt",
+            "click": {
+              "action": "view:home_file",
+              "href": "/viewer/2",
+              "type": "link"
+            }
+          },
+          {
+            "text": ". "
+          },
+          {
+            "text": "Go ahead edit it and see the updates.",
+            "underline": true,
+            "italic": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "condition": [],
+    "id": "a640d912-4c2f-4bdd-be4d-4d6d0a5fda11",
+    "name": "Visitor",
+    "text": [
+      {
+        "type": "heading",
+        "children": [
+          {
+            "text": "Hello Visitor"
+          }
+        ],
+        "level": 2
+      },
+      {
+        "type": "paragraph",
+        "level": 2,
+        "children": [
+          {
+            "text": "Welcome",
+            "bold": true,
+            "italic": true
+          },
+          {
+            "text": " to "
+          },
+          {
+            "text": "T",
+            "bold": true,
+            "color": "#fa0000"
+          },
+          {
+            "bold": true,
+            "text": "e",
+            "color": "#0033ff"
+          },
+          {
+            "bold": true,
+            "text": "x",
+            "color": "#e114da"
+          },
+          {
+            "bold": true,
+            "text": "t",
+            "color": "#8a8614"
+          },
+          {
+            "bold": true,
+            "text": "C"
+          },
+          {
+            "bold": true,
+            "text": "M",
+            "color": "#449a2d"
+          },
+          {
+            "bold": true,
+            "text": "S",
+            "color": "#6c09ae"
+          },
+          {
+            "text": ". First create an account "
+          },
+          {
+            "text": "here",
+            "click": {
+              "action": "account:create",
+              "href": "/create",
+              "type": "link"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

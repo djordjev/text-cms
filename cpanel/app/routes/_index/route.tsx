@@ -1,6 +1,7 @@
 import type { MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
+import { ErrorBoundary } from '~/components/global/ErrorBoundary';
 import { Text } from '~/components/viewer/Text';
 
 import { loader } from './loader';
@@ -18,10 +19,10 @@ const Index = () => {
 
   return (
     <div className="u-p-4x">
-      <Text text={JSON.stringify(data)} />
+      <Text displayClickAction={false} text={JSON.stringify(data)} />
     </div>
   );
 };
 
-export { loader };
+export { ErrorBoundary, loader };
 export default Index;

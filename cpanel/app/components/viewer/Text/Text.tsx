@@ -5,12 +5,12 @@ import { CustomElement, CustomText } from '~/types/editor';
 
 export interface TextProps {
   className?: string;
-  displayClickAction: boolean;
+  displayClickAction?: boolean;
   text: string;
 }
 
 const Text: FC<TextProps> = (props) => {
-  const { className, displayClickAction, text } = props;
+  const { className, displayClickAction = true, text } = props;
 
   // Setup
   const parsed = useMemo(() => JSON.parse(text), [text]);
