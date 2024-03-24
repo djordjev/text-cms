@@ -4,8 +4,11 @@ import { getFileContentByPath } from '~/api/file.server';
 import { getFileById } from '~/api/finder.server';
 import { FileVariation } from '~/types';
 import { buildErrorResponse } from '~/utils/errors';
+import { auth } from '~/utils/routes';
 
 const loader = async (args: LoaderFunctionArgs) => {
+  await auth(args);
+
   const { params } = args;
 
   const fileId = params.fileId;

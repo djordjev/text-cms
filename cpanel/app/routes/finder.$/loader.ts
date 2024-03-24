@@ -1,12 +1,12 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
 
 import { getContentForPath } from '~/api/finder.server';
-import { authenticator } from '~/services/auth/auth.server';
+import { auth } from '~/utils/routes';
 
 const loader = async (args: LoaderFunctionArgs) => {
-  const { params, request } = args;
+  await auth(args);
 
-  await authenticator.isAuthenticated(request, { failureRedirect: '/login' });
+  const { params } = args;
 
   const path = `/${params['*']}`;
 

@@ -3,6 +3,7 @@ const mocksRedis = vi.hoisted(() => ({ getFileContentByPath: vi.fn() }));
 
 vi.mock('~/api/finder.server', () => ({ ...mocks }));
 vi.mock('~/api/file.server', () => ({ ...mocksRedis }));
+vi.mock('~/services/auth/auth.server');
 
 import { newNode } from '~/api/__fixtures__/node';
 
