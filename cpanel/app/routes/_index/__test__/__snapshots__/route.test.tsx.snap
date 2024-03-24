@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Route 1`] = `
+NodeList [
+  <div
+    class="u-p-4x"
+  >
+    <div>
+      <h2
+        class="u-text-3xl"
+      >
+        <span
+          class=""
+        >
+          Heading
+        </span>
+      </h2>
+      <p
+        class=""
+      >
+        <span
+          class=""
+        >
+          Paragraph
+        </span>
+      </p>
+    </div>
+  </div>,
+]
+`;

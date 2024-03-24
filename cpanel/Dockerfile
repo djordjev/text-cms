@@ -12,4 +12,4 @@ RUN npm run build
 ENV NODE_ENV=production
 
 RUN ["npm", "run", "migrate:dev"]
-CMD ["npm", "run" ,"start"]
+CMD ["npm", "run" ,"start:with_seed"]
