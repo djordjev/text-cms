@@ -11,10 +11,3 @@ export type FileVariation = {
   name: string;
   text: CustomElement[];
 };
-
-export type FileVariationPayload = {
-  condition: string | null;
-  id: string;
-  name: string;
-  text: string;
-};

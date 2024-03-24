@@ -48,4 +48,12 @@ const addVariation = async (path: string, variation: FileVariation) => {
   return allVariations;
 };
 
-export { addVariation, getFileContentByPath };
+const deleteFiles = async (paths: string[]) => {
+  try {
+    await redis.del(...paths);
+  } catch {
+    throw new Error('unable to delete');
+  }
+};
+
+export { addVariation, deleteFiles, getFileContentByPath };
