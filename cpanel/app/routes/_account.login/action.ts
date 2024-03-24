@@ -6,8 +6,13 @@ import { authenticator } from '~/services/auth/auth.server';
 const action = async (args: ActionFunctionArgs) => {
   const { request } = args;
 
+  const url = new URL(request.url);
+  const redirectLink = url.searchParams.get('redirect');
+
+  const successRedirect = redirectLink || '/';
+
   return authenticator.authenticate(STRATEGY_USER_PASS, request, {
-    successRedirect: '/',
+    successRedirect,
     failureRedirect: '/login'
   });
 };
