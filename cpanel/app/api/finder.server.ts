@@ -43,7 +43,7 @@ const getContentForPath = async (path: string) => {
     include: { children: true }
   });
 
-  if (!folder) return [];
+  if (!folder) return null;
 
   return folder.children;
 };

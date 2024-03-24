@@ -22,12 +22,12 @@ describe('finder', () => {
   describe('getContentForPath', () => {
     const path = '/folder/folder2';
 
-    it('returns empty array', async () => {
+    it('returns null when not found', async () => {
       client.fsNode.findFirst.mockResolvedValue(null);
 
       const result = await getContentForPath(path);
 
-      expect(result).toHaveLength(0);
+      expect(result).toBeNull();
     });
 
     it('returns folders from db', async () => {

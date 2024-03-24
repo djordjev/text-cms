@@ -10,6 +10,7 @@ import { ContextMenu } from '~/components/finder/ContextMenu';
 import { File } from '~/components/finder/File';
 import { FileFolderMenu } from '~/components/finder/FileFolderMenu';
 import { Folder } from '~/components/finder/Folder';
+import { ErrorBoundary } from '~/components/global/ErrorBoundary';
 import { DeleteNode } from '~/components/modals/DeleteNode';
 import { NewFile } from '~/components/modals/NewFile';
 import { useContextMenu } from '~/hooks/finder/useContextMenu';
@@ -108,5 +109,5 @@ const Finder = () => {
   );
 };
 
-export { action, loader };
+export { action, ErrorBoundary, loader };
 export default Finder;
