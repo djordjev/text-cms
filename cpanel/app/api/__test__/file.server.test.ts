@@ -1,11 +1,14 @@
-import { FileVariation } from '~/types';
-
 vi.mock('~/api/redis/redis.server');
 
 import { FILE_CONTENT, FILE_VARIATION } from '~/api/__fixtures__/file';
 import { redis } from '~/api/redis/__mocks__/redis.server';
+import { FileVariation } from '~/types';
 
-import { addVariation, getFileContentByPath } from '../file.server';
+import {
+  addVariation,
+  deleteFiles,
+  getFileContentByPath
+} from '../file.server';
 
 describe('file', () => {
   const path = '/folder1/file.txt';
@@ -55,6 +58,17 @@ describe('file', () => {
       } catch (e) {
         expect((e as any).message).toBe('incorrect variation format');
       }
+    });
+  });
+
+  describe('deleteFiles', () => {
+    it('deletes files', async () => {
+      redis.del.mockResolvedValue(1);
+
+      await deleteFiles(['a', 'b', 'c']);
+
+      expect(redis.del).toHaveBeenCalledOnce();
+      expect(redis.del).toHaveBeenCalledWith('a', 'b', 'c');
     });
   });
 

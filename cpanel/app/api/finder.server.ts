@@ -1,4 +1,6 @@
 import { client } from '~/api/sql/sql.server';
+import { Tx } from '~/types/prisma';
+import { isFile } from '~/utils/file';
 
 const add = async (path: string, name: string, type: string) => {
   const strType = type === 'new-folder' ? 'folder' : 'file';
@@ -33,8 +35,23 @@ const add = async (path: string, name: string, type: string) => {
   }
 };
 
-const remove = async (file: string) => {
-  await client.fsNode.delete({ where: { path: file } });
+const removeInTx = async (tx: Tx, file: string) => {
+  await tx.fsNode.delete({ where: { path: file } });
+};
+
+const getFilesInNode = async (path: string) => {
+  if (isFile(path)) return [path];
+
+  const result = await client.fsNode.findMany({
+    where: {
+      path: {
+        startsWith: path,
+        endsWith: '.txt'
+      }
+    }
+  });
+
+  return result.map((r) => r.path);
 };
 
 const getContentForPath = async (path: string) => {
@@ -43,7 +60,7 @@ const getContentForPath = async (path: string) => {
     include: { children: true }
   });
 
-  if (!folder) return [];
+  if (!folder) return null;
 
   return folder.children;
 };
@@ -52,4 +69,11 @@ const getFileById = async (id: number) => {
   return client.fsNode.findFirst({ where: { id } });
 };
 
-export { add, getContentForPath, getFileById, remove };
+export {
+  add,
+  client,
+  getContentForPath,
+  getFileById,
+  getFilesInNode,
+  removeInTx
+};

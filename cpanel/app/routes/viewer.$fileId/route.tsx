@@ -4,6 +4,7 @@ import { IconFileX } from '@tabler/icons-react';
 import classnames from 'classnames';
 import { FC } from 'react';
 
+import { ErrorBoundary } from '~/components/global/ErrorBoundary';
 import { Variation } from '~/components/viewer/Variation';
 
 import { loader } from './loader';
@@ -73,5 +74,5 @@ const Viewer: FC<ViewerProps> = () => {
   );
 };
 
-export { loader };
+export { ErrorBoundary, loader };
 export default Viewer;

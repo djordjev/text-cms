@@ -3,10 +3,10 @@ import classnames from 'classnames';
 
 import { ConditionEditor } from '~/components/editor/ConditionEditor';
 import { RichTextEditor } from '~/components/editor/RichTextEditor';
+import { ErrorBoundary } from '~/components/global/ErrorBoundary';
 import { BUTTON_ACTION } from '~/constants';
 
 import { action, ACTION_UPSERT } from './action';
-import { ErrorBoundary } from './ErrorBoundary';
 import { loader } from './loader';
 
 const Editor = () => {

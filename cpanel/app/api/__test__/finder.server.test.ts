@@ -3,14 +3,20 @@ vi.mock('~/api/sql/sql.server');
 import { newNode } from '~/api/__fixtures__/node';
 import { client } from '~/api/sql/__mocks__/sql.server';
 
-import { add, getContentForPath, getFileById, remove } from '../finder.server';
+import {
+  add,
+  getContentForPath,
+  getFileById,
+  getFilesInNode,
+  removeInTx
+} from '../finder.server';
 
 describe('finder', () => {
   describe('remove', () => {
     it('calls remove from db', async () => {
       const file = 'test-file-name';
 
-      await remove(file);
+      await removeInTx(client, file);
 
       expect(client.fsNode.delete).toHaveBeenCalledOnce();
       expect(client.fsNode.delete).toHaveBeenCalledWith({
@@ -22,12 +28,12 @@ describe('finder', () => {
   describe('getContentForPath', () => {
     const path = '/folder/folder2';
 
-    it('returns empty array', async () => {
+    it('returns null when not found', async () => {
       client.fsNode.findFirst.mockResolvedValue(null);
 
       const result = await getContentForPath(path);
 
-      expect(result).toHaveLength(0);
+      expect(result).toBeNull();
     });
 
     it('returns folders from db', async () => {
@@ -122,6 +128,42 @@ describe('finder', () => {
 
       const result = await getFileById(10);
       expect(result).toBeNull();
+    });
+  });
+
+  describe('getFilesInNode', () => {
+    it('returns file when file is passed', async () => {
+      const file = '/home/file.txt';
+
+      const result = await getFilesInNode(file);
+
+      expect(result).toStrictEqual([file]);
+    });
+
+    it('returns child files when folder is passed', async () => {
+      const path = '/home';
+
+      const files = [
+        newNode({ path: 'a.txt' }),
+        newNode({ path: 'b.txt' }),
+        newNode({ path: 'c.txt' })
+      ];
+
+      client.fsNode.findMany.mockResolvedValue(files);
+
+      const result = await getFilesInNode(path);
+
+      expect(result).toStrictEqual(['a.txt', 'b.txt', 'c.txt']);
+
+      expect(client.fsNode.findMany).toHaveBeenCalledOnce();
+      expect(client.fsNode.findMany).toHaveBeenCalledWith({
+        where: {
+          path: {
+            startsWith: path,
+            endsWith: '.txt'
+          }
+        }
+      });
     });
   });
 });

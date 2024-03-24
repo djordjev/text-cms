@@ -1,6 +1,7 @@
 import { ActionFunctionArgs } from '@remix-run/node';
 
-import { add, remove } from '~/api/finder.server';
+import { deleteFiles } from '~/api/file.server';
+import { add, client, getFilesInNode, removeInTx } from '~/api/finder.server';
 import { FormValues } from '~/types';
 import { getStringFormEntry } from '~/utils/form';
 
@@ -16,7 +17,13 @@ const actionCreateNode = async (path: string, values: FormValues) => {
 const actionDeleteNode = async (values: FormValues) => {
   const node = getStringFormEntry(values, 'node');
 
-  await remove(node);
+  await client.$transaction(async (tx) => {
+    const filesToDelete = await getFilesInNode(node);
+
+    await removeInTx(tx, node);
+
+    await deleteFiles(filesToDelete);
+  });
 
   return null;
 };
