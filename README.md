@@ -10,7 +10,12 @@ TextCMS is a personal project aimed at providing a customizable text content man
 
 With TextCMS, users can create text files within the system. Every file consists of one or more variations. Every variation has
 a condition attached to it. When a user requests a file, they send data in the body of a POST request. The server then compares
-the sent data against conditions for each variation and selects the most appropriate one to send back to the user.
+the sent data against conditions for each variation and selects the most appropriate one to send back to the user. It can be useful 
+in cases where different clients need to consume the same text but they have different styling/markdown systems (for example HTML/CSS 
+vs mobile apps)
+
+
+![text-cms](https://github.com/djordjev/text-cms/assets/6445853/b1d9a705-f76e-471a-9144-5b632e05c121)
 
 
 ## Development
