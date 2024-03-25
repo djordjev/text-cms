@@ -1,4 +1,5 @@
 # text-cms
+![CPanel tests](https://github.com/djordjev/text-cms/actions/workflows/cpanel.yml/badge.svg) ![Server tests](https://github.com/djordjev/text-cms/actions/workflows/server.yml/badge.svg)
 
 ## Overview
 TextCMS is a personal project aimed at providing a customizable text content management system (CMS) consisting of three main components:
