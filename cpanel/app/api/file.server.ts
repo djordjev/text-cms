@@ -56,4 +56,4 @@ const deleteFiles = async (paths: string[]) => {
   }
 };
 
-export { addVariation, deleteFiles, getFileContentByPath };
+export { addVariation, deleteFiles, getFileContentByPath, storeFileContent };
