@@ -66,7 +66,7 @@ const Variation: FC<VariationProps> = (props) => {
     const to = `/editor/${fileId}/${variation.id}`;
 
     if (draggable) {
-      return <IconArrowsMove />;
+      return <IconArrowsMove aria-label="move" />;
     }
 
     return (

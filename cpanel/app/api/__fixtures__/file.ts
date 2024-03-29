@@ -1,11 +1,12 @@
+import { FileVariation } from '~/types';
 import { TEST_EDITOR } from '~/utils/test';
 
-export const FILE_CONTENT = [
+export const FILE_CONTENT: FileVariation[] = [
   {
     id: '1',
     name: 'First Variation',
     condition: [[['a', '=', '1']]],
-    text: TEST_EDITOR
+    text: TEST_EDITOR as any
   },
   {
     id: '2',
@@ -17,7 +18,7 @@ export const FILE_CONTENT = [
       ],
       [['w', '=', 'true']]
     ],
-    text: TEST_EDITOR
+    text: TEST_EDITOR as any
   }
 ];
 

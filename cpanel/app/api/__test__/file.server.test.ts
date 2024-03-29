@@ -7,7 +7,8 @@ import { FileVariation } from '~/types';
 import {
   addVariation,
   deleteFiles,
-  getFileContentByPath
+  getFileContentByPath,
+  storeFileContent
 } from '../file.server';
 
 describe('file', () => {
@@ -111,6 +112,32 @@ describe('file', () => {
         await getFileContentByPath(path);
       } catch (e) {
         expect((e as any).message).toBe('incorrect variation format');
+      }
+    });
+  });
+
+  describe('storeFileContent', () => {
+    const path = '/path.txt';
+    const content = FILE_CONTENT as FileVariation[];
+
+    it('stores file content', async () => {
+      redis.set.mockResolvedValue('OK');
+
+      await storeFileContent(path, content);
+
+      expect(redis.set).toHaveBeenCalledOnce();
+      expect(redis.set).toHaveBeenCalledWith(path, FILE_VARIATION);
+    });
+
+    it('throws an error', async () => {
+      redis.set.mockRejectedValue(new Error());
+
+      expect.assertions(1);
+
+      try {
+        await storeFileContent(path, content);
+      } catch (e) {
+        expect((e as Error).message).toBe('unable to store file');
       }
     });
   });
