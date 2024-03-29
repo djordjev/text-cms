@@ -23,6 +23,12 @@ NodeList [
         </span>
       </div>
       <div>
+        <button
+          class="u-btn u-btn-outline u-mr-1x"
+          type="button"
+        >
+          Reorder
+        </button>
         <a
           class="u-btn u-btn-accent"
           href="/editor/22"

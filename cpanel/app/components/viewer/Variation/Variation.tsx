@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import { IconEdit } from '@tabler/icons-react';
+import { IconArrowsMove, IconEdit } from '@tabler/icons-react';
 import classnames from 'classnames';
 import { FC, Fragment } from 'react';
 
@@ -9,12 +9,13 @@ import { ConditionAndChain, ConditionDescriptor } from '~/types/condition';
 
 export interface VariationProps {
   className?: string;
+  draggable?: boolean;
   fileId?: number;
   variation: FileVariation;
 }
 
 const Variation: FC<VariationProps> = (props) => {
-  const { className, fileId, variation } = props;
+  const { className, draggable, fileId, variation } = props;
 
   // Setup
   const { condition, id, name, text } = variation;
@@ -60,9 +61,13 @@ const Variation: FC<VariationProps> = (props) => {
     return <div>{condition.map(renderAndChain)}</div>;
   };
 
-  const renderEdit = () => {
+  const renderActions = () => {
     if (!fileId) return null;
     const to = `/editor/${fileId}/${variation.id}`;
+
+    if (draggable) {
+      return <IconArrowsMove aria-label="move" />;
+    }
 
     return (
       <Link className="u-link u-link-primary" to={to}>
@@ -81,7 +86,7 @@ const Variation: FC<VariationProps> = (props) => {
           </h4>
         </div>
 
-        {renderEdit()}
+        {renderActions()}
       </div>
 
       <div className="u-flex u-mb-1x">

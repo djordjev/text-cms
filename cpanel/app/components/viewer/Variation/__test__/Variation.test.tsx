@@ -22,7 +22,7 @@ test('Variation', () => {
     return <RemixStub />;
   };
 
-  const { container } = render(createComponent());
+  const { container, rerender } = render(createComponent());
 
   expect(
     screen.getByRole('heading', { name: 'Second Variation' })
@@ -43,4 +43,10 @@ test('Variation', () => {
   expect(screen.getByText('paragraph')).toBeInTheDocument();
 
   expect(container.childNodes).toMatchSnapshot();
+
+  // renders draggable
+  props.draggable = true;
+  rerender(createComponent());
+
+  expect(screen.getByLabelText('move')).toBeInTheDocument();
 });

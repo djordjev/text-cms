@@ -1,12 +1,15 @@
 import { MetaFunction } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { Link, useFetcher, useLoaderData } from '@remix-run/react';
 import { IconFileX } from '@tabler/icons-react';
 import classnames from 'classnames';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { ErrorBoundary } from '~/components/global/ErrorBoundary';
 import { Variation } from '~/components/viewer/Variation';
+import { VariationsDND } from '~/components/viewer/VariationsDND';
+import { BUTTON_ACTION } from '~/constants';
 
+import { action } from './action';
 import { loader } from './loader';
 
 export interface ViewerProps {}
@@ -21,6 +24,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 const Viewer: FC<ViewerProps> = () => {
   // Hooks
   const { info, variations } = useLoaderData<typeof loader>();
+  const [reorder, setReorder] = useState(false);
+  const fetcher = useFetcher();
 
   // Setup
   const { id, path } = info;
@@ -30,6 +35,17 @@ const Viewer: FC<ViewerProps> = () => {
     'u-flex u-items-center u-flex-col u-justify-center',
     'u-w-full u-opacity-45 u-pointer-events-none u-mt-10x'
   );
+
+  // Handlers
+  const onReorderClick = () => {
+    setReorder(!reorder);
+  };
+
+  const onRearrange = (items: { from: string; to: string }) => {
+    const data = { [BUTTON_ACTION]: 'rearrange', path, ...items };
+
+    fetcher.submit(data, { method: 'PUT' });
+  };
 
   // Markdown
   const renderEmpty = () => {
@@ -46,12 +62,20 @@ const Viewer: FC<ViewerProps> = () => {
   const renderContent = () => {
     if (!variations.length) return renderEmpty();
 
+    if (!reorder) {
+      return variations.map((v) => (
+        <Variation key={v.id} fileId={id} variation={v} />
+      ));
+    }
+
     return (
-      <div className="u-p-4x">
-        {variations.map((v) => (
-          <Variation key={v.id} fileId={id} variation={v} />
-        ))}
-      </div>
+      <fetcher.Form method="PUT">
+        <VariationsDND
+          id={id}
+          onDragEnd={onRearrange}
+          variations={variations}
+        />
+      </fetcher.Form>
     );
   };
 
@@ -63,16 +87,23 @@ const Viewer: FC<ViewerProps> = () => {
           <span className="u-text-primary-100 u-font-bold">{path}</span>
         </div>
         <div>
+          <button
+            className="u-btn u-btn-outline u-mr-1x"
+            onClick={onReorderClick}
+            type="button"
+          >
+            {reorder ? 'Done' : 'Reorder'}
+          </button>
           <Link className="u-btn u-btn-accent" to={`/editor/${id}`}>
             Add new variation
           </Link>
         </div>
       </div>
 
-      {renderContent()}
+      <div className="u-p-4x">{renderContent()}</div>
     </div>
   );
 };
 
-export { ErrorBoundary, loader };
+export { action, ErrorBoundary, loader };
 export default Viewer;
