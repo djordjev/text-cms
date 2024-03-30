@@ -1,9 +1,10 @@
-import { Link } from '@remix-run/react';
-import { IconArrowsMove, IconEdit } from '@tabler/icons-react';
+import { Link, useFetcher } from '@remix-run/react';
+import { IconArrowsMove, IconEdit, IconTrash } from '@tabler/icons-react';
 import classnames from 'classnames';
 import { FC, Fragment } from 'react';
 
 import { Text } from '~/components/viewer/Text';
+import { BUTTON_ACTION } from '~/constants';
 import { FileVariation } from '~/types';
 import { ConditionAndChain, ConditionDescriptor } from '~/types/condition';
 
@@ -17,6 +18,9 @@ export interface VariationProps {
 const Variation: FC<VariationProps> = (props) => {
   const { className, draggable, fileId, variation } = props;
 
+  // Hooks
+  const fetcher = useFetcher();
+
   // Setup
   const { condition, id, name, text } = variation;
 
@@ -25,6 +29,17 @@ const Variation: FC<VariationProps> = (props) => {
     'u-card u-shadow-xl u-mb-5x u-bg-base-300 u-p-3xs',
     className
   );
+
+  // Handlers
+  const onDelete = () => {
+    const data = {
+      [BUTTON_ACTION]: 'delete',
+      fileId: fileId ?? '',
+      variation: id
+    };
+
+    fetcher.submit(data, { method: 'DELETE' });
+  };
 
   // Markup
   const renderDescriptor = (descriptor: ConditionDescriptor, index: number) => {
@@ -70,9 +85,20 @@ const Variation: FC<VariationProps> = (props) => {
     }
 
     return (
-      <Link className="u-link u-link-primary" to={to}>
-        <IconEdit className="u-inline" /> Edit
-      </Link>
+      <div className="u-flex u-gap-1x">
+        <fetcher.Form method="DELETE">
+          <button
+            className="u-link u-link-primary"
+            onClick={onDelete}
+            type="button"
+          >
+            <IconTrash className="u-inline" /> Delete
+          </button>
+        </fetcher.Form>
+        <Link className="u-link u-link-primary" to={to}>
+          <IconEdit className="u-inline" /> Edit
+        </Link>
+      </div>
     );
   };
 

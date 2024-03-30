@@ -60,34 +60,77 @@ NodeList [
               First Variation
             </h4>
           </div>
-          <a
-            class="u-link u-link-primary"
-            href="/editor/22/1"
+          <div
+            class="u-flex u-gap-1x"
           >
-            <svg
-              class="u-inline"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+            <form
+              action="/viewer/22"
+              method="post"
             >
-              <path
-                d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
-              />
-              <path
-                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
-              />
-              <path
-                d="M16 5l3 3"
-              />
-            </svg>
-             Edit
-          </a>
+              <button
+                class="u-link u-link-primary"
+                type="button"
+              >
+                <svg
+                  class="u-inline"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 7l16 0"
+                  />
+                  <path
+                    d="M10 11l0 6"
+                  />
+                  <path
+                    d="M14 11l0 6"
+                  />
+                  <path
+                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                  />
+                  <path
+                    d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                  />
+                </svg>
+                 Delete
+              </button>
+            </form>
+            <a
+              class="u-link u-link-primary"
+              href="/editor/22/1"
+            >
+              <svg
+                class="u-inline"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                />
+                <path
+                  d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                />
+                <path
+                  d="M16 5l3 3"
+                />
+              </svg>
+               Edit
+            </a>
+          </div>
         </div>
         <div
           class="u-flex u-mb-1x"
@@ -200,34 +243,77 @@ NodeList [
               Second Variation
             </h4>
           </div>
-          <a
-            class="u-link u-link-primary"
-            href="/editor/22/2"
+          <div
+            class="u-flex u-gap-1x"
           >
-            <svg
-              class="u-inline"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+            <form
+              action="/viewer/22"
+              method="post"
             >
-              <path
-                d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
-              />
-              <path
-                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
-              />
-              <path
-                d="M16 5l3 3"
-              />
-            </svg>
-             Edit
-          </a>
+              <button
+                class="u-link u-link-primary"
+                type="button"
+              >
+                <svg
+                  class="u-inline"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 7l16 0"
+                  />
+                  <path
+                    d="M10 11l0 6"
+                  />
+                  <path
+                    d="M14 11l0 6"
+                  />
+                  <path
+                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                  />
+                  <path
+                    d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                  />
+                </svg>
+                 Delete
+              </button>
+            </form>
+            <a
+              class="u-link u-link-primary"
+              href="/editor/22/2"
+            >
+              <svg
+                class="u-inline"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                />
+                <path
+                  d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                />
+                <path
+                  d="M16 5l3 3"
+                />
+              </svg>
+               Edit
+            </a>
+          </div>
         </div>
         <div
           class="u-flex u-mb-1x"
