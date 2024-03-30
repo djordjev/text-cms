@@ -42,6 +42,9 @@ test('Variation', () => {
   expect(screen.getByText('HEADING')).toBeInTheDocument();
   expect(screen.getByText('paragraph')).toBeInTheDocument();
 
+  expect(screen.getByRole('link', { name: /Edit/ })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /Delete/ })).toBeInTheDocument();
+
   expect(container.childNodes).toMatchSnapshot();
 
   // renders draggable
