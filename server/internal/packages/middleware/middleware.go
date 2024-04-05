@@ -1,4 +1,4 @@
-package rest
+package middleware
 
 import (
 	"fmt"
@@ -38,7 +38,7 @@ func (rw *responseWriter) WriteHeader(code int) {
 	rw.wroteHeader = true
 }
 
-func mwLogger(logger *slog.Logger, next http.HandlerFunc) http.HandlerFunc {
+func MwLogger(logger *slog.Logger, next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 
@@ -54,7 +54,7 @@ func mwLogger(logger *slog.Logger, next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-func mwRecover(next http.HandlerFunc) http.HandlerFunc {
+func MwRecover(next http.HandlerFunc) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		defer func() {
 			if r := recover(); r != nil {

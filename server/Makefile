@@ -13,3 +13,6 @@ test_coverage:
 
 test:
 	go test -v ./...
+
+graphql_generate:
+	go run github.com/99designs/gqlgen generate

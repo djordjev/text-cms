@@ -25,7 +25,7 @@ func (m *mockDomain) GetFileContent(ctx context.Context, request utils.Request) 
 func TestHttpServer(t *testing.T) {
 	type testCase struct {
 		name          string
-		newMockDomain func() Domain
+		newMockDomain func() utils.Domain
 
 		result string
 		status int
@@ -34,7 +34,7 @@ func TestHttpServer(t *testing.T) {
 	table := []testCase{
 		{
 			name: "returns found variation",
-			newMockDomain: func() Domain {
+			newMockDomain: func() utils.Domain {
 				domain := &mockDomain{}
 
 				requestMatcher := mock.MatchedBy(func(req utils.Request) bool {
@@ -52,7 +52,7 @@ func TestHttpServer(t *testing.T) {
 		},
 		{
 			name: "returns file not found",
-			newMockDomain: func() Domain {
+			newMockDomain: func() utils.Domain {
 				domain := &mockDomain{}
 
 				domain.
