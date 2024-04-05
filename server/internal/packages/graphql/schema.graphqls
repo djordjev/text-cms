@@ -1,0 +1,11 @@
+scalar Any
+
+type Query {
+    ping: String!
+    text(request: TextRequestInput!): [Any!]!
+}
+
+input TextRequestInput {
+    fileName: String!
+    payload: Any
+}

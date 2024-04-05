@@ -7,6 +7,7 @@ import (
 	"log/slog"
 	"os"
 	"server/internal/packages/app"
+	"server/internal/packages/graphql"
 	"server/internal/packages/repository"
 	"server/internal/packages/rest"
 	"server/internal/packages/utils"
@@ -44,6 +45,19 @@ func main() {
 	domain := app.NewDomain(repo)
 
 	// start server
-	server := rest.NewRestServer(config, domain, logger)
-	server.Run()
+	var server utils.Interface
+	if config.Protocol == "rest" {
+		server = rest.NewRestServer(config, domain, logger)
+	} else if config.Protocol == "graphql" {
+		server = graphql.NewGraphQLServer(config, domain, logger)
+	} else {
+		fmt.Println("invalid protocol name", config.Protocol)
+		os.Exit(1)
+	}
+
+	err = server.Run()
+	if err != nil {
+		fmt.Println("Shutting down the server")
+	}
+
 }
