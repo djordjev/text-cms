@@ -3,12 +3,12 @@ package graphql
 import (
 	"fmt"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/graphql/generated"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/graphql/resolvers"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/middleware"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"log/slog"
 	"net/http"
-	"server/internal/packages/communication/graphql/generated"
-	"server/internal/packages/communication/graphql/resolvers"
-	"server/internal/packages/communication/middleware"
-	"server/internal/packages/utils"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 )

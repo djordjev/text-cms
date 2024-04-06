@@ -1,8 +1,8 @@
 package grpc
 
 import (
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"log/slog"
-	"server/internal/packages/utils"
 )
 
 type Server struct{}

@@ -1,4 +1,4 @@
-module server
+module github.com/djordjev/text-cms/server
 
 go 1.22
 
@@ -7,6 +7,8 @@ require (
 	github.com/redis/go-redis/v9 v9.5.1
 	github.com/stretchr/testify v1.9.0
 	github.com/vektah/gqlparser/v2 v2.5.11
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.3.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (

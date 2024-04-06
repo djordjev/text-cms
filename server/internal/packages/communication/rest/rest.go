@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/middleware"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"io"
 	"log/slog"
 	"net/http"
-	"server/internal/packages/communication/middleware"
-	"server/internal/packages/utils"
 	"time"
 )
 

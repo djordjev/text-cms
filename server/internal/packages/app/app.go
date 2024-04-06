@@ -3,7 +3,7 @@ package app
 import (
 	"context"
 	"fmt"
-	"server/internal/packages/utils"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"sync"
 )
 

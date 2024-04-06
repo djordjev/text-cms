@@ -7,7 +7,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"server/internal/packages/communication/graphql/model"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/graphql/model"
 	"strconv"
 	"sync"
 	"sync/atomic"

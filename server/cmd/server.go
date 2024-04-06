@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/djordjev/text-cms/server/internal/packages/app"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/graphql"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/grpc"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/rest"
+	"github.com/djordjev/text-cms/server/internal/packages/repository"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"github.com/redis/go-redis/v9"
 	"log/slog"
 	"os"
-	"server/internal/packages/app"
-	"server/internal/packages/communication/graphql"
-	"server/internal/packages/communication/grpc"
-	"server/internal/packages/communication/rest"
-	"server/internal/packages/repository"
-	"server/internal/packages/utils"
 )
 
 func main() {
