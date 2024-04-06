@@ -16,3 +16,6 @@ test:
 
 graphql_generate:
 	go run github.com/99designs/gqlgen generate
+
+grpc_generate:
+	protoc -I../proto --go_out=. --go_opt=module=github.com/djordjev/text-cms/server --go-grpc_out=. --go-grpc_opt=module=github.com/djordjev/text-cms/server ../proto/messages.proto
