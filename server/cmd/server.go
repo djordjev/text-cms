@@ -7,9 +7,10 @@ import (
 	"log/slog"
 	"os"
 	"server/internal/packages/app"
-	"server/internal/packages/graphql"
+	"server/internal/packages/communication/graphql"
+	"server/internal/packages/communication/grpc"
+	"server/internal/packages/communication/rest"
 	"server/internal/packages/repository"
-	"server/internal/packages/rest"
 	"server/internal/packages/utils"
 )
 
@@ -50,6 +51,8 @@ func main() {
 		server = rest.NewRestServer(config, domain, logger)
 	} else if config.Protocol == "graphql" {
 		server = graphql.NewGraphQLServer(config, domain, logger)
+	} else if config.Protocol == "grpc" {
+		server = grpc.NewGrpcServer(config, domain, logger)
 	} else {
 		fmt.Println("invalid protocol name", config.Protocol)
 		os.Exit(1)

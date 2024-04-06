@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package message;
+
+option go_package = "server/internal/packages/communication/grpc";
+
+message Dummy {
+  uint32 number = 1;
+}
+
+service TextService {
+
+}

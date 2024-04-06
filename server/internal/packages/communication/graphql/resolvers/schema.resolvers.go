@@ -8,8 +8,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	graphql1 "server/internal/packages/graphql/generated"
-	"server/internal/packages/graphql/model"
+	graphql1 "server/internal/packages/communication/graphql/generated"
+	"server/internal/packages/communication/graphql/model"
 	"server/internal/packages/utils"
 )
 

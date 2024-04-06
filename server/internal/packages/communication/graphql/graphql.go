@@ -5,9 +5,9 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"log/slog"
 	"net/http"
-	graphql "server/internal/packages/graphql/generated"
-	"server/internal/packages/graphql/resolvers"
-	"server/internal/packages/middleware"
+	"server/internal/packages/communication/graphql/generated"
+	"server/internal/packages/communication/graphql/resolvers"
+	"server/internal/packages/communication/middleware"
 	"server/internal/packages/utils"
 
 	"github.com/99designs/gqlgen/graphql/handler"

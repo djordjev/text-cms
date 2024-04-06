@@ -8,7 +8,7 @@ import (
 	"io"
 	"log/slog"
 	"net/http"
-	"server/internal/packages/middleware"
+	"server/internal/packages/communication/middleware"
 	"server/internal/packages/utils"
 	"time"
 )
