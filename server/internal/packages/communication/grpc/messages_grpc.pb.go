@@ -7,7 +7,10 @@
 package grpc
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TextServiceClient interface {
+	GetText(ctx context.Context, in *TextRequest, opts ...grpc.CallOption) (*TextResponse, error)
 }
 
 type textServiceClient struct {
@@ -29,10 +33,20 @@ func NewTextServiceClient(cc grpc.ClientConnInterface) TextServiceClient {
 	return &textServiceClient{cc}
 }
 
+func (c *textServiceClient) GetText(ctx context.Context, in *TextRequest, opts ...grpc.CallOption) (*TextResponse, error) {
+	out := new(TextResponse)
+	err := c.cc.Invoke(ctx, "/message.TextService/GetText", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TextServiceServer is the server API for TextService service.
 // All implementations must embed UnimplementedTextServiceServer
 // for forward compatibility
 type TextServiceServer interface {
+	GetText(context.Context, *TextRequest) (*TextResponse, error)
 	mustEmbedUnimplementedTextServiceServer()
 }
 
@@ -40,6 +54,9 @@ type TextServiceServer interface {
 type UnimplementedTextServiceServer struct {
 }
 
+func (UnimplementedTextServiceServer) GetText(context.Context, *TextRequest) (*TextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetText not implemented")
+}
 func (UnimplementedTextServiceServer) mustEmbedUnimplementedTextServiceServer() {}
 
 // UnsafeTextServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -53,13 +70,36 @@ func RegisterTextServiceServer(s grpc.ServiceRegistrar, srv TextServiceServer) {
 	s.RegisterService(&TextService_ServiceDesc, srv)
 }
 
+func _TextService_GetText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TextServiceServer).GetText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.TextService/GetText",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TextServiceServer).GetText(ctx, req.(*TextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TextService_ServiceDesc is the grpc.ServiceDesc for TextService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TextService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "message.TextService",
 	HandlerType: (*TextServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "messages.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetText",
+			Handler:    _TextService_GetText_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "messages.proto",
 }
