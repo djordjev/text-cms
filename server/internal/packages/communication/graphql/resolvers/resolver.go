@@ -1,8 +1,8 @@
 package resolvers
 
 import (
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"log/slog"
-	"server/internal/packages/utils"
 )
 
 // This file will not be regenerated automatically.

@@ -3,9 +3,9 @@ package app
 import (
 	"context"
 	"errors"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"server/internal/packages/utils"
 	"testing"
 )
 

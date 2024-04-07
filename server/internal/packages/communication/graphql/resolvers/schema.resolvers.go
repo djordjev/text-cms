@@ -8,9 +8,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	graphql1 "server/internal/packages/graphql/generated"
-	"server/internal/packages/graphql/model"
-	"server/internal/packages/utils"
+	graphql1 "github.com/djordjev/text-cms/server/internal/packages/communication/graphql/generated"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/graphql/model"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 )
 
 // Ping is the resolver for the ping field.

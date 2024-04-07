@@ -2,11 +2,11 @@ package rest
 
 import (
 	"context"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"net/http"
 	"net/http/httptest"
-	"server/internal/packages/utils"
 	"strings"
 	"testing"
 )

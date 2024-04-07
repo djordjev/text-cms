@@ -3,14 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/djordjev/text-cms/server/internal/packages/app"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/graphql"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/grpc"
+	"github.com/djordjev/text-cms/server/internal/packages/communication/rest"
+	"github.com/djordjev/text-cms/server/internal/packages/repository"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"github.com/redis/go-redis/v9"
 	"log/slog"
 	"os"
-	"server/internal/packages/app"
-	"server/internal/packages/graphql"
-	"server/internal/packages/repository"
-	"server/internal/packages/rest"
-	"server/internal/packages/utils"
 )
 
 func main() {
@@ -50,6 +51,8 @@ func main() {
 		server = rest.NewRestServer(config, domain, logger)
 	} else if config.Protocol == "graphql" {
 		server = graphql.NewGraphQLServer(config, domain, logger)
+	} else if config.Protocol == "grpc" {
+		server = grpc.NewGrpcServer(config, domain, logger)
 	} else {
 		fmt.Println("invalid protocol name", config.Protocol)
 		os.Exit(1)

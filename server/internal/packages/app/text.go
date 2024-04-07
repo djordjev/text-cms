@@ -3,7 +3,7 @@ package app
 import (
 	"bytes"
 	"fmt"
-	"server/internal/packages/utils"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"strings"
 	"text/template"
 )

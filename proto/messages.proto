@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package message;
+
+option go_package = "github.com/djordjev/text-cms/server/internal/packages/communication/grpc";
+
+message TextRequest {
+  string file = 1;
+  string payload = 2;
+}
+
+message TextResponse {
+  string payload = 1;
+}
+
+service TextService {
+  rpc GetText (TextRequest) returns (TextResponse);
+}

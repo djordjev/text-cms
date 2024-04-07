@@ -2,9 +2,9 @@ package middleware
 
 import (
 	"fmt"
+	"github.com/djordjev/text-cms/server/internal/packages/utils"
 	"log/slog"
 	"net/http"
-	"server/internal/packages/utils"
 	"time"
 )
 
