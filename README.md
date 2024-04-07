@@ -1,7 +1,9 @@
 # text-cms
+
 ![CPanel tests](https://github.com/djordjev/text-cms/actions/workflows/cpanel.yml/badge.svg) ![Server tests](https://github.com/djordjev/text-cms/actions/workflows/server.yml/badge.svg)
 
 ## Overview
+
 TextCMS is a personal project aimed at providing a customizable text content management system (CMS) consisting of three main components:
 
 1. Database (Redis)
@@ -10,21 +12,30 @@ TextCMS is a personal project aimed at providing a customizable text content man
 
 With TextCMS, users can create text files within the system. Every file consists of one or more variations. Every variation has
 a condition attached to it. When a user requests a file, they send data in the body of a POST request. The server then compares
-the sent data against conditions for each variation and selects the most appropriate one to send back to the user. It can be useful 
-in cases where different clients need to consume the same text but they have different styling/markdown systems (for example HTML/CSS 
+the sent data against conditions for each variation and selects the most appropriate one to send back to the user. It can be useful
+in cases where different clients need to consume the same text but they have different styling/markdown systems (for example HTML/CSS
 vs mobile apps)
-
 
 ![text-cms](https://github.com/djordjev/text-cms/assets/6445853/b1d9a705-f76e-471a-9144-5b632e05c121)
 
+## API
+
+Server supports following APIs:
+
+1. Restfull -> Having environment variable `PROTOCOL=rest`
+2. Graphql -> Having environment variable `PROTOCOL=graphql`
+3. gRPC -> Having environment variable `PROTOCOL=grpc`
 
 ## Development
+
 In order to run the system locally all you need to have [docker](https://www.docker.com/) installed. Then in home directory run
+
 ```
 docker compose up
 ```
 
 That will build and run following containers:
+
 1. Redis on port `6379`
 2. Server on port `3004`
 3. Control panel web application on port `3000`. This container will have also local SQLite database but it's private to this service and not exposed
@@ -39,6 +50,7 @@ will return the first one matching conditions.
 
 Database seed contains example file called Home.txt in root directory (`http://localhost:3004/file/Home.txt`). You can test different variations
 by sending those POST reqests:
+
 ```
 {
   "logged_in": false
@@ -61,19 +73,24 @@ objects should be condidered as text block and each one should be rendered below
 Possible values of `type` propery are `paragraph` and `heading`. Beside it, it will have another property `children` which is an array of nodes.
 
 ### Heading
+
 Different sizes of heading element. Beside `type` and `children` properties it will have:
+
 1. `level` property which is a number indicating size of heading (h1...h6)
 2. `align` propery (optional) which can be `left`, `center` or `right`. If not present text should be left aligned.
 3. `children` array having a list of `nodes` that should be rendered within current heading
 
 ### Paragraph
+
 1. Optional `align` property with the same meaning as in heading element.
 2. `children` array with the same meaning as in heading element.
 
 ### Nodes
+
 Node is a JSON object having `text` propery in simplest form. It's returned as element of `children` property of `heading` or `paragraph`.
 Each node should be rendered one after another (inline) as child of parent element. Beside `text` property each node can optinally have one of
 following properties:
+
 1. `bold` - optional boolean. Indicates if text should be bolded
 2. `underline` - optional boolean. Indicates if text should be underlined
 3. `italic` - optional boolean. Indicates if text should be italic
@@ -81,8 +98,10 @@ following properties:
 5. `color` - optional string. Hex value of text color.
 
 ### Interactive nodes
+
 Some nodes might be clickable (links and buttons). Such nodes will have property `click` which is an object. If present it will have following
 properties:
+
 1. `type` - required, one of following: `link`, `primary` or `secondary`. Indicates styling of interactive element. Consuming application can
 2. decide exact styling for each of those types
 3. `href` - optional string. If the `type` is `link` it should contain URL where it should link. In case of buttons it can be omitted.
