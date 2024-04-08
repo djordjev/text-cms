@@ -54,11 +54,11 @@ func MwLogger(logger *slog.Logger, next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-func MwRecover(next http.HandlerFunc) http.HandlerFunc {
+func MwRecover(logger *slog.Logger, next http.HandlerFunc) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		defer func() {
 			if r := recover(); r != nil {
-				fmt.Println(fmt.Sprintf("recovering http server from %v", r))
+				logger.Error(fmt.Sprintf("recovering http server from %v", r))
 			}
 		}()
 

@@ -35,7 +35,7 @@ func NewGraphQLServer(config utils.Config, app utils.Domain, logger *slog.Logger
 	graphqlConfig := graphql.Config{Resolvers: resolvers.NewResolver(config, app, logger)}
 	mux := handler.NewDefaultServer(graphql.NewExecutableSchema(graphqlConfig))
 
-	graphqlHandler := middleware.MwRecover(middleware.MwLogger(logger, func(w http.ResponseWriter, r *http.Request) {
+	graphqlHandler := middleware.MwRecover(logger, middleware.MwLogger(logger, func(w http.ResponseWriter, r *http.Request) {
 		mux.ServeHTTP(w, r)
 	}))
 
