@@ -73,8 +73,8 @@ func (s *Server) setUpRoutes() {
 
 	s.logger.Info(fmt.Sprintf("setting up the route to %s", fileEndpoint))
 
-	s.mux.HandleFunc(fileEndpoint, middleware.MwRecover(middleware.MwLogger(s.logger, s.getFile)))
-	s.mux.HandleFunc("GET /ping", middleware.MwRecover(middleware.MwLogger(s.logger, s.ping)))
+	s.mux.HandleFunc(fileEndpoint, middleware.MwRecover(s.logger, middleware.MwLogger(s.logger, s.getFile)))
+	s.mux.HandleFunc("GET /ping", middleware.MwRecover(s.logger, middleware.MwLogger(s.logger, s.ping)))
 }
 
 func NewRestServer(config utils.Config, app utils.Domain, logger *slog.Logger) *Server {

@@ -26,7 +26,12 @@ func (s *Server) Run() error {
 
 	s.logger.Info("Running server", "address", addr, "type", "gRPC")
 
-	srv := grpc.NewServer()
+	srv := grpc.NewServer(
+		grpc.ChainUnaryInterceptor(
+			recoverInterceptor(s.logger),
+			logInterceptor(s.logger),
+		),
+	)
 
 	RegisterTextServiceServer(srv, s)
 
@@ -55,9 +60,9 @@ func (s *Server) GetText(ctx context.Context, req *TextRequest) (*TextResponse, 
 
 	request := utils.Request{Path: req.File, Payload: payload}
 
-	response, err := s.app.GetFileContent(utils.AddLoggerToContext(ctx, s.logger), request)
+	response, err := s.app.GetFileContent(ctx, request)
 	if err != nil {
-		return nil, fmt.Errorf("unable to get file content: %w", err)
+		return &TextResponse{}, fmt.Errorf("unable to get file content: %w", err)
 	}
 
 	res := TextResponse{Payload: string(response)}
