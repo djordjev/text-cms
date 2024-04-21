@@ -1,8 +1,6 @@
 const mocks = vi.hoisted(() => ({ createUser: vi.fn() }));
 vi.mock('~/api/user.server', () => ({ ...mocks }));
 
-import { redirect } from '@remix-run/node';
-
 import { buildRequest } from '~/utils/test';
 
 import { action } from '../action';
@@ -45,7 +43,7 @@ describe('create account', () => {
     ]);
   });
 
-  it('redirects to login page if success', async () => {
+  it('redirects to finder page if success', async () => {
     const request = buildRequest({
       username: 'username',
       password: 'password',
@@ -54,8 +52,15 @@ describe('create account', () => {
 
     mocks.createUser.mockResolvedValue({ username: 'username' });
 
-    const result = await action({ request, params: {}, context: {} });
+    const result = (await action({
+      request,
+      params: {},
+      context: {}
+    })) as Response;
 
-    expect(result).toEqual(redirect('/login'));
+    // expect(result).toEqual(redirect('/finder', ));
+
+    expect(result.status).toBe(302);
+    expect(result.headers.get('Location')).toBe('/finder');
   });
 });
