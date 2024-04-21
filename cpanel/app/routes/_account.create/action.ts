@@ -2,6 +2,8 @@ import { ActionFunctionArgs, redirect } from '@remix-run/node';
 import { z, ZodError } from 'zod';
 
 import { createUser } from '~/api/user.server';
+import { authenticator } from '~/services/auth/auth.server';
+import { commitSession, getSession } from '~/services/auth/session.server';
 
 const payload = z.object({
   username: z.string().min(3, 'username too short'),
@@ -28,7 +30,19 @@ export const action = async (args: ActionFunctionArgs) => {
     return { errors: ['password and repeated password are not the same'] };
   }
 
-  const user = await createUser(values.username, values.password);
+  try {
+    const user = await createUser(values.username, values.password);
 
-  if (user) return redirect('/login');
+    if (!user) return { errors: ['Could not create user. Please try again'] };
+
+    const session = await getSession(request.headers.get('Cookie'));
+
+    session.set(authenticator.sessionKey, user);
+
+    return redirect('/finder', {
+      headers: { 'Set-Cookie': await commitSession(session) }
+    });
+  } catch {
+    return { errors: ['Could not create user. Please try again'] };
+  }
 };
